@@ -48,11 +48,10 @@
                                     </svg>
                                 </div>
 
-                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Documentation</h2>
+                                <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Documentacionesaportadas</h2>
 
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel has wonderful documentation covering every aspect of the framework. Whether you are a newcomer or have prior experience with Laravel, we recommend reading our documentation from beginning to end.
-                                </p>
+Esta liena está cambiada                                </p>
                             </div>
 
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="self-center shrink-0 stroke-red-500 w-6 h-6 mx-6">

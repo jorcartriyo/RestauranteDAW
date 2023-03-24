@@ -2,11 +2,6 @@
  @section('title', 'Inicio')
 @section('content')
     <div class="super_container">
-
-        <!-- Header -->
-        @include('sections.header')
-
-
         <!-- Carrusel -->
         @include('sections.carrusel')
 

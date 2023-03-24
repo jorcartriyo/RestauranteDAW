@@ -16,24 +16,14 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-
-
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white dark:bg-gray-800 shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    @yield('header')
-                </div>
-            </header>
-        @endif
-
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">  
+        <!-- Header -->
+        @include('sections.header')
         <!-- Page Content -->
         <main>
             @yield('content')
         </main>
     </div>
-
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('styles/bootstrap5/popper.js') }}"></script>
     <script src="{{ asset('styles/bootstrap5/bootstrap.min.js') }}"></script>

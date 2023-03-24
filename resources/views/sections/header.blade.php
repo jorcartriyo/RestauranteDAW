@@ -14,7 +14,7 @@
         <nav class="main_nav_container">
             <div class="main_nav">
                 <ul class="main_nav_list">
-                    <li class="main_nav_item"><a href="{{ url('Inicio') }}">Inicio</a></li>
+                    <li class="main_nav_item"><a href="{{ route('inicio') }}">Inicio</a></li>
                     <li class="main_nav_item"><a href="{{ url('DatosDueño') }}">Carta</a></li>
                     <li class="main_nav_item"><a href="{{ url('DatosLocal') }}">Menú del Día</a></li>
                     <li class="main_nav_item"><a href="{{ url('Menu') }}">Reservas</a></li>

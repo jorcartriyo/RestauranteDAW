@@ -19,7 +19,7 @@
 5. Home
 	5.1 Hero Slider
 	5.2 Hero Slider Navigation
-6. Hero Boxes
+
 7. Page Section
 8. Buttons
 9. Popular
@@ -131,7 +131,7 @@ p::selection
 	background: #FFD266;
 	color: #C88E00;
 }
-h1{font-size: 36px;}
+h1{font-size: 36px !important;}
 h2{font-size: 22px;}
 h3{font-size: 18px;}
 h4{font-size: 14px;}
@@ -273,8 +273,8 @@ section
 	position: fixed; 
 	width: 100%;
 	background: #FFFFFF;
-	z-index: 10;
-	
+	z-index: 10;	
+	transform: translateX(0%);	
 }
 
 .header.scrolled .header_content::before
@@ -348,11 +348,13 @@ float: left;
 .main_nav
 {
 	margin-top: 7px;
+	margin-right: -80px;
 }
 .main_nav_item
 {
 	display: inline-block;
 	margin-right: 40px;
+	margin-top: 30px;
 }
 .main_nav_item:last-child
 {
@@ -635,7 +637,7 @@ float: left;
 *********************************/
 
 .hero_slider_container
-{
+{	
 	width: 100%;
 	height: 100%;
 }
@@ -657,6 +659,10 @@ float: left;
 }
 .hero_slide_container
 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
 	height: 100vh;
 }
@@ -683,6 +689,7 @@ float: left;
 	margin-left: -12px;
 	margin-right: -12px;
 }
+
 .animated
 {
 	-webkit-animation-duration : 1s !important;
@@ -749,80 +756,6 @@ float: left;
 	right: 4.32%;
 }
 
-/*********************************
-6. Hero Boxes
-*********************************/
-
-.hero_boxes
-{
-	width: 100%;
-	height: 0px;
-	z-index: 9;
-	padding-top: 0px;
-}
-.hero_boxes_inner
-{
-	position: absolute;
-	top: -212px;
-	left: 0;
-	width: 100%;
-}
-.hero_box
-{
-	width: 100%;
-	height: 161px;
-	background: #1a1a1a;
-	padding-left: 50px;
-	cursor: pointer;
-}
-.hero_box:hover
-{
-	background: #ffb606;
-}
-.hero_box img
-{
-	width: 62px;
-	height: auto;
-	margin-top: -6px;
-}
-.svg path
-{
-	fill: #ffb606;
-}
-.hero_box svg
-{
-	width: 62px;
-	height: auto;
-}
-.hero_box:hover svg path
-{
-	fill: #FFFFFF;
-}
-.hero_box_content
-{
-	padding-left: 13px;
-	padding-top: 11px;
-	margin-top: -6px;
-}
-.hero_box_title
-{
-	font-size: 24px;
-	font-weight: 500;
-	color: #FFFFFF;
-	margin-bottom: 7px;
-}
-.hero_box_link
-{
-	font-size: 12px;
-	font-weight: 500;
-	text-transform: uppercase;
-	color: #FFFFFF;
-	padding-left: 3px;
-}
-.hero_box_link:hover
-{
-	color: #1a1a1a;
-}
 
 /*********************************
 7. Page Section

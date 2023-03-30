@@ -75,7 +75,7 @@ class UserController extends Controller
             Storage::putFileAs('avatar', $file, $fileName);
             Log::channel('baseroleslog')->info('Agregado a la ruta  ' . Storage::url('avatar/') . ' la imagen ' . $fileName);
         } else {
-            Log::channel('baseroleslog')->info('El usuariio a crear tiene una imagen por defecto ');
+            Log::channel('baseroleslog')->info('El usuario a crear tiene una imagen por defecto ');
 
             $fileName = 'default';
         }

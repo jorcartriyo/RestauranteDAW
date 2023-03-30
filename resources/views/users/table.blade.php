@@ -36,7 +36,7 @@
                                                 <div class="row">
                                                     <div class="col-xs-1">
                                                         <td><img class="avatar elevation-3"
-                                                                @if ($user->imagen != 'default') src="{{ Storage::url('avatar/' . $user->imagen) }}"
+                                                                @if ($user->imagen != 'default') src="{{ asset('storage/images/avatar/' . $user->imagen) }}"                                                             
                                                                 @else src="{{ asset('assets/img/default-avatar.png') }}" @endif
                                                                 alt="{{ $user->imagen }}"></td>
                                                     </div>

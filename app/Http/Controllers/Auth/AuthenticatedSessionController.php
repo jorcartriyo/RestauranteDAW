@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
 
-
 class AuthenticatedSessionController extends Controller
 {
+
     /**
      * Display the login view.
      */
@@ -33,6 +33,14 @@ class AuthenticatedSessionController extends Controller
 
         Log::channel('baseroleslog')->info('Usuario ' . Auth::User()->name . ' logeado');
 
+        $roles= Auth::user()->roles;    
+            
+        foreach($roles as $rol){
+            if($rol->name == 'Admin' || $rol->name == 'SuperAdmin'){
+                return redirect()->intended(RouteServiceProvider::DASHBOARD);
+            }
+        }
+    
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

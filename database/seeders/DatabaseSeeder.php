@@ -23,9 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolSeeder::class);
 
-
-
-        User::create([
+       $usuario1 = User::create([
             'name' => 'jorcartriyo',
             'email' => 'jorcartriyo@gmail.com',
             'email_verified_at' => now(),
@@ -33,10 +31,33 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
             'imagen' => 'default'
         ]);
+        
+       $usuario2 = User::create([
+            'name' => 'paco',
+            'email' => 'paco@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make(12345678), // password
+            'remember_token' => Str::random(10),
+            'imagen' => 'default'
+        ]);
+
+        $usuario3 = User::create([
+            'name' => 'manolo',
+            'email' => 'manolo@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make(12345678), // password
+            'remember_token' => Str::random(10),
+            'imagen' => 'default'
+        ]);
+
         User::factory(10)->create();
-        $usuarios = User::all();
+        $usuarios = User::all();        
         foreach ($usuarios as $usuario) {
             $usuario->assignRole('User');
         }
+        $usuario1->assignRole('SuperAdmin');
+        $usuario2->assignRole('Admin');
+        $usuario3->assignRole('User');
+
     }
 }

@@ -15,11 +15,13 @@ class RolSeeder extends Seeder
      */
     public function run()
     {
-        $role1 = Role::create(['name' => 'User']);
+        $role1 = Role::create(['name' => 'SuperAdmin']);
         $role2 = Role::create(['name' => 'Admin']);
-        $role3 = Role::create(['name' => 'Bloger']);
+        $role3 = Role::create(['name' => 'User']);
 
-        Permission::create(['name' => 'admin.dasboard'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'admin.all'])->syncRoles([ $role1]);
+        Permission::create(['name' => 'admin.dashboard'])->syncRoles([ $role2]);
+        Permission::create(['name' => 'view.page'])->syncRoles([ $role3]);
 
 
 

@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'imagen' => $request->imagen,
-        ])->assignRole('Admin');
+        ])->assignRole('User');
         if ($request->hasFile('image')) {
             if ($user->image != null) {
                 Storage::disk('images_perfil')->delete($user->image->path);

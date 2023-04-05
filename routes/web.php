@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('main');
 })->name('inicio');
 
-Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified', 'can:Admin'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified','permission:admin.dashboard|admin.all'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified', 'can:Admin'])->group(
+Route::middleware(['auth', 'verified', 'role:SuperAdmin'])->group(
     function () {
         Route::resource('/home', UserController::class);
         Route::resource('/roles', RolController::class);

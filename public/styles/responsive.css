@@ -11,7 +11,7 @@
 4. 1199px
 5. 1024px
 6.  991px
-7.  767px
+7.  800px
 8.  575px
 9.  479px
 
@@ -21,19 +21,20 @@
 1. 1501px
 ************/
 
-@media only screen and (max-width: 1510px) {
+@media only screen and (max-width: 1550px) {
 	.header_side span {
-		font-size: 16px;		
-	}
-	.logo_container img{
-		margin-top: 20px;
+		font-size: 16px;
 	}
 
-	.logo {
-		flex-direction: column;		
+	.logo_container img {
+		margin-top: 20px;
 	}
 	.secundaryText {
-		top: 0px;
+		top: 30px;
+	}
+
+	.main_nav_item {	
+		margin-right: 20px;
 	}
 }
 
@@ -57,7 +58,11 @@
 	.header {
 		width: 100%;
 	}
+	.secundaryText {
+		top: 35px;
+	}
 
+	
 	.header_side span {
 		font-size: 14px;
 		margin-left: 35px;
@@ -67,6 +72,7 @@
 		width: 20px;
 		height: 20px;
 	}
+	
 }
 
 /************
@@ -81,19 +87,19 @@
 	.header_content {
 		width: 100%;
 	}
-
+	.main_nav
+	{		
+		margin-right: -40px;
+	}
 	.header_side {
 		display: none !important;
 	}
 	.logo span {
-		font-size: 40px;		
-	}
-	.logo_container img{
-		margin-top: 5px;
+		font-size: 40px;
 	}
 
-	.logo {
-		flex-direction: column;		
+	.logo_container img {
+		margin-top: 5px;
 	}
 
 	.main_nav_container {
@@ -119,9 +125,15 @@
 ************/
 
 @media only screen and (max-width: 1199px) {
-	.hero_box {
-		padding-left: 20px;
+
+	.logo {
+		display: flex;
+		flex-direction: column;
 	}
+	.secundaryText{
+		top:0px;
+	}
+	
 }
 
 
@@ -130,9 +142,26 @@
 ************/
 
 @media only screen and (max-width: 1024px) {
-	.main_nav_item {
-		margin-right: 33px;
+
+	.main_nav_container {
+		display: none;
 	}
+
+	.hamburger_container {
+		display: block;
+	}
+	.menu_container {
+		right: -100vw;
+		width: 100vw;
+		height: 100vh;
+	}
+.logo{
+	flex-direction: row;
+}
+.secundaryText {
+	top: 30px;
+}
+	
 }
 
 /************
@@ -140,20 +169,8 @@
 ************/
 
 @media only screen and (max-width: 991px) {
-	.main_nav_container {
-		display: none;
-	}
-	.logo {
-		flex-direction: column;		
-	}
-	.secundaryText {
-		top: 35px;
-	}
 
-	.hamburger_container {
-		display: block;
-	}
-
+	
 	.hero_slide_content h1 {
 		font-size: 48px;
 	}
@@ -231,21 +248,20 @@
 }
 
 /************
-7. 767px
+7. 900px
 ************/
-@media only screen and (max-width: 767px) {
-	.menu_container {
-		right: -100vw;
-		width: 100vw;
-		height: 100vh;
-	}
+@media only screen and (max-width: 900px) {
+
 	.logo span {
-		font-size: 35px;		
+		font-size: 35px;
 	}
+
+
 	.secundaryText {
 		font-size: 20px !important;
-	
+		top: 25px;
 	}
+
 	.newsletter_email {
 		width: 100%;
 	}
@@ -271,6 +287,7 @@
 	.header {
 		height: 74px;
 	}
+
 	.header_side span {
 		font-size: 10px;
 		font-weight: 900;
@@ -288,11 +305,6 @@
 
 	.logo span {
 		font-size: 30px;
-	}
-
-	.secundaryText {
-		font-size: 25px !important;
-		top: 25px;
 	}
 
 	.hamburger_container {
@@ -478,7 +490,7 @@
 ************/
 
 @media only screen and (max-width: 250px) {
-	
+
 	.logo span {
 		display: none;
 

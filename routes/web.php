@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\RolController;
-use App\Http\Controllers\PermisoController;
+use App\Http\Controllers\SuperAdminRoles\RolController;
+use App\Http\Controllers\SuperAdminRoles\PermisoController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
@@ -37,9 +38,14 @@ Route::middleware(['auth', 'verified', 'role:SuperAdmin'])->group(
         Route::resource('/roles', RolController::class);
         Route::resource('/permisos', PermisoController::class);
         Route::get('/logs', [UserController::class, 'log'])->name('log');
+      //  Route::get('/articulos', [ArticuloController::class, 'index'])->name('articulos');
     }
 
 );
-
+Route::middleware(['auth','verified', 'role:Admin'])->group(
+    function () {
+        Route::resource('/articulos', ArticuloController::class);
+    }
+);
 
 require __DIR__.'/auth.php';

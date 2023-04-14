@@ -32,10 +32,10 @@ if (isWindows) {
         var sidebarwrapper = document.querySelector(".sidebar-wrapper");
         var ps2 = new PerfectScrollbar(sidebarwrapper);
     }
-    if ($(".dropdown-menu").length != 0) {
+/*     if ($(".dropdown-menu").length != 0) {
         var dropdownmenu = document.querySelector(".dropdown-menu");
         var ps3 = new PerfectScrollbar(dropdownmenu);
-    }
+    } */
     if ($(".page-header").length != 0) {
         var pageheader = document.querySelector(".page-header");
         var ps4 = new PerfectScrollbar(pageheader);
@@ -85,7 +85,7 @@ $(document).ready(function () {
 
     // Multilevel Dropdown menu
 
-    $(".dropdown-menu a.dropdown-toggle").on("click", function (e) {
+ /*    $(".dropdown-menu a.dropdown-toggle").on("click", function (e) {
         var $el = $(this);
         var $parent = $(this).offsetParent(".dropdown-menu");
         if (!$(this).next().hasClass("show")) {
@@ -115,7 +115,7 @@ $(document).ready(function () {
 
         return false;
     });
-
+ */
     // hide the siblings opened collapse
     var $collapse = $(".collapse");
 
@@ -136,10 +136,10 @@ $(document).ready(function () {
     } */
 
     //  Activate the tooltips
-    $('[rel="tooltip"]').tooltip();
+   // $('[rel="tooltip"]').tooltip();
 
     // Activate Popovers
-    $('[data-toggle="popover"]').popover();
+ //   $('[data-toggle="popover"]').popover();
 
     //Activate tags
     // we style the badges with our colors
@@ -152,11 +152,11 @@ $(document).ready(function () {
     $(".bootstrap-tagsinput").addClass("" + tagClass + "-badge");
 
     //    Activate bootstrap-select
-    $(".select").dropdown({
+/*     $(".select").dropdown({
         dropdownClass: "dropdown-menu",
         optionClass: "",
     });
-
+ */
     $(".form-control")
         .on("focus", function () {
             $(this).parent(".input-group").addClass("input-group-focus");
@@ -633,12 +633,12 @@ md = {
             $nav_content.insertBefore($sidebar_nav);
             $navbar_form.insertBefore($nav_content);
 
-            $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(
+         /*    $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(
                 function (event) {
                     event.stopPropagation();
                 }
             );
-
+ */
             // simulate resize so all the charts/maps will be redrawn
             window.dispatchEvent(new Event("resize"));
 
@@ -2331,12 +2331,12 @@ $(document).ready(function () {
             ".sidebar .sidebar-wrapper .nav li.active a p"
         ).html();
 
-        if (window_width > 767 && fixed_plugin_open == "Dashboard") {
+/*         if (window_width > 767 && fixed_plugin_open == "Dashboard") {
             if ($(".fixed-plugin .dropdown").hasClass("show-dropdown")) {
                 $(".fixed-plugin .dropdown").addClass("open");
             }
         }
-
+ */
         $(".fixed-plugin a").click(function (event) {
             // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
             if ($(this).hasClass("switch-trigger")) {

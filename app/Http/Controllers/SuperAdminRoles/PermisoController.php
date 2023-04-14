@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SuperAdminRoles;
 
 use App\Models\Permissions;
 use Illuminate\Http\Request;
@@ -9,6 +9,8 @@ use App\Models\Roles;
 use Spatie\Permission\Models\Permission;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+
 
 
 

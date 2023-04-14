@@ -32,5 +32,8 @@
             <a class="nav-link" href="{!! route('log') !!}">Logs</a>
         </li>
     @endcan
+    <li class="nav-item">
+        <a class="nav-link" href="{!! route('articulos.index') !!}">Articulos</a>
+    </li>
     <!-- your sidebar here -->
 </ul>

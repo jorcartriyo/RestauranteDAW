@@ -62,18 +62,13 @@
                 @yield('content')
 
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-
-
-                </div>
-                <!-- your footer here -->
-            </footer>
+  
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="{{ asset('assets/js/material-dashboard.js?v=2.2.2') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/core/popper.min.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('assets/js/material-dashboard.js?v=2.2.2') }}" type="text/javascript"></script>
     <!-- Bootstrap4 Duallistbox -->
     <script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js') }}"></script>
     <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->

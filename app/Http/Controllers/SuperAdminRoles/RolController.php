@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SuperAdminRoles;
 
 use Illuminate\Http\Request;
 use App\Models\Roles;
@@ -9,10 +9,11 @@ use App\Models\Role_has_permissions;
 use App\Models\Permissions;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 
 class RolController extends Controller
-{
+{ 
     protected $permisos;
     protected $roles;
     protected $permisosRoles;

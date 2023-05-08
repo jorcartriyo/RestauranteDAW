@@ -1473,3 +1473,11 @@ label.valid {
 	width: 16px;
 	height: 16px
 }
+
+input[type=radio] + i{
+	height: 230px;
+	width: 30px;
+	border-radius: 100%;
+	left: 15px;
+	padding: 20px;
+   }

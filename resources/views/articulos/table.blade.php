@@ -44,7 +44,7 @@
                                                 <div class="row">
                                                     <div class="col-xs-1">
                                                         <td><img class="avatar elevation-3"
-                                                                @if ($articulo->imagen != 'default') src="{{ asset('storage/images/avatar/' . $articulo->imagen) }}"                                                             
+                                                                @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"                                                             
                                                                 @else src="{{ asset('assets/img/default-avatar.png') }}" @endif
                                                                 alt="{{ $articulo->imagen }}"></td>
                                                     </div>
@@ -52,7 +52,7 @@
                                                 <td colspam="2" class="text-center">{{ $articulo->id }}</td>
                                                 <td class="text-center">{{ $articulo->nombre }}</td>
                                                 <td class="text-center">{{ $articulo->descripcion }}</td>
-                                                <td class="text-center">{{ $articulo->categorias->categoria }}</td>
+                                                <td class="text-center">{{ $articulo->categorias }}</td>
                                                 <td class="text-center">{{ $articulo->precio }}</td>
                                                 <td class="text-center">{{ $articulo->tipo }}</td>
                                                 <td class="text-center">{{ $articulo->created_at }}</td>

@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
     <div class="col-md-28 col-15 mr-auto ml-auto">
-        <form method="POST" id="myform" enctype="multipart/form-data" action="{{ route('home.store') }}">
+        <form method="POST" id="myform" enctype="multipart/form-data" action="{{ route('articulos.store') }}">
             @method('POST')
             @csrf
             <!--      Wizard container        -->
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label for="articulo" class="bmd-label-floating">Nombre del Artículo
                                 (requerido)</label>
-                            <input type="text" class="form-control" id="articulo" name="articulo" value='' required>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value='' required>
                         </div>
                     </div>
                 </div>
@@ -63,11 +63,10 @@
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción del artículo</label>
-                            <textarea class="form-control rounded-0" style="resize: both;" id="descripcion" rows="10"></textarea>
+                            <textarea class="form-control rounded-0" style="resize: both;" id="descripcion" name="descripcion" rows="10"></textarea>
                         </div>
                     </div>
                 </div>
-
                 {{-- Categoria --}}
                 <div class="col-lg-18">
                     <div class="input-group form-control-lg">
@@ -81,9 +80,12 @@
                             (requerido)</label>
                         <div class="form-group ml-5">
 
-                            <select id="categoria">
-                                <option value="Iron Man">Primeros</option>
-                                <option value=" Man">Segundos</option>
+                            <select id="categoria" name= "categoria">
+                          
+                            @foreach($categorias as $categoria)
+                 
+                                <option value={{$categoria->id}}>{{$categoria->categoria}}</option>
+                            @endforeach
 
                             </select>
                         </div>
@@ -115,9 +117,9 @@
                         <label for="tipo" class="bmd-label-floating"> Tipo
                             (required)</label>
                         <div class="form-group ml-5">
-                            <input type="checkbox" id="carta" name="carta" value="carta">
+                            <input type="checkbox" id="carta" name="tipo" value="carta">
                             <label for="carta" class="px-2"> Carta</label><br>
-                            <input type="checkbox" id="menu" name="menu" value="menu">
+                            <input type="checkbox" id="menu" name="tipo" value="menu">
                             <label for="menu" class="px-2 mt-2"> Menú</label><br>
 
                         </div>

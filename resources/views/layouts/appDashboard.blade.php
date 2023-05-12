@@ -33,7 +33,7 @@
     <div class="wrapper">
         <div class="sidebar" data-color="purple" data-background-color="white" data-image="./assets/img/sidebar-3.jpg">
 
-            <div class="sidebar-wrapper">
+            <div class="sidebar-wrapper mt-6 pt-6">
                 @include('layouts.navigationDashboard')
             </div>
             <div class="sidebar-background"></div>
@@ -43,7 +43,7 @@
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
 
-                    <div class="collapse navbar-collapse justify-content-end">
+                    <div class=" fixed-top">
                         @include('layouts.headerDashboard')
                     </div>
                 </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\SuperAdminRoles\PermisoController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Contracts\Permission;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::middleware(['auth', 'verified', 'role:SuperAdmin'])->group(
     }
 
 );
-Route::middleware(['auth','verified', 'role:Admin'])->group(
+Route::middleware(['auth','verified', 'role:Admin|SuperAdmin'])->group(
     function () {
         Route::resource('/articulos', ArticuloController::class);
     }

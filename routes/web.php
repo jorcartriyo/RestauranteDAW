@@ -7,6 +7,8 @@ use App\Http\Controllers\SuperAdminRoles\RolController;
 use App\Http\Controllers\SuperAdminRoles\PermisoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CartaController;
+use App\Http\Controllers\MenuController;
+
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
@@ -28,8 +30,12 @@ Route::get('/', function () {
 })->name('inicio');
 
 Route::resource('/carta', CartaController::class);
+Route::resource('/menu', MenuController::class);
+Route::get('/quienesSomos', function () {
+    return view('quienesSomos');
+})->name('quienesSomos');
 
-Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified','permission:admin.dashboard|admin.all'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified', 'permission:admin.dashboard|admin.all'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -43,15 +49,15 @@ Route::middleware(['auth', 'verified', 'role:SuperAdmin'])->group(
         Route::resource('/roles', RolController::class);
         Route::resource('/permisos', PermisoController::class);
         Route::get('/logs', [UserController::class, 'log'])->name('log');
-      //  Route::get('/articulos', [ArticuloController::class, 'index'])->name('articulos');
+        //  Route::get('/articulos', [ArticuloController::class, 'index'])->name('articulos');
     }
 
 );
-Route::middleware(['auth','verified', 'role:Admin|SuperAdmin'])->group(
+Route::middleware(['auth', 'verified', 'role:Admin|SuperAdmin'])->group(
     function () {
         Route::resource('/articulos', ArticuloController::class);
         Route::resource('/categorias', CategoriaController::class);
     }
 );
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

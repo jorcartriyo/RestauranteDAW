@@ -18,10 +18,10 @@
                 <ul class="main_nav_list">
                     <li class="main_nav_item"><a href="{{ route('inicio') }}">Inicio</a></li>
                     <li class="main_nav_item"><a href="{!! route('carta.index') !!}">Carta</a></li>
-                    <li class="main_nav_item"><a href="{{ url('DatosLocal') }}">Menú del Día</a></li>
+                    <li class="main_nav_item"><a href="{!! route('menu.index') !!}">Menú del Día</a></li>
                     <li class="main_nav_item"><a href="{{ url('Menu') }}">Reservas</a></li>
                     <li class="main_nav_item"><a href="{{ url('Pedido') }}">Pedidos</a></li>
-                    <li class="main_nav_item"><a href="{{ url('Venta') }}">Quienes Somos</a></li>
+                    <li class="main_nav_item"><a href="{{ route('quienesSomos') }}">Quienes Somos</a></li>
                     @can('admin.dashboard')
                         <li class="main_nav_item"><a href="{{ url('/dashboard') }}">Panel de Control</a></li>
                     @endcan

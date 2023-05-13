@@ -17,7 +17,7 @@
                 <ul class="main_nav_list">
                     <li class="main_nav_item"><a href="{{ route('inicio') }}">Inicio</a></li>
                     <li class="main_nav_item"><a href="{!! route('carta.index') !!}">Carta</a></li>
-                    <li class="main_nav_item"><a href="{{ url('DatosLocal') }}">Menú del Día</a></li>
+                    <li class="main_nav_item"><a href="{!! route('menu.index') !!}">Menú del día</a></li>
                 </ul>
             </div>
         </nav>

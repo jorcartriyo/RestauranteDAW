@@ -35,6 +35,16 @@ class ArticuloController extends Controller
         return view('articulos.index', ['articulos' => $articulos]);
     }
 
+    public function carta()
+    {
+        $articulos = $this->articulos->obtenerArticulos();
+        $categorias = $this->categorias->obtenerCategorias();
+
+
+
+        return view('carta', ['articulos' => $articulos, 'categorias' => $categorias]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -198,10 +208,10 @@ class ArticuloController extends Controller
                     'imagen' => $fileName,
                     'categoria' =>  $request->categoria,
                     'precio' =>  $request->precio,
-                    'tipo' =>  $request->tipo[0].$request->tipo[1],
+                    'tipo' =>  $request->tipo[0] . $request->tipo[1],
                     'activo' =>  $request->activo,
                 ]);
-            }else{
+            } else {
                 $articuloUpdate = $articulo->update([
                     'nombre' => $request->nombre,
                     'descripcion' => $request->descripcion,

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Carta')
+@section('title', 'Menu')
 @section('content')
 
     <div class="carta page_section">
@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col">
                     <div class="section_title text-center">
-                        <h1>NUESTRA CARTA</h1>
+                        <h1>NUESTRO MENU</h1>
                         </br>
                     </div>
                 </div>
@@ -19,8 +19,8 @@
                     </div>
 
                     @foreach ($articulos as $articulo)
-                        @if ($articulo->tipo === 'carta' || $articulo->tipo === 'cartamenu')
-                            @if ($articulo->activo)
+                        @if ($articulo->activo)
+                            @if ($articulo->tipo === 'menu' || $articulo->tipo === 'cartamenu')
                                 @if ($categoria->categoria === $articulo->categorias->categoria)
                                     <div class="row course_boxes">
 

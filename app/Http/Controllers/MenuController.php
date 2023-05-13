@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-
 use App\Models\Articulos;
 use App\Models\Categorias;
 
-class CartaController extends Controller
+class MenuController extends Controller
 {
-
     protected $articulos;
     protected $categorias;
 
@@ -30,6 +27,6 @@ class CartaController extends Controller
 
 
 
-        return view('carta', ['articulos' => $articulos, 'categorias' => $categorias]);
+        return view('menu', ['articulos' => $articulos, 'categorias' => $categorias]);
     }
 }

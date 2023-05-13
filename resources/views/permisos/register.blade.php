@@ -11,7 +11,7 @@
                     <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                     <div class="card-header text-center">
                         <h2 class="card-title">
-                            Crea un Usuario
+                            Crea un Permiso
                         </h2>
                     </div>
                     <div class="card-body">

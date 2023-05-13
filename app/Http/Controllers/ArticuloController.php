@@ -40,8 +40,8 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        $categorias = $this->categorias->obtenerCategoria();
-        return view('articulos.register',['categorias' => $categorias]);
+        $categorias = $this->categorias->obtenerCategorias();
+        return view('articulos.register', ['categorias' => $categorias]);
     }
 
     /**
@@ -50,13 +50,22 @@ class ArticuloController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => [ 'string', 'max:255'],
-        
-            'descripcion' => ['string','max:1255'],
-            'precio' => ['numeric'],         
+            'nombre' => ['max:80', 'required'],
+            'descripcion' => ['max:1255'],
+            'precio' => ['numeric'],
             'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'],
-
-            'activo'   =>['boolean'],
+            'tipo'  =>  ['required'],
+            'tipo[0]'  => [function ($attribute, $value, $fail) {
+                if ($value != 'carta') {
+                    $fail($attribute . ' No es correcto el tipo introducido.');
+                }
+            }],
+            'tipo[1]'  => [function ($attribute, $value, $fail) {
+                if ($value != 'menu') {
+                    $fail($attribute . ' No es correcto el tipo introducido.');
+                }
+            }],
+            'activo'   => ['boolean', 'required'],
         ]);
 
         $file = $request->file;
@@ -71,22 +80,35 @@ class ArticuloController extends Controller
             $fileName = 'default';
         }
 
-        $articulo =  Articulos::create([
-            'nombre' => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'imagen' => $fileName,
-            'categoria' =>  $request->categoria,
-            'precio' =>  $request->precio,
-            'tipo' =>  $request->tipo,
-            'activo' =>  $request->activo,
-        ]);
+        if (count($request->tipo) === 2) {
+            $articulo =  Articulos::create([
+                'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
+                'imagen' => $fileName,
+                'categoria' =>  $request->categoria,
+                'precio' =>  $request->precio,
+                'tipo' =>  $request->tipo[0] . $request->tipo[1],
+                'activo' =>  $request->activo,
+            ]);
+        } else {
+            $articulo =  Articulos::create([
+                'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
+                'imagen' => $fileName,
+                'categoria' =>  $request->categoria,
+                'precio' =>  $request->precio,
+                'tipo' =>  $request->tipo[0],
+                'activo' =>  $request->activo,
+            ]);
+        }
+
 
         if (!$articulo) {
             Log::channel('baseroleslog')->info('Error al crear el articulo');
-            return redirect(RouteServiceProvider::Articulos)->with('warning', "Se ha producido un error al crear el Articulo");
+            return redirect(RouteServiceProvider::ARTICULOS)->with('warning', "Se ha producido un error al crear el Articulo");
         }
         Log::channel('baseroleslog')->info('Aticulo ' . $articulo->nombre . ' creado con exito' . $articulo);
-        return redirect(RouteServiceProvider::Articulos)->with('info', "Articulo creado con éxito");
+        return redirect(RouteServiceProvider::ARTICULOS)->with('info', "Articulo creado con éxito");
     }
 
     /**
@@ -94,7 +116,16 @@ class ArticuloController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $articulo = $this->articulos->find($id);
+
+
+        if (empty($articulo)) {
+            Log::channel('baseroleslog')->alert('Intendo de mostrar un usuario que no existe');
+
+            return redirect(route('home.index'))->with('warning', "No existe ese usuario");
+        }
+
+        return view('articulos.show')->with('articulo', $articulo);
     }
 
     /**
@@ -102,7 +133,17 @@ class ArticuloController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $articulo = $this->articulos->obtenerArticulosID($id);
+
+        if (empty($articulo)) {
+            Log::channel('baseroleslog')->alert('Intendo de acceder a la pantalla de edición de un artículo que no existe');
+            return redirect(route('articulos.index'))->with('warning', "No existe ese artículo");
+        } else {
+        }
+        Log::channel('baseroleslog')->info('Acceso a la pantalla de edición de ' . $articulo->nombre);
+        $categoria = $this->categorias->obtenerCategoriaID($articulo->categoria);
+        $categorias = $this->categorias->obtenerCategorias();
+        return view('articulos.edit')->with(['articulo' => $articulo, 'categoria' => $categoria, 'categorias' => $categorias]);
     }
 
     /**
@@ -110,7 +151,78 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nombre' => ['max:80', 'required'],
+            'descripcion' => ['max:1255'],
+            'precio' => ['numeric'],
+            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'],
+            'tipo'  =>  ['required'],
+            'tipo[0]'  => [function ($attribute, $value, $fail) {
+                if ($value != 'carta') {
+                    $fail($attribute . ' No es correcto el tipo introducido.');
+                }
+            }],
+            'tipo[1]'  => [function ($attribute, $value, $fail) {
+                if ($value != 'menu') {
+                    $fail($attribute . ' No es correcto el tipo introducido.');
+                }
+            }],
+            'activo'   => ['boolean', 'required'],
+        ]);
+        $ruta = '';
+        $articulo = $this->articulos->obtenerArticulosID($id);
+        if (empty($articulo)) {
+            Log::channel('baseroleslog')->alert('Intendo de editar un articulo que no existe');
+            $ruta = redirect(route('articulos.index'))->with('warning', "No existe ese articulo");
+        } else {
+            $input = $request->all();
+            $file = $request->file;
+            $tipo =   $request->tipo[0];
+            if ($file != null || isset($file)) {
+                $file = $file;
+                $fileName = time() . "." . $file->extension();
+                Storage::putFileAs('articulos', $file, $fileName);
+                Log::channel('baseroleslog')->info('Agregado a la ruta  ' . Storage::url('articulos/') . ' la imagen ' . $fileName . ' para el articulo ' . $articulo->nombre);
+
+                $input['imagen'] = $fileName = time() . "." . $file->extension();
+                Storage::delete('articulos/' . $articulo->imagen);
+                Storage::putFileAs('articulos', $file, $fileName);
+            } else {
+                $fileName = 'default';
+            }
+
+            if (count($request->tipo) === 2) {
+                $articuloUpdate = $articulo->update([
+                    'nombre' => $request->nombre,
+                    'descripcion' => $request->descripcion,
+                    'imagen' => $fileName,
+                    'categoria' =>  $request->categoria,
+                    'precio' =>  $request->precio,
+                    'tipo' =>  $request->tipo[0].$request->tipo[1],
+                    'activo' =>  $request->activo,
+                ]);
+            }else{
+                $articuloUpdate = $articulo->update([
+                    'nombre' => $request->nombre,
+                    'descripcion' => $request->descripcion,
+                    'imagen' => $fileName,
+                    'categoria' =>  $request->categoria,
+                    'precio' =>  $request->precio,
+                    'tipo' =>  $request->tipo[0],
+                    'activo' =>  $request->activo,
+                ]);
+            }
+            if (!$articuloUpdate) {
+                Log::channel('baseroleslog')->warning('Error al actualizar datos del articulo ' . $articulo->nombre);
+
+                $ruta = redirect(route('articulos.index'))->with('warning', "Se ha producido un error al actualizar el articulo");
+            } else {
+                Log::channel('baseroleslog')->info('Articulo ' . $articulo->nombre . ' actualizado con exito' . $articulo);
+
+                $ruta = redirect(route('articulos.index'))->with('info', "Articulo actualizado con exito");
+            }
+        }
+        return $ruta;
     }
 
     /**
@@ -131,5 +243,4 @@ class ArticuloController extends Controller
         Log::channel('baseroleslog')->info('Artículo ' . $articulo->nombre . ' borrado con exito' . $articulo);
         return redirect(route('articulos.index'))->with('info', "Artículo borrado con exito");
     }
-    
 }

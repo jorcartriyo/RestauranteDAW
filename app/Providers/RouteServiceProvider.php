@@ -21,7 +21,8 @@ class RouteServiceProvider extends ServiceProvider
     public const DASHBOARD = 'dashboard';
     public const PERMISOS = '/permisos';
     public const ROLES = '/roles';
-    public const Articulos = '/articulos';
+    public const ARTICULOS = '/articulos';
+    public const CATEGORIAS  = '/categorias';
 
 
     /**

@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SuperAdminRoles\RolController;
 use App\Http\Controllers\SuperAdminRoles\PermisoController;
+use App\Http\Controllers\CAtegoriaController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
@@ -46,6 +47,7 @@ Route::middleware(['auth', 'verified', 'role:SuperAdmin'])->group(
 Route::middleware(['auth','verified', 'role:Admin|SuperAdmin'])->group(
     function () {
         Route::resource('/articulos', ArticuloController::class);
+        Route::resource('/categorias', CategoriaController::class);
     }
 );
 

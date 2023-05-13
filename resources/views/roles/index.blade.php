@@ -1,7 +1,7 @@
 @extends('layouts.appDashboard')
 @section('title', 'Roles')
 @section('content')
-    @include('roles.agregarRolbtn')
+@include('layouts.agregarBtn', ['texto'=>'un Rol', 'ruta'=>'roles.create'])
     <div class="card">
         <div class="card-body">
             @include('flash-message')

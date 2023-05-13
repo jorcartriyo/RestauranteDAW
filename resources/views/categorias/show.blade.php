@@ -1,5 +1,5 @@
 @extends('layouts.appDashboard')
-@section('title', 'Articulos')
+@section('title', 'Categorias')
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -7,7 +7,7 @@
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
-                    @include('articulos.show_fields')
+                    @include('categorias.show_fields')
                 </div>
             </div>
         </div>

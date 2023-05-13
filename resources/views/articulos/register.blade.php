@@ -22,8 +22,9 @@
                             <div class="row justify-content-center">
                                 <div class="col-sm-4">
                                     <div class="picture-container">
-                                        <div class="picture">
-                                            <img src="{{ asset('images/products.png') }}" name="imgUsu" id="imgUsu" class="picture-src" title="avatar" />
+                                        <div >
+                                            <img src="{{ asset('assets/img/product.png') }}" onchange="mostrarImagen(event)" name="imgArticulo" id="imgUsu"  title="Imagen Articulo" />
+                                            </br>
                                             <input type="file" id="file" name="file" onchange="mostrarImagen(event)">
                                         </div>
                                         <h6 class="description">Asigna la imagen</h6>
@@ -63,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción del artículo</label>
-                            <textarea class="form-control rounded-0" style="resize: both;" id="descripcion" name="descripcion" rows="10"></textarea>
+                            <textarea class="form-control rounded-0" value=' ' style="resize: both;" id="descripcion" name="descripcion" rows="10"></textarea>
                         </div>
                     </div>
                 </div>
@@ -81,10 +82,10 @@
                         <div class="form-group ml-5">
 
                             <select id="categoria" name= "categoria">
-                          
+                       
                             @foreach($categorias as $categoria)
                  
-                                <option value={{$categoria->id}}>{{$categoria->categoria}}</option>
+                                <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
                             @endforeach
 
                             </select>
@@ -102,7 +103,7 @@
                         <div class="form-group">
                             <label for="precio" class="bmd-label-floating"> Precio
                                 (required)</label>
-                            <input type="number" step="0.01" class="form-control" id="precio" required="true" value='' name="precio" autocomplete="on">
+                            <input type="number" step="0.01" class="form-control" id="precio" required="true" value='0' name="precio" autocomplete="on">
                         </div>
                     </div>
                 </div>
@@ -117,11 +118,10 @@
                         <label for="tipo" class="bmd-label-floating"> Tipo
                             (required)</label>
                         <div class="form-group ml-5">
-                            <input type="checkbox" id="carta" name="tipo" value="carta">
+                            <input type="checkbox" id="carta" name="tipo[]" value="carta">
                             <label for="carta" class="px-2"> Carta</label><br>
-                            <input type="checkbox" id="menu" name="tipo" value="menu">
+                            <input type="checkbox" id="menu" name="tipo[]" value="menu">
                             <label for="menu" class="px-2 mt-2"> Menú</label><br>
-
                         </div>
                     </div>
                 </div>

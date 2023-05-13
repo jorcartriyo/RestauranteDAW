@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Categorias;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(RolSeeder::class);
+      
 
        $usuario1 = User::create([
             'name' => 'jorcartriyo',
@@ -58,6 +60,27 @@ class DatabaseSeeder extends Seeder
         $usuario1->assignRole('SuperAdmin');
         $usuario2->assignRole('Admin');
         $usuario3->assignRole('User');
+
+        Categorias::create([
+            'Categoria' => 'Entrantes',
+            'imagen' => 'default'         
+        ]);
+        Categorias::create([
+            'Categoria' => 'Primeros',
+            'imagen' => 'default'         
+        ]);
+
+        Categorias::create([
+            'Categoria' => 'Segundo',
+            'imagen' => 'default'         
+        ]);
+
+        Categorias::create([
+            'Categoria' => 'Postres',
+            'imagen' => 'default'         
+        ]);
+
+        $this->call(ArticulosSeeder::class);
 
     }
 }

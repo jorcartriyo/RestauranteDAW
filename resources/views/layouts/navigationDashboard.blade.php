@@ -1,7 +1,7 @@
 <ul class="nav">
     <li class="nav-item active">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel mt-5 pt-3 mb-3 d-flex">
             <div class="image">
 
                 <img @if (Auth::user()->imagen != 'default') src="{{ asset('storage/images/avatar/' . Auth::user()->imagen) }}"
@@ -37,6 +37,9 @@
     @endcan
     <li class="nav-item">
         <a class="nav-link" href="{!! route('articulos.index') !!}">Articulos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{!! route('categorias.index') !!}">Categorias</a>
     </li>
     <!-- your sidebar here -->
 </ul>

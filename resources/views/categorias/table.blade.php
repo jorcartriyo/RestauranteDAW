@@ -11,66 +11,48 @@
                                     <thead>
                                         <tr>
                                             <th class="disabled-sorting text-left">Imagen</th>
-                                            <th colspam="2" class="text-left"> Id</th>
-                                            <th class="text-center">Nombre</th>
-                                            <th class="text-center">Descripcion</th>
-                                            <th class="text-center">Categoria</th>
-                                            <th class="text-center">Precio</th>
-                                            <th class="text-center">Tipo</th>
+                                            <th colspam="2" class="text-left"> Id</th>                                      
+                                            <th class="text-center">Categoria</th>                               
                                             <th class="text-center">Creado</th>
-                                            <th class="text-center">Editado</th>
-                                            <th class="text-center">Activo</th>
-                                            <th class="text-center">Acciones</th>
+                                            <th class="text-center">Editado</th>      
+                                            <th class="text-center">Acciones</th>                          
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th class="disabled-sorting text-left">Avatar</th>
-                                            <th colspam="2" class="text-left"> Id</th>
-                                            <th class="text-center">Nombre</th>
-                                            <th class="text-center">Descripcion</th>
+                                            <th class="disabled-sorting text-left">Imagen</th>     
+                                            <th colspam="2" class="text-left"> Id</th>                             
                                             <th class="text-center">Categoria</th>
-                                            <th class="text-center">Precio</th>
-                                            <th class="text-center">Tipo</th>
                                             <th class="text-center">Creado</th>
                                             <th class="text-center">Editado</th>
-                                            <th class="text-center">Activo</th>
-                                            <th class="text-center">Acciones</th>
+                                            <th class="text-center">Acciones</th>                                  
                                         </tr>
                                     </tfoot>
                                     <tbody>
                            
-                                        @foreach ($articulos as $articulo)
+                                        @foreach ($categorias as $categoria)
                                             <tr>
                                                 <div class="row">
                                                     <div class="col-xs-1">
                                                         <td><img class="elevation-3 " width="125" height="125"
-                                                                @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"                                                             
+                                                                @if ($categoria->imagen != 'default') src="{{ asset('storage/images/categorias/' . $categoria->imagen) }}"                                                             
                                                                 @else src="{{ asset('assets/img/product.png') }}" @endif
-                                                                alt="{{ $articulo->imagen }}"></td>
+                                                                alt="{{ $categoria->imagen }}"></td>
                                                     </div>
                                                 </div>
-                                                <td colspam="2" class="text-center">{{ $articulo->id }}</td>
-                                                <td class="text-center">{{ $articulo->nombre }}</td>
-                                                <td class="text-center">{{ $articulo->descripcion }}</td>
-                                                <td class="text-center">{{ $articulo->categorias->categoria}}</td>
-                                                <td class="text-center">{{ $articulo->precio }}</td>
-                                                <td class="text-center">{{ $articulo->tipo }}</td>
-                                                <td class="text-center">{{ $articulo->created_at }}</td>
-                                                <td class="text-center">{{ $articulo->updated_at }}</td>
-                                                @if ($articulo->activo)
-                                                    <td class="text-center">Si</td>
-                                                @else
-                                                    <td class="text-center">No</td>
-                                                @endif
+                                                <td colspam="2" class="text-center">{{ $categoria->id }}</td>
+                                                <td class="text-center">{{ $categoria->categoria }}</td>
+                                                <td class="text-center">{{ $categoria->created_at }}</td> 
+                                                <td class="text-center">{{ $categoria->updated_at }}</td>                                        
+                                       
                                                 <td class=" text-center">
-                                                    {!! Form::open(['route' => ['articulos.destroy', [$articulo->id]], 'method' => 'delete']) !!}
+                                                    {!! Form::open(['route' => ['categorias.destroy', [$categoria->id]], 'method' => 'delete']) !!}
                                                     <div class='btn-group'>
-                                                        <a href="{!! route('articulos.show', [$articulo->id]) !!}"
+                                                        <a href="{!! route('categorias.show', [$categoria->id]) !!}"
                                                             class='btn btn-link btn-info btn-just-icon like'>
                                                             <i class="fa fa-eye"></i>
                                                         </a>
-                                                        <a href="{!! route('articulos.edit', [$articulo->id]) !!}"
+                                                        <a href="{!! route('categorias.edit', [$categoria->id]) !!}"
                                                             class='btn btn-link btn-warning btn-just-icon edit '>
                                                             <i class="fa fa-edit"></i>
                                                         </a>

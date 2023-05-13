@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('articulos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->unsignedBigInteger('categoria');
-            $table->longText('descripcion');
+            $table->longText('descripcion')->nullable();
             $table->float('precio');
             $table->boolean('activo');
             $table->string('tipo');

@@ -1,10 +1,10 @@
 @extends('layouts.appDashboard')
-@section('title', 'Articulos')
+@section('title', 'Editar Categoria')
 @section('content')
     <div class="card">
         <div class="card-body">
-            {!! Form::model($articulo, [
-                'route' => ['articulos.update', $articulo->id],
+            {!! Form::model($categoria, [
+                'route' => ['categorias.update', $categoria->id],
                 'method' => 'patch',
                 'files' => true,
                 'id' => 'myform',
@@ -12,7 +12,7 @@
             <div class="row">
                 @method('put')
                 @include('flash-message')
-                @include('articulos.fields')
+                @include('categorias.fields')
             </div>
             {!! Form::close() !!}
         </div>

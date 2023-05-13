@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Articulos>
@@ -14,10 +16,22 @@ class ArticulosFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $articulos=[
+        'Calamares Fritos','Anchoas en Escabeche','Tarta de arandanos','Fritura de pescado',
+        'Carne con ajos', 'Ensalada de la casa ','Creppes con helado de chocolate','Sopa de marisco',
+        'Pollo con patatas y salsa parmesana','Revuelto de ajos tiernos'
+    ];
     public function definition(): array
     {
         return [
-            //
+            'nombre' =>  fake()->unique()->randomElement($this->articulos),
+            'categoria' => fake()->randomElement([1,2,3,4]),
+            'descripcion' => fake()->text(),
+            'precio' => fake()->randomFloat('10',0,200),
+            'activo' => fake()->randomElement([0,1]),
+            'tipo' => fake()->randomElement(['carta', 'menu', 'cartamenu']),
+            'imagen' => 'default',
+
         ];
     }
 }

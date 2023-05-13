@@ -42,7 +42,7 @@ class Articulos extends Model
     }
     public function categorias()
     {
-        return $this->belongsTo(Categorias::class, 'id');
+        return $this->belongsTo(Categorias::class, 'categoria');
     }
 
 

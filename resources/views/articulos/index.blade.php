@@ -1,7 +1,7 @@
 @extends('layouts.appDashboard')
 @section('title', 'Articulos')
 @section('content')
-    @include('articulos.agregarArticulobtn')
-    @include('flash-message')
-    @include('articulos.table')
+@include('layouts.agregarBtn', ['texto'=>'un Articulo', 'ruta'=>'articulos.create'])
+@include('flash-message')
+@include('articulos.table')
 @endsection

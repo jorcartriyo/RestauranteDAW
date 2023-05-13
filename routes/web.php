@@ -5,7 +5,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SuperAdminRoles\RolController;
 use App\Http\Controllers\SuperAdminRoles\PermisoController;
-use App\Http\Controllers\CAtegoriaController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CartaController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
@@ -25,6 +26,8 @@ use Spatie\Permission\Contracts\Permission;
 Route::get('/', function () {
     return view('main');
 })->name('inicio');
+
+Route::resource('/carta', CartaController::class);
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified','permission:admin.dashboard|admin.all'])->name('dashboard');
 

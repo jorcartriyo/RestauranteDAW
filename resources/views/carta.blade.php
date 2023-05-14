@@ -31,8 +31,8 @@
                                             <div class="card">
                                                 <img class="card-img-top"
                                                     @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"
-                        @else src="{{ asset('assets/img/product.png') }}" @endif
-                                                    alt="{{ $articulo->nombre }}">
+                        @endif
+                                                   >
                                                 <div class="card-body text-center">
                                                     <div class="card-title"><a>{{ $articulo->nombre }}</a></div>
                                                     </br>

@@ -32,7 +32,13 @@
                  </li>
                  <li class="list-group-item">
                      <b>Activo</b> <a class="float-right">{{ $articulo->activo == 1 ? 'Si':'No'  }}</a>
-                 </li>               
+                 </li>   
+                 <li class="list-group-item">
+                     <b>Recomendasdo</b> <a class="float-right">{{ $articulo->recomendado == 1 ? 'Si':'No'  }}</a>
+                 </li>   
+                 <li class="list-group-item">
+                     <b>Agotado</b> <a class="float-right">{{ $articulo->agotado == 1 ? 'Si':'No'  }}</a>
+                 </li>            
              </ul>
          </div>
          <!-- /.card-body -->

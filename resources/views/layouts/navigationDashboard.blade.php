@@ -41,5 +41,8 @@
     <li class="nav-item">
         <a class="nav-link" href="{!! route('categorias.index') !!}">Categorias</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{!! route('eventos.index') !!}">Eventos</a>
+    </li>
     <!-- your sidebar here -->
 </ul>

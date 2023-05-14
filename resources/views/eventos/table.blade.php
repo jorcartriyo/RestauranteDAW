@@ -11,65 +11,60 @@
                                         <tr>
                                             <th class="disabled-sorting text-left">Imagen</th>
                                             <th colspam="2" class="text-left"> Id</th>
-                                            <th class="text-center">Nombre</th>
-                                            <th class="text-center">Descripcion</th>
-                                            <th class="text-center">Categoria</th>
-                                            <th class="text-center">Precio</th>
-                                            <th class="text-center">Tipo</th>
+                                            <th class="text-center">Titulo</th>
+                                            <th class="text-center">Descripcion Corta</th>
+                                            <th class="text-center">Descripcion Larga</th>
+                                            <th class="text-center">Dia</th>
+                                            <th class="text-center">Mes</th>
                                             <th class="text-center">Creado</th>
                                             <th class="text-center">Editado</th>
-                                            <th class="text-center">Activo</th>
-                                            <th class="text-center">Recomendado</th>
-                                            <th class="text-center">Agotado</th>
+                                            <th class="text-center">Activo</th>                                  
                                             <th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th class="disabled-sorting text-left">Avatar</th>
+                                        <th class="disabled-sorting text-left">Imagen</th>
                                             <th colspam="2" class="text-left"> Id</th>
-                                            <th class="text-center">Nombre</th>
-                                            <th class="text-center">Descripcion</th>
-                                            <th class="text-center">Categoria</th>
-                                            <th class="text-center">Precio</th>
-                                            <th class="text-center">Tipo</th>
+                                            <th class="text-center">Titulo</th>
+                                            <th class="text-center">Descripcion Corta</th>
+                                            <th class="text-center">Descripcion Larga</th>
+                                            <th class="text-center">Dia</th>
+                                            <th class="text-center">Mes</th>
                                             <th class="text-center">Creado</th>
                                             <th class="text-center">Editado</th>
-                                            <th class="text-center">Activo</th>
-                                            <th class="text-center">Recomendasdo</th>
-                                            <th class="text-center">Agotado</th>
+                                            <th class="text-center">Activo</th>                                  
                                             <th class="text-center">Acciones</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
 
-                                        @foreach ($articulos as $articulo)
+                                        @foreach ($eventos as $evento)
                                         <tr>
                                             <div class="row">
                                                 <div class="col-xs-1">
-                                                    <td><img class="elevation-3 " width="125" height="125" @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"
+                                                    <td><img class="elevation-3 " width="125" height="125" @if ($evento->imagen != 'default') src="{{ asset('storage/images/eventos/' . $evento->imagen) }}"
                                                         @else src="{{ asset('assets/img/product.png') }}" @endif
-                                                        alt="{{ $articulo->imagen }}"></td>
+                                                        alt="{{ $evento->imagen }}"></td>
                                                 </div>
                                             </div>
-                                            <td colspam="2" class="text-center">{{ $articulo->id }}</td>
-                                            <td class="text-center">{{ $articulo->nombre }}</td>
-                                            <td class="text-center">{{ $articulo->descripcion }}</td>
-                                            <td class="text-center">{{ $articulo->categorias->categoria}}</td>
-                                            <td class="text-center">{{ $articulo->precio }}</td>
-                                            <td class="text-center">{{ $articulo->tipo }}</td>
-                                            <td class="text-center">{{ $articulo->created_at }}</td>
-                                            <td class="text-center">{{ $articulo->updated_at }}</td>
-                                            <td class="text-center">{{$articulo->activo ? 'Si' : 'No'}}</td>
-                                            <td class="text-center">{{$articulo->recomendado ? 'Si' : 'No'}}</td>
-                                            <td class="text-center">{{$articulo->agotado ? 'Si' : 'No'}}</td>
+                                            <td colspam="2" class="text-center">{{ $evento->id }}</td>
+                                            <td class="text-center">{{ $evento->titulo }}</td>
+                                            <td class="text-center">{{ $evento->descripcionCorta }}</td>
+                                            <td class="text-center">{{ $evento->descripcion}}</td>
+                                            <td class="text-center">{{ $evento->dia }}</td>
+                                            <td class="text-center">{{ $evento->mes }}</td>
+                                            <td class="text-center">{{ $evento->created_at }}</td>
+                                            <td class="text-center">{{ $evento->updated_at }}</td>
+                                            <td class="text-center">{{$evento->activo ? 'Si' : 'No'}}</td>
+
                                             <td class=" text-center">
-                                                {!! Form::open(['route' => ['articulos.destroy', [$articulo->id]], 'method' => 'delete']) !!}
+                                                {!! Form::open(['route' => ['eventos.destroy', [$evento->id]], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
-                                                    <a href="{!! route('articulos.show', [$articulo->id]) !!}" class='btn btn-link btn-info btn-just-icon like'>
+                                                    <a href="{!! route('eventos.show', [$evento ->id]) !!}" class='btn btn-link btn-info btn-just-icon like'>
                                                         <i class="fa fa-eye"></i>
                                                     </a>
-                                                    <a href="{!! route('articulos.edit', [$articulo->id]) !!}" class='btn btn-link btn-warning btn-just-icon edit '>
+                                                    <a href="{!! route('eventos.edit', [$evento->id]) !!}" class='btn btn-link btn-warning btn-just-icon edit '>
                                                         <i class="fa fa-edit"></i>
                                                     </a>
 

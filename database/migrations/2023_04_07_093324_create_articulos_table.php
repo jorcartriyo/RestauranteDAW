@@ -19,6 +19,8 @@ return new class extends Migration
             $table->float('precio');
             $table->boolean('activo');
             $table->string('tipo');
+            $table->boolean('recomendado');
+            $table->boolean('agotado')->default('0');            
             $table->string('imagen');
             $table->timestamps();
             $table->foreign('categoria')

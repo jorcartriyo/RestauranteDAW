@@ -8,6 +8,8 @@ use App\Http\Controllers\SuperAdminRoles\PermisoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CartaController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\EventoController;
 
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +27,7 @@ use Spatie\Permission\Contracts\Permission;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-})->name('inicio');
-
+Route::get('/', [MainController::class,'index'])->name('main');
 Route::resource('/carta', CartaController::class);
 Route::resource('/menu', MenuController::class);
 Route::get('/quienesSomos', function () {
@@ -57,6 +56,7 @@ Route::middleware(['auth', 'verified', 'role:Admin|SuperAdmin'])->group(
     function () {
         Route::resource('/articulos', ArticuloController::class);
         Route::resource('/categorias', CategoriaController::class);
+        Route::resource('/eventos', EventoController::class);
     }
 );
 

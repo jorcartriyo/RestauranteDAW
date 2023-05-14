@@ -30,6 +30,7 @@ class ArticulosFactory extends Factory
             'precio' => fake()->randomFloat('10',0,200),
             'activo' => fake()->randomElement([0,1]),
             'tipo' => fake()->randomElement(['carta', 'menu', 'cartamenu']),
+            'recomendado' => 0,
             'imagen' => 'default',
 
         ];

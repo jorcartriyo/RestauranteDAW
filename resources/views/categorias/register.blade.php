@@ -27,6 +27,7 @@
                                             </br>
                                             <input type="file" id="file" name="file" onchange="mostrarImagen(event)">
                                         </div>
+                                        </br>
                                         <h6 class="description">Asigna la imagen</h6>
                                     </div>
                                 </div>

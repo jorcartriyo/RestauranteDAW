@@ -35,16 +35,6 @@ class ArticuloController extends Controller
         return view('articulos.index', ['articulos' => $articulos]);
     }
 
-    public function carta()
-    {
-        $articulos = $this->articulos->obtenerArticulos();
-        $categorias = $this->categorias->obtenerCategorias();
-
-
-
-        return view('carta', ['articulos' => $articulos, 'categorias' => $categorias]);
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -59,6 +49,7 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
+ 
         $request->validate([
             'nombre' => ['max:80', 'required'],
             'descripcion' => ['max:1255'],
@@ -76,6 +67,8 @@ class ArticuloController extends Controller
                 }
             }],
             'activo'   => ['boolean', 'required'],
+            'recomendado'   => ['boolean'],
+            'agotado'   => ['boolean'],
         ]);
 
         $file = $request->file;
@@ -99,6 +92,7 @@ class ArticuloController extends Controller
                 'precio' =>  $request->precio,
                 'tipo' =>  $request->tipo[0] . $request->tipo[1],
                 'activo' =>  $request->activo,
+                'recomendado' =>  $request->recomendado,
             ]);
         } else {
             $articulo =  Articulos::create([
@@ -109,6 +103,7 @@ class ArticuloController extends Controller
                 'precio' =>  $request->precio,
                 'tipo' =>  $request->tipo[0],
                 'activo' =>  $request->activo,
+                'recomendado' =>  $request->recomendado,
             ]);
         }
 
@@ -161,6 +156,7 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, string $id)
     {
+                
         $request->validate([
             'nombre' => ['max:80', 'required'],
             'descripcion' => ['max:1255'],
@@ -178,6 +174,8 @@ class ArticuloController extends Controller
                 }
             }],
             'activo'   => ['boolean', 'required'],
+            'recomendado'   => ['boolean'],
+            'agotado'   => ['boolean'],
         ]);
         $ruta = '';
         $articulo = $this->articulos->obtenerArticulosID($id);
@@ -210,6 +208,8 @@ class ArticuloController extends Controller
                     'precio' =>  $request->precio,
                     'tipo' =>  $request->tipo[0] . $request->tipo[1],
                     'activo' =>  $request->activo,
+                    'recomendado' =>  $request->recomendado,
+                    'agotado' =>  $request->agotado
                 ]);
             } else {
                 $articuloUpdate = $articulo->update([
@@ -220,6 +220,8 @@ class ArticuloController extends Controller
                     'precio' =>  $request->precio,
                     'tipo' =>  $request->tipo[0],
                     'activo' =>  $request->activo,
+                    'recomendado' =>  $request->recomendado,
+                    'agotado' =>  $request->agotado
                 ]);
             }
             if (!$articuloUpdate) {

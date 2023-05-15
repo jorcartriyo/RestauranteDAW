@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('telefono');
             $table->dateTime('fecha_reserva');
             $table->unsignedBigInteger('mesa');
-            $table->integer('guest_number');
+            $table->integer('comensales');
             $table->timestamps();
             $table->foreign('mesa')
             ->references('id')

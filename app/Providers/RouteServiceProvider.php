@@ -25,6 +25,8 @@ class RouteServiceProvider extends ServiceProvider
     public const CATEGORIAS  = '/categorias';
     public const EVENTOS  = '/eventos';
     public const FOTOS  = '/fotos';
+    public const MESAS  = '/mesas';
+    public const RESERVAS  = '/reservas';
 
 
     /**

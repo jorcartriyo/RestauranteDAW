@@ -17,7 +17,7 @@
                              <div>
                                  <img @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"
                                  @else src="{{ asset('assets/img/product.png') }}" @endif
-                                 name="imgUsu" id="imgUsu" class="picture-src" title="avatar" alt='img' />
+                                     name="imgUsu" id="imgUsu" class="picture-src" title="avatar" alt='img' />
                                  </br>
                                  <input type="file" id="file" name="file" onchange="mostrarImagen(event)">
                              </div>
@@ -52,7 +52,7 @@
                      </div>
                      <div class="form-group">
                          <label for="descripcion">Descripción del artículo</label>
-                         {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'style'=>'resize: both;', 'rows'=>"10"]) !!}
+                         {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'style' => 'resize: both;', 'rows' => '10']) !!}
                      </div>
                  </div>
              </div>
@@ -73,8 +73,10 @@
 
                      <select id="categoria" name="categoria">
 
-                         @foreach($categorias as $cat)
-                         <option value="{{$cat->id}}" {{$cat->categoria==$categoria->categoria ? 'selected':'false'}}>{{$cat->categoria}}</option>
+                         @foreach ($categorias as $cat)
+                             <option value="{{ $cat->id }}"
+                                 {{ $cat->categoria == $categoria->categoria ? 'selected' : 'false' }}>{{ $cat->categoria }}
+                             </option>
                          @endforeach
 
                      </select>
@@ -92,11 +94,11 @@
                  <div class="form-group">
                      <label for="precio" class="bmd-label-floating"> Precio
                          (required)</label>
-                     {!! Form::number('precio', null, ['class' => 'form-control', 'step'=>'0,01']) !!}
+                     {!! Form::number('precio', null, ['class' => 'form-control', 'step' => '0,01']) !!}
                  </div>
              </div>
          </div>
-         {{-- Tipo--}}
+         {{-- Tipo --}}
          <div class="col-lg-18">
              <div class="input-group form-control-lg">
                  <div class="input-group-prepend">
@@ -107,15 +109,17 @@
                  <label for="tipo" class="bmd-label-floating"> Tipo
                      (required)</label>
                  <div class="form-group ml-5">
-                     <input type="checkbox" id="carta" name="tipo[]" value="carta" {{$articulo->tipo=='carta' ? 'checked': ( $articulo->tipo=='cartamenu' ? 'checked' : false)}}>
+                     <input type="checkbox" id="carta" name="tipo[]" value="carta"
+                         {{ $articulo->tipo == 'carta' ? 'checked' : ($articulo->tipo == 'cartamenu' ? 'checked' : false) }}>
                      <label for="carta" class="px-2"> Carta</label><br>
-                     <input type="checkbox" id="menu" name="tipo[]" value="menu" {{$articulo->tipo=='menu' ? 'checked': ( $articulo->tipo=='cartamenu' ? 'checked' : false)}}>
+                     <input type="checkbox" id="menu" name="tipo[]" value="menu"
+                         {{ $articulo->tipo == 'menu' ? 'checked' : ($articulo->tipo == 'cartamenu' ? 'checked' : false) }}>
                      <label for="menu" class="px-2 mt-2"> Menú</label><br>
                  </div>
              </div>
          </div>
 
-         {{-- Activo--}}
+         {{-- Activo --}}
          <div class="col-lg-18">
              <div class="input-group form-control-lg">
                  <div class="input-group-prepend">
@@ -135,12 +139,12 @@
          </div>
 
 
-         {{-- Recomendado--}}
+         {{-- Recomendado --}}
          <div class="col-lg-18">
              <div class="input-group form-control-lg">
                  <div class="input-group-prepend">
                      <span class="input-group-text">
-                     <i class="fa fa-cutlery" aria-hidden="true"></i>
+                         <i class="fa fa-cutlery" aria-hidden="true"></i>
                      </span>
                  </div>
                  <label for="activo" class="bmd-label-floating"> Recomendado
@@ -159,7 +163,7 @@
              <div class="input-group form-control-lg">
                  <div class="input-group-prepend">
                      <span class="input-group-text">
-                     <i class="fa fa-cutlery" aria-hidden="true"></i>
+                         <i class="fa fa-cutlery" aria-hidden="true"></i>
                      </span>
                  </div>
                  <label for="activo" class="bmd-label-floating"> Agotado

@@ -22,7 +22,7 @@
                      <b>Descripcion Corta</b> <a class="float-right">{{ $evento->descripcionCorta }}</a>
                  </li>
                  <li class="list-group-item">
-                     <b>Descripcion Larga</b> <a class="float-right">{{ $evento->descripcion}}</a>
+                     <b>Descripcion Larga</b> <a class="float-right">{{ $evento->descripcion }}</a>
                  </li>
                  <li class="list-group-item">
                      <b>Dia</b> <a class="float-right">{{ $evento->dia }}</a>
@@ -31,7 +31,7 @@
                      <b>Mes</b> <a class="float-right">{{ $evento->mes }}</a>
                  </li>
                  <li class="list-group-item">
-                     <b>Activo</b> <a class="float-right">{{ $evento->activo == 1 ? 'Si':'No'  }}</a>
+                     <b>Activo</b> <a class="float-right">{{ $evento->activo == 1 ? 'Si' : 'No' }}</a>
                  </li>
              </ul>
          </div>

@@ -3,7 +3,7 @@
 
         <!-- Logo -->
         <div class="logo_container">
-            <a  href="{!! route('main') !!}">
+            <a href="{!! route('main') !!}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
             </a>
             <div class="logo">
@@ -17,7 +17,7 @@
                 <ul class="main_nav_list">
                     <li class="main_nav_item"><a href="{!! route('main') !!}">Inicio</a></li>
                     <li class="main_nav_item"><a href="{!! route('carta.index') !!}">Carta</a></li>
-                    <li class="main_nav_item"><a href="{!! route('menu.index') !!}">Menú del día</a></li>                 
+                    <li class="main_nav_item"><a href="{!! route('menu.index') !!}">Menú del día</a></li>
                 </ul>
             </div>
         </nav>

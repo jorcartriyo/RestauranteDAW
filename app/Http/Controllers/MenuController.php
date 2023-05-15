@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Articulos;
 use App\Models\Categorias;
+use App\Models\Fotos;
+
+
 
 class MenuController extends Controller
 {
@@ -22,11 +25,19 @@ class MenuController extends Controller
      */
     public function index()
     {
+        $activas = 0;
         $articulos = $this->articulos->obtenerArticulos();
         $categorias = $this->categorias->obtenerCategorias();
+        $fotos = Fotos:: where('seccion', 'menu')->get();
+
+        foreach ($fotos as $foto) {
+            if ($foto->activo) {
+                $activas++;
+            }
+        }
 
 
 
-        return view('menu', ['articulos' => $articulos, 'categorias' => $categorias]);
+        return view('menu', ['articulos' => $articulos, 'categorias' => $categorias, 'activas' => $activas, 'fotos'=>$fotos]);
     }
 }

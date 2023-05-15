@@ -16,11 +16,12 @@
                              <div>
                                  <img @if ($categoria->imagen != 'default') src="{{ asset('storage/images/categorias/' . $categoria->imagen) }}"
                                  @else src="{{ asset('assets/img/product.png') }}" @endif
-                                 name="imgCAtegoria" id="imgUsu" class="picture-src" title="imgCategoria" alt='imgCategoria' />
-                                 </br>
+                                     name="imgCAtegoria" id="imgUsu" class="picture-src" title="imgCategoria"
+                                     alt='imgCategoria' />
+                                 <br>
                                  <input type="file" id="file" name="file" onchange="mostrarImagen(event)">
                              </div>
-                             </br>
+                             <br>
                              <h6 class="description">Elige una imagen</h6>
                          </div>
                      </div>

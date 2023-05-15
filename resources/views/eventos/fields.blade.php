@@ -17,11 +17,11 @@
                              <div>
                                  <img @if ($evento->imagen != 'default') src="{{ asset('storage/images/eventos/' . $evento->imagen) }}"
                                  @else src="{{ asset('assets/img/product.png') }}" @endif
-                                 name="imgUsu" id="imgUsu" class="picture-src" title="avatar" alt='img' />
-                                 </br>
+                                     name="imgUsu" id="imgUsu" class="picture-src" title="avatar" alt='img' />
+                                 <br>
                                  <input type="file" id="file" name="file" onchange="mostrarImagen(event)">
                              </div>
-                             </br>
+                             <br>
                              <h6 class="description">Elige una imagen</h6>
                          </div>
                      </div>
@@ -51,7 +51,11 @@
                      </div>
                      <div class="form-group">
                          <label for="descripcion">Descripción corta del evento</label>
-                         {!! Form::textarea('descripcionCorta', null, ['class' => 'form-control', 'style'=>'resize: both;', 'rows'=>"3"]) !!}
+                         {!! Form::textarea('descripcionCorta', null, [
+                             'class' => 'form-control',
+                             'style' => 'resize: both;',
+                             'rows' => '3',
+                         ]) !!}
                      </div>
                  </div>
              </div>
@@ -67,7 +71,7 @@
                  </div>
                  <div class="form-group">
                      <label for="descripcion">Descripción larga del evento</label>
-                     {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'style'=>'resize: both;', 'rows'=>"10"]) !!}
+                     {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'style' => 'resize: both;', 'rows' => '10']) !!}
                  </div>
              </div>
          </div>
@@ -84,7 +88,7 @@
              <div class="form-group">
                  <label for="precio" class="bmd-label-floating"> Dia
                  </label>
-                 {!! Form::number('dia', null, ['class' => 'form-control', 'min'=>0, 'max'=>31]) !!}
+                 {!! Form::number('dia', null, ['class' => 'form-control', 'min' => 0, 'max' => 31]) !!}
              </div>
          </div>
      </div>
@@ -103,7 +107,7 @@
              </div>
          </div>
      </div>
-     {{-- Activo--}}
+     {{-- Activo --}}
      <div class="col-lg-18">
          <div class="input-group form-control-lg">
              <div class="input-group-prepend">

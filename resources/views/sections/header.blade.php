@@ -4,7 +4,7 @@
 
         <!-- Logo -->
         <div class="logo_container">
-            <a  href="{!! route('main') !!}">
+            <a href="{!! route('main') !!}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
             </a>
             <div class="logo">

@@ -10,6 +10,7 @@ use App\Http\Controllers\CartaController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\FotoController;
 
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'verified', 'role:Admin|SuperAdmin'])->group(
         Route::resource('/articulos', ArticuloController::class);
         Route::resource('/categorias', CategoriaController::class);
         Route::resource('/eventos', EventoController::class);
+        Route::resource('/fotos', FotoController::class);
     }
 );
 

@@ -718,10 +718,14 @@ section {
     font-size: 72px;
     font-weight: 400;
     color: #FFFFFF;
+    background: #d29c1f;
+    padding-left: 13px;
+    padding-right: 13px;
+    
 }
 
 .hero_slide_content h1 span {
-    background: #ffb606;
+    background: #47e236;
     padding-left: 13px;
     padding-right: 13px;
     margin-left: -12px;
@@ -952,7 +956,7 @@ section {
 
 .register_section {
     width: 100%;
-    background: #ffb606;
+    background: #5f5d58;
     padding-top: 156px;
     padding-bottom: 161px;
 }
@@ -1094,6 +1098,11 @@ input:last-of-type {
     margin-bottom: 41px;
 }
 
+
+.service_title{
+    color:#eaebec !important;
+}
+
 .service_item h3 {
     font-family: 'Roboto', sans-serif;
     font-size: 22px;
@@ -1105,7 +1114,7 @@ input:last-of-type {
 .service_item p {
     font-size: 14px;
     font-weight: 500;
-    color: #d71e1e;
+    color: #9d578b;
     max-width: 100%;
     margin-bottom: 0px;
 }

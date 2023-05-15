@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 
 /**
@@ -19,7 +18,8 @@ class ArticulosFactory extends Factory
     protected $articulos=[
         'Calamares Fritos','Anchoas en Escabeche','Tarta de arandanos','Fritura de pescado',
         'Carne con ajos', 'Ensalada de la casa ','Creppes con helado de chocolate','Sopa de marisco',
-        'Pollo con patatas y salsa parmesana','Revuelto de ajos tiernos'
+        'Pollo con patatas y salsa parmesana','Revuelto de ajos tiernos','Espaguetti con setas', 'Leche Frita',
+        'Tortilla Sacromonte', 'Revuelto de ajetes tiernos con gulas', 'Ensalada Cesar'
     ];
     public function definition(): array
     {
@@ -30,6 +30,7 @@ class ArticulosFactory extends Factory
             'precio' => fake()->randomFloat('10',0,200),
             'activo' => fake()->randomElement([0,1]),
             'tipo' => fake()->randomElement(['carta', 'menu', 'cartamenu']),
+            'recomendado' => fake()->randomElement([0,1]),
             'imagen' => 'default',
 
         ];

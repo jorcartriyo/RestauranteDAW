@@ -4,7 +4,7 @@
 
         <!-- Logo -->
         <div class="logo_container">
-            <a href="{{ route('inicio') }}">
+            <a href="{!! route('main') !!}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
             </a>
             <div class="logo">
@@ -16,7 +16,7 @@
         <nav class="main_nav_container">
             <div class="main_nav">
                 <ul class="main_nav_list">
-                    <li class="main_nav_item"><a href="{{ route('inicio') }}">Inicio</a></li>
+                    <li class="main_nav_item"><a href="{!! route('main') !!}">Inicio</a></li>
                     <li class="main_nav_item"><a href="{!! route('carta.index') !!}">Carta</a></li>
                     <li class="main_nav_item"><a href="{!! route('menu.index') !!}">Menú del Día</a></li>
                     <li class="main_nav_item"><a href="{{ url('Menu') }}">Reservas</a></li>

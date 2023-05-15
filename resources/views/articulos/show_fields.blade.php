@@ -28,11 +28,18 @@
                      <b>Precio</b> <a class="float-right">{{ $articulo->precio }}€</a>
                  </li>
                  <li class="list-group-item">
-                     <b>Tipo</b> <a class="float-right">{{ $articulo->tipo== 'cartamenu' ? 'Carta, Menu': ucfirst($articulo->tipo)  }}</a>
+                     <b>Tipo</b> <a
+                         class="float-right">{{ $articulo->tipo == 'cartamenu' ? 'Carta, Menu' : ucfirst($articulo->tipo) }}</a>
                  </li>
                  <li class="list-group-item">
-                     <b>Activo</b> <a class="float-right">{{ $articulo->activo == 1 ? 'Si':'No'  }}</a>
-                 </li>               
+                     <b>Activo</b> <a class="float-right">{{ $articulo->activo == 1 ? 'Si' : 'No' }}</a>
+                 </li>
+                 <li class="list-group-item">
+                     <b>Recomendasdo</b> <a class="float-right">{{ $articulo->recomendado == 1 ? 'Si' : 'No' }}</a>
+                 </li>
+                 <li class="list-group-item">
+                     <b>Agotado</b> <a class="float-right">{{ $articulo->agotado == 1 ? 'Si' : 'No' }}</a>
+                 </li>
              </ul>
          </div>
          <!-- /.card-body -->

@@ -11,25 +11,25 @@
                                     <thead>
                                         <tr>
                                             <th class="disabled-sorting text-left">Imagen</th>
-                                            <th colspam="2" class="text-left"> Id</th>                                      
-                                            <th class="text-center">Categoria</th>                               
+                                            <th colspam="2" class="text-left"> Id</th>
+                                            <th class="text-center">Categoria</th>
                                             <th class="text-center">Creado</th>
-                                            <th class="text-center">Editado</th>      
-                                            <th class="text-center">Acciones</th>                          
+                                            <th class="text-center">Editado</th>
+                                            <th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th class="disabled-sorting text-left">Imagen</th>     
-                                            <th colspam="2" class="text-left"> Id</th>                             
+                                            <th class="disabled-sorting text-left">Imagen</th>
+                                            <th colspam="2" class="text-left"> Id</th>
                                             <th class="text-center">Categoria</th>
                                             <th class="text-center">Creado</th>
                                             <th class="text-center">Editado</th>
-                                            <th class="text-center">Acciones</th>                                  
+                                            <th class="text-center">Acciones</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                           
+
                                         @foreach ($categorias as $categoria)
                                             <tr>
                                                 <div class="row">
@@ -42,9 +42,9 @@
                                                 </div>
                                                 <td colspam="2" class="text-center">{{ $categoria->id }}</td>
                                                 <td class="text-center">{{ $categoria->categoria }}</td>
-                                                <td class="text-center">{{ $categoria->created_at }}</td> 
-                                                <td class="text-center">{{ $categoria->updated_at }}</td>                                        
-                                       
+                                                <td class="text-center">{{ $categoria->created_at }}</td>
+                                                <td class="text-center">{{ $categoria->updated_at }}</td>
+
                                                 <td class=" text-center">
                                                     {!! Form::open(['route' => ['categorias.destroy', [$categoria->id]], 'method' => 'delete']) !!}
                                                     <div class='btn-group'>

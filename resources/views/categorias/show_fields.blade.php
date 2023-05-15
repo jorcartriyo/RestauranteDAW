@@ -2,9 +2,10 @@
      <div class="card card-primary card-outline">
          <div class="card-body box-profile">
              <div style="height:400px">
-                 <img class="mx-auto text-right h-100 border border-primary img-fluid " @if ($categoria->imagen != 'default') src="{{ Storage::url('categorias/' . $categoria->imagen) }}"
+                 <img class="mx-auto text-right h-100 border border-primary img-fluid "
+                     @if ($categoria->imagen != 'default') src="{{ Storage::url('categorias/' . $categoria->imagen) }}"
                  @else src="{{ asset('assets/img/product.png') }}" @endif
-                 alt="Categorias profile picture" />
+                     alt="Categorias profile picture" />
              </div>
 
              <h3 class="pt-3 profile-username text-center">{{ $categoria->categoria }}</h3>

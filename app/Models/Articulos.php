@@ -18,8 +18,10 @@ class Articulos extends Model
         'imagen',
         'precio',
         'activo',
-        'tipo'
-    ];
+        'recomendado',
+        'tipo',
+        'agotado'
+    ];  
 
     protected $hidden = [
         'id'

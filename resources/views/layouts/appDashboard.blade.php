@@ -62,7 +62,7 @@
                 @yield('content')
 
             </div>
-  
+
         </div>
     </div>
     <!--   Core JS Files   -->

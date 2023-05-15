@@ -718,10 +718,14 @@ section {
     font-size: 72px;
     font-weight: 400;
     color: #FFFFFF;
+    background: #d29c1f;
+    padding-left: 13px;
+    padding-right: 13px;
+    
 }
 
 .hero_slide_content h1 span {
-    background: #ffb606;
+    background: #47e236;
     padding-left: 13px;
     padding-right: 13px;
     margin-left: -12px;
@@ -904,6 +908,9 @@ section {
     background: #eaebec;
     margin-top: 41px;
     padding-left: 35px;
+    -webkit-animation: blink 1s linear infinite;
+    -moz-animation: blink 1s linear infinite;
+    animation: blink 1s linear infinite;
 }
 
 .course_author_image {
@@ -926,7 +933,7 @@ section {
 }
 
 .course_price {
-    width: 67px;
+    width: 167px;
     height: 67px;
     background: #ffb606;
     margin-left: auto;
@@ -949,7 +956,7 @@ section {
 
 .register_section {
     width: 100%;
-    background: #ffb606;
+    background: #5f5d58;
     padding-top: 156px;
     padding-bottom: 161px;
 }
@@ -1013,7 +1020,8 @@ section {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    opacity: 0.23;
+    background-attachment: fixed;
+    opacity: 0.43;
 }
 
 .search_title {
@@ -1074,6 +1082,12 @@ input:last-of-type {
 
 .services {
     padding-bottom: 76px;
+    background-image: url(../images/fondo1.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    opacity: 0.9;
 }
 
 .services_row {
@@ -1084,18 +1098,23 @@ input:last-of-type {
     margin-bottom: 41px;
 }
 
+
+.service_title{
+    color:#eaebec !important;
+}
+
 .service_item h3 {
     font-family: 'Roboto', sans-serif;
     font-size: 22px;
     font-weight: 500;
-    color: #1a1a1a;
+    color: #d3eeef;
     margin-bottom: 13px;
 }
 
 .service_item p {
     font-size: 14px;
     font-weight: 500;
-    color: #a5a5a5;
+    color: #9d578b;
     max-width: 100%;
     margin-bottom: 0px;
 }
@@ -1108,6 +1127,9 @@ input:last-of-type {
 
 .icon_container img {
     height: 100%;
+}
+ img{
+    color:#d71e1e !important;
 }
 
 /*********************************

@@ -1,14 +1,16 @@
 @extends('layouts.app')
 @section('title', 'Menu')
 @section('content')
-
+    <!-- Carrusel -->
+    @include('sections.carrusel')
+    <!-- Menu -->
     <div class="carta page_section">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="section_title text-center">
                         <h1>NUESTRO MENU</h1>
-                        </br>
+                        <br>
                     </div>
                 </div>
             </div>
@@ -27,15 +29,15 @@
 
                                         <!-- Popular Course Item -->
 
-                                        <div class="col-lg-4 course_box">
+                                        <div class="col-lg-4 course_box mb-5">
                                             <div class="card">
                                                 <img class="card-img-top"
                                                     @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"
-                        @else src="{{ asset('assets/img/product.png') }}" @endif
+                                                    @else src="{{ asset('assets/img/product.png') }}" @endif
                                                     alt="{{ $articulo->nombre }}">
                                                 <div class="card-body text-center">
                                                     <div class="card-title"><a>{{ $articulo->nombre }}</a></div>
-                                                    </br>
+                                                    <br>
                                                     <div class="card-text">{{ $articulo->descripcion }}</div>
                                                 </div>
                                                 <div class="price_box d-flex flex-row align-items-center">
@@ -52,6 +54,7 @@
                             @endif
                         @endif
                     @endforeach
+                </div>
             @endforeach
         </div>
     </div> <!-- Footer -->

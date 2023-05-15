@@ -20,6 +20,8 @@
                                             <th class="text-center">Creado</th>
                                             <th class="text-center">Editado</th>
                                             <th class="text-center">Activo</th>
+                                            <th class="text-center">Recomendado</th>
+                                            <th class="text-center">Agotado</th>
                                             <th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
@@ -35,34 +37,34 @@
                                             <th class="text-center">Creado</th>
                                             <th class="text-center">Editado</th>
                                             <th class="text-center">Activo</th>
+                                            <th class="text-center">Recomendasdo</th>
+                                            <th class="text-center">Agotado</th>
                                             <th class="text-center">Acciones</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                           
+
                                         @foreach ($articulos as $articulo)
                                             <tr>
                                                 <div class="row">
                                                     <div class="col-xs-1">
                                                         <td><img class="elevation-3 " width="125" height="125"
-                                                                @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"                                                             
-                                                                @else src="{{ asset('assets/img/product.png') }}" @endif
+                                                                @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"
+                                                        @else src="{{ asset('assets/img/product.png') }}" @endif
                                                                 alt="{{ $articulo->imagen }}"></td>
                                                     </div>
                                                 </div>
                                                 <td colspam="2" class="text-center">{{ $articulo->id }}</td>
                                                 <td class="text-center">{{ $articulo->nombre }}</td>
                                                 <td class="text-center">{{ $articulo->descripcion }}</td>
-                                                <td class="text-center">{{ $articulo->categorias->categoria}}</td>
+                                                <td class="text-center">{{ $articulo->categorias->categoria }}</td>
                                                 <td class="text-center">{{ $articulo->precio }}</td>
                                                 <td class="text-center">{{ $articulo->tipo }}</td>
                                                 <td class="text-center">{{ $articulo->created_at }}</td>
                                                 <td class="text-center">{{ $articulo->updated_at }}</td>
-                                                @if ($articulo->activo)
-                                                    <td class="text-center">Si</td>
-                                                @else
-                                                    <td class="text-center">No</td>
-                                                @endif
+                                                <td class="text-center">{{ $articulo->activo ? 'Si' : 'No' }}</td>
+                                                <td class="text-center">{{ $articulo->recomendado ? 'Si' : 'No' }}</td>
+                                                <td class="text-center">{{ $articulo->agotado ? 'Si' : 'No' }}</td>
                                                 <td class=" text-center">
                                                     {!! Form::open(['route' => ['articulos.destroy', [$articulo->id]], 'method' => 'delete']) !!}
                                                     <div class='btn-group'>

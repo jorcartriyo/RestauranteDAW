@@ -4,7 +4,7 @@
      <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
      <div class="card-header">
          <h2 class="text-center">
-             Actualiza la Categoria
+             Actualiza Catoria
          </h2>
      </div>
      <div class="card-body">
@@ -16,10 +16,12 @@
                              <div>
                                  <img @if ($categoria->imagen != 'default') src="{{ asset('storage/images/categorias/' . $categoria->imagen) }}"
                                  @else src="{{ asset('assets/img/product.png') }}" @endif
-                                 name="imgCategorias" id="imgUsu" class="picture-src" title="imgCategorias" alt='imgCategorias' />
-                                 </br>
+                                     name="imgCAtegoria" id="imgUsu" class="picture-src" title="imgCategoria"
+                                     alt='imgCategoria' />
+                                 <br>
                                  <input type="file" id="file" name="file" onchange="mostrarImagen(event)">
                              </div>
+                             <br>
                              <h6 class="description">Elige una imagen</h6>
                          </div>
                      </div>

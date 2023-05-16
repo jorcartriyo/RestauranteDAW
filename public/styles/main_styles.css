@@ -424,6 +424,13 @@ section {
     color: #ffb606;
 }
 
+.main_nav_item_footer {
+    display: inline-block;
+    margin-right: 40px;
+    margin-top: 30px;    
+    color: #a5a5a5;
+}
+
 /*********************************
 3.3 Header Side
 *********************************/
@@ -1365,24 +1372,22 @@ input:last-of-type {
 *********************************/
 
 .footer_content {
-    padding-top: 80px;
+ 
+
     padding-bottom: 83px;
     border-bottom: solid 2px #4d4e4e;
 }
 
 .footer_content .logo_container {
+  
     padding-left: 0px;
 }
 
 .footer_content .logo span {
+    
     color: #FFFFFF;
 }
 
-.footer_about_text {
-    margin-top: 24px;
-    margin-bottom: 0px;
-    padding-right: 20px;
-}
 
 .footer_column_title {
     font-size: 18px;
@@ -1407,6 +1412,7 @@ input:last-of-type {
     -ms-transition: all 200ms ease;
     -o-transition: all 200ms ease;
     transition: all 200ms ease;
+ 
 }
 
 .footer_list_item a:hover {

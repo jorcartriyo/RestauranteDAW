@@ -9,7 +9,6 @@
                 @csrf
                 <!--      Wizard container        -->
                 <div class="card card-wizard active" data-color="rose" id="wizardProfile">
-                    <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                     <div class="card-header text-center">
                         <h2 class="card-title">
                             Crea un Artículo
@@ -25,11 +24,11 @@
                                         <div>
                                             <img src="{{ asset('assets/img/product.png') }}" onchange="mostrarImagen(event)"
                                                 name="imgArticulo" id="imgUsu" title="Imagen Articulo" />
-                                            </br>
+                                            <br>
                                             <input type="file" id="file" name="file"
                                                 onchange="mostrarImagen(event)">
                                         </div>
-                                        </br>
+                                        <br>
                                         <h6 class="description">Asigna la imagen</h6>
                                     </div>
                                 </div>

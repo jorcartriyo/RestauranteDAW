@@ -26,7 +26,7 @@ class Mesas extends Model
         return Mesas::all();
     }
 
-    public function obtenerMesasID($id)
+    public function obtenerMesaID($id)
     {
         return Mesas::find($id);
     }

@@ -1,7 +1,6 @@
  @csrf
  <!--      Wizard container        -->
  <div class="card card-wizard active" data-color="rose" id="wizardProfile">
-     <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
      <div class="card-header">
          <h2 class="text-center">
              Actualiza el Artículo
@@ -18,10 +17,10 @@
                                  <img @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"
                                  @else src="{{ asset('assets/img/product.png') }}" @endif
                                      name="imgUsu" id="imgUsu" class="picture-src" title="avatar" alt='img' />
-                                 </br>
+                                 <br>
                                  <input type="file" id="file" name="file" onchange="mostrarImagen(event)">
                              </div>
-                             </br>
+                             <br>
                              <h6 class="description">Elige una imagen</h6>
                          </div>
                      </div>

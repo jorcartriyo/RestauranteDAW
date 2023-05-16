@@ -19,7 +19,7 @@ class MesaController extends Controller
     public function index()
     {
         $mesas = $this->mesas->obtenerMesas();
-    
+
         return view('mesas.index', ['mesas' => $mesas]);
     }
 
@@ -40,24 +40,25 @@ class MesaController extends Controller
     {
 
         $request->validate([
-            'seccion' => ['max:80', 'required',function ($attribute, $value, $fail) {
-                if ($value != 'inicio' && $value != 'menu' && $value != 'carta') {
-                    $fail($attribute . ' No es correcta la sccion introducida.');
+            'nombre' => ['max:50', 'required'],
+            'comensales' => ['numeric', 'required'],
+            'localizacion' => [function ($attribute, $value, $fail) {
+                if ($value != 'comedor' && $value != 'terraza' && $value != 'sala') {
+                    $fail($attribute . ' No es correcta la Localizacion introducida');
                 }
             }],
-            'texto1' => ['max:50'],
-            'texto2' => ['max:50'],    
-            'texto3' => ['max:50'],      
-            'activo'   => ['boolean', 'required'],
-            'file' => ['required'],
+            'estado'   => [function ($attribute, $value, $fail) {
+                if ($value != 'disponible' && $value != 'pendiente' && $value != 'reservada') {
+                    $fail($attribute . ' No es correcto el estado introducida.');
+                }
+            }]        
         ]);
-  
+
         $mesa =  mesas::create([
-            'seccion' => $request->seccion,
-            'texto1' => $request->texto1,
-            'texto2' => $request->texto2, 
-            'texto3' => $request->texto3,           
-            'activo' =>  $request->activo
+            'nombre' => $request->nombre,
+            'comensales' => $request->comensales,
+            'estado' => $request->estado,
+            'localizacion' => $request->localizacion
         ]);
 
         if (!$mesa) {
@@ -107,15 +108,18 @@ class MesaController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'seccion' => ['max:80', 'required',function ($attribute, $value, $fail) {
-                if ($value != 'inicio' && $value != 'menu' && $value != 'carta') {
-                    $fail($attribute . ' No es correcto el tipo introducido.');
+            'nombre' => ['max:50', 'required'],
+            'comensales' => ['numeric', 'required'],
+            'estado'   => [function ($attribute, $value, $fail) {
+                if ($value != 'disponible' && $value != 'pendiente' && $value != 'reservada') {
+                    $fail($attribute . ' No es correcto el estado introducida.');
                 }
             }],
-            'texto1' => ['max:50'],
-            'texto2' => ['max:50'],  
-            'texto3' => ['max:50'],       
-            'activo'   => ['boolean', 'required'],
+            'localizacion' => [function ($attribute, $value, $fail) {
+                if ($value != 'comedor' && $value != 'terraza' && $value != 'sala') {
+                    $fail($attribute . ' No es correcta la Localizacion introducida.');
+                }
+            }],
         ]);
         $ruta = '';
         $mesa = $this->mesas->obtenermesaID($id);
@@ -124,13 +128,7 @@ class MesaController extends Controller
             $ruta = redirect(route('mesas.index'))->with('warning', "No existe esa mesa");
         } else {
             $input = $request->all();
-       
-
-     
-
-
             $mesaUpdate = $mesa->update($input);
-
             if (!$mesaUpdate) {
                 Log::channel('baseroleslog')->warning('Error al actualizar datos de la mesa ' . $mesa->nombre);
 
@@ -156,7 +154,7 @@ class MesaController extends Controller
 
             return redirect(route('mesas.index'))->with('warning', "No existe esa mesa");
         }
- 
+
         $this->mesas->deletemesa($id);
         Log::channel('baseroleslog')->info('mesa ' . $mesa->nombre . ' borrada con exito' . $mesa);
         return redirect(route('mesas.index'))->with('info', "mesa borrada con exito");

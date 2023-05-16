@@ -8,7 +8,6 @@
                 @csrf
                 <!--      Wizard container        -->
                 <div class="card card-wizard active" data-color="rose" id="wizardProfile">
-                    <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                     <div class="card-header text-center">
                         <h2 class="card-title">
                             Crea un Permiso

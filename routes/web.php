@@ -11,7 +11,8 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\FotoController;
-
+use App\Http\Controllers\MesaController;
+use App\Http\Controllers\ReservaController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
@@ -59,6 +60,8 @@ Route::middleware(['auth', 'verified', 'role:Admin|SuperAdmin'])->group(
         Route::resource('/categorias', CategoriaController::class);
         Route::resource('/eventos', EventoController::class);
         Route::resource('/fotos', FotoController::class);
+        Route::resource('/mesas', MesaController::class);
+        Route::resource('/reservas', ReservaController::class);
     }
 );
 

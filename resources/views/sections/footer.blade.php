@@ -12,7 +12,7 @@
                     <!-- Logo -->
                     <div class="logo_container">
                         <div class="logo">
-                            <span>Sistema de Ventas de Restaurante</span>
+                            <span>Restaurante Daw</span>
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                 <!-- Footer Column - Contact -->
 
                 <div class="col-lg-3 footer_col">
-                    <div class="footer_column_title">Contact</div>
+                    <div class="footer_column_title">Contacto</div>
                     <div class="footer_column_content">
                         <ul>
                             <li class="footer_contact_item">
@@ -79,7 +79,7 @@
                     Copyright &copy;
                     <script>
                         document.write(new Date().getFullYear());
-                    </script> All rights reserved | Rincón del Manaba <i class="fa fa-heart"
+                    </script> All rights reserved | Restaurante Daw <i class="fa fa-heart"
                         aria-hidden="true"></i><a href="https://colorlib.com" target="_blank"></a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </span>

@@ -7,6 +7,7 @@
             <form method="POST" id="myform" enctype="multipart/form-data" action="{{ route('reservas.store') }}">
                 @method('POST')
                 @csrf
+                
                 <!--      Wizard container        -->
                 <div class="card card-wizard active" data-color="rose" id="wizardProfile">
                     <div class="card-header text-center">
@@ -65,7 +66,7 @@
                         </div>
                     </div>
                     {{-- Fecha --}}
-                    <div class="col-lg-18">
+                  <div class="col-lg-18">
                         <div class="input-group form-control-lg">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -75,11 +76,11 @@
                             <div class="form-group">
                                 <label for="fecha_reserva" class="bmd-label-floating"> Fecha de Reserva
                                     (requerido)</label>
-                                <input type="date" class="form-control" id="fecha_reserva" required="true"
-                                    name="fecha_reserva" autocomplete="on">
+                                <input type="text" class="form-control" id="fecha_reserva" required="true"
+                                    name="fecha_reserva" value="{{ $fecha }}" >
                             </div>
                         </div>
-                    </div>
+                    </div> 
                     {{-- Mesa --}}
                     <div class="col-lg-18">
                         <div class="input-group form-control-lg">
@@ -92,7 +93,7 @@
                                 @if ($disponibles)
                                     <select id="mesa" name="mesa">
 
-                                        @foreach ($mesas as $mesa)
+                                        @foreach ($mesasDisponibles as $mesa)
                                             @if ($mesa->estado == 'disponible')
                                                 <option value="{{ $mesa->id }}">{{ $mesa->nombre }}</option>
                                             @endif
@@ -108,7 +109,7 @@
                         </div>
                     </div>
                     {{-- Comensales --}}
-                    <div class="col-lg-18">
+                  <div class="col-lg-18">
                         <div class="input-group form-control-lg">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -118,11 +119,11 @@
                             <div class="form-group">
                                 <label for="precio" class="bmd-label-floating"> Comensales
                                     (requerido)</label>
-                                <input type="number" class="form-control" id="comensales" required="true" value='0'
-                                    name="comensales" autocomplete="on" min='1' max='10'>
+                                    <input type="text" class="form-control" id="comensales" required="true"
+                                    name="comensales" value="{{ $datos->comensales }}" >
                             </div>
                         </div>
-                    </div>
+                    </div> 
 
                     {{-- Submit --}}
                     <div>

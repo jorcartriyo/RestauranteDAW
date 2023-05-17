@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reservas;
 use App\Models\Mesas;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Providers\RouteServiceProvider;
 
@@ -27,12 +28,57 @@ class ReservaController extends Controller
         return view('reservas.index', ['reservas' => $reservas]);
     }
 
+    public function fecha()
+    {    
+        $min_date = Carbon::today();
+        $max_date = Carbon::now()->addWeek(2);
+        return view('reservas.fecha', compact('min_date', 'max_date'));
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function datos(Request $request)
+    {   
+   
+        $mesas = $this->mesas->obtenerMesas();
+        $reservas = $this->reservas->obtenerreservas();
+        $datos = $request;
+        $fecha = Carbon::create($request->fecha );
+        $fecha1 = Carbon::create($request->fecha )->addHour(5);
+        $mesasDisponibles = [];
+        
+        foreach($mesas as $mesa){
+            if ($request->comensales == $mesa->comensales || $request->comensales == $mesa->comensales-1){
+               array_push( $mesasDisponibles, $mesa);
+            }
+
+        }
+
+        // || $mesa->comensales == $request->comensales || $mesa->comensales == $request->comensales + 1
+        foreach($reservas as $reserva){
+  
+    /*         foreach($mesas as $mesa){
+                if($reserva->fecha_reserva == $request->fecha_reserva){
+                    dd('mesa no disponible',$reserva->fecha,$request->fecha);
+                }else{
+                    dd('mesa disponible', $reserva->fecha,$request->fecha);
+                }
+            } */
+        }
+        $disponibles = 3;
+           
+        return view('reservas.register', ['mesasDisponibles' => $mesasDisponibles, 'disponibles' => $disponibles, 'datos'=>$datos, 'fecha'=>$fecha1 ]);
+    }
+  
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
+
+  
+        
         $mesas = $this->mesas->obtenerMesas();
         $disponibles = 0;
         foreach($mesas as $mesa){
@@ -42,7 +88,7 @@ class ReservaController extends Controller
         }
         //MANDO RESERVAS
        
-        return view('reservas.register', ['mesas' => $mesas, 'disponibles' => $disponibles]);
+        return view('reservas.show', ['mesas' => $mesas, 'disponibles' => $disponibles]);
     }
 
     /**
@@ -50,7 +96,11 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-
+      
+       // $fecha= Carbon::createFromFormat('Y-m-d H',$request->fecha )->toDateTimeString();
+        $fecha=  Carbon::createFromFormat('Y-m-d H:i',   $request->fecha_reserva)->toDateTimeString(); // 1975-05-21 22:00:00
+      
+    
         $request->validate([
             'nombre' => ['max:50', 'required'],       
             'email' => ['required', 'string', 'email', 'max:255'],
@@ -59,12 +109,12 @@ class ReservaController extends Controller
             'mesa' => ['required'],
             'comensales' => ['required', 'numeric']
         ]);
-
+      
         $reserva =  reservas::create([
             'nombre' => $request->nombre,
             'email' => $request->email,
             'telefono' => $request->telefono,
-            'fecha_reserva' =>  $request->fecha_reserva,
+            'fecha_reserva' =>  $fecha,
             'mesa' =>  $request->mesa,
             'comensales' =>  $request->comensales
         ]);

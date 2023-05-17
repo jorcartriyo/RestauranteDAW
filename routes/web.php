@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/fecha', [ReservaController::class, 'fecha'])->name('fecha');
+    Route::post('/datos', [ReservaController::class, 'datos'])->name('datos');
+
 });
 
 Route::middleware(['auth', 'verified', 'role:SuperAdmin'])->group(
@@ -50,7 +53,6 @@ Route::middleware(['auth', 'verified', 'role:SuperAdmin'])->group(
         Route::resource('/roles', RolController::class);
         Route::resource('/permisos', PermisoController::class);
         Route::get('/logs', [UserController::class, 'log'])->name('log');
-        //  Route::get('/articulos', [ArticuloController::class, 'index'])->name('articulos');
     }
 
 );

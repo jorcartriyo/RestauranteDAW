@@ -4,33 +4,91 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reservas;
+use App\Models\Mesas;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Providers\RouteServiceProvider;
+
 
 class ReservaController extends Controller
 {
     protected $reservas;
+    protected $mesas;
 
-    public function __construct(Reservas $reservas)
+    public function __construct(Reservas $reservas, Mesas $mesas)
     {
         $this->reservas = $reservas;
+        $this->mesas = $mesas;
     }
 
     public function index()
     {
         $reservas = $this->reservas->obtenerreservas();
-    
+
         return view('reservas.index', ['reservas' => $reservas]);
     }
 
+    public function fecha()
+    {    
+        $min_date = Carbon::today();
+        $max_date = Carbon::now()->addWeek(2);
+        return view('reservas.fecha', compact('min_date', 'max_date'));
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function datos(Request $request)
+    {   
+   
+        $mesas = $this->mesas->obtenerMesas();
+        $reservas = $this->reservas->obtenerreservas();
+        $datos = $request;
+        $fecha = Carbon::create($request->fecha );
+        $fecha1 = Carbon::create($request->fecha )->addHour(5);
+        $mesasDisponibles = [];
+        
+        foreach($mesas as $mesa){
+            if ($request->comensales == $mesa->comensales || $request->comensales == $mesa->comensales-1){
+               array_push( $mesasDisponibles, $mesa);
+            }
+
+        }
+
+        // || $mesa->comensales == $request->comensales || $mesa->comensales == $request->comensales + 1
+        foreach($reservas as $reserva){
+  
+    /*         foreach($mesas as $mesa){
+                if($reserva->fecha_reserva == $request->fecha_reserva){
+                    dd('mesa no disponible',$reserva->fecha,$request->fecha);
+                }else{
+                    dd('mesa disponible', $reserva->fecha,$request->fecha);
+                }
+            } */
+        }
+        $disponibles = 3;
+           
+        return view('reservas.register', ['mesasDisponibles' => $mesasDisponibles, 'disponibles' => $disponibles, 'datos'=>$datos, 'fecha'=>$fecha1 ]);
+    }
+  
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
 
-        return view('reservas.register');
+  
+        
+        $mesas = $this->mesas->obtenerMesas();
+        $disponibles = 0;
+        foreach($mesas as $mesa){
+            if($mesa->estado == 'disponible'){
+                $disponibles++;
+            }
+        }
+        //MANDO RESERVAS
+       
+        return view('reservas.show', ['mesas' => $mesas, 'disponibles' => $disponibles]);
     }
 
     /**
@@ -38,27 +96,33 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-
+      
+       // $fecha= Carbon::createFromFormat('Y-m-d H',$request->fecha )->toDateTimeString();
+        $fecha=  Carbon::createFromFormat('Y-m-d H:i',   $request->fecha_reserva)->toDateTimeString(); // 1975-05-21 22:00:00
+      
+    
         $request->validate([
-            'seccion' => ['max:80', 'required',function ($attribute, $value, $fail) {
-                if ($value != 'inicio' && $value != 'menu' && $value != 'carta') {
-                    $fail($attribute . ' No es correcta la sccion introducida.');
-                }
-            }],
-            'texto1' => ['max:50'],
-            'texto2' => ['max:50'],    
-            'texto3' => ['max:50'],      
-            'activo'   => ['boolean', 'required'],
-            'file' => ['required'],
+            'nombre' => ['max:50', 'required'],       
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'telefono' => ['required', 'numeric'],
+            'fecha_reserva' => ['required', 'date'],
+            'mesa' => ['required'],
+            'comensales' => ['required', 'numeric']
+        ]);
+      
+        $reserva =  reservas::create([
+            'nombre' => $request->nombre,
+            'email' => $request->email,
+            'telefono' => $request->telefono,
+            'fecha_reserva' =>  $fecha,
+            'mesa' =>  $request->mesa,
+            'comensales' =>  $request->comensales
+        ]);
+        $mesa= $this->mesas->obtenerMesaID($request->mesa);
+        $mesa->update([           
+            'estado' => 'pendiente'   
         ]);
 
-            $reserva =  reservas::create([
-            'seccion' => $request->seccion,
-            'texto1' => $request->texto1,
-            'texto2' => $request->texto2, 
-            'texto3' => $request->texto3, 
-            'activo' =>  $request->activo
-        ]);
 
         if (!$reserva) {
             Log::channel('baseroleslog')->info('Error al crear la reserva');
@@ -107,15 +171,12 @@ class ReservaController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'seccion' => ['max:80', 'required',function ($attribute, $value, $fail) {
-                if ($value != 'inicio' && $value != 'menu' && $value != 'carta') {
-                    $fail($attribute . ' No es correcto el tipo introducido.');
-                }
-            }],
-            'texto1' => ['max:50'],
-            'texto2' => ['max:50'],  
-            'texto3' => ['max:50'],       
-            'activo'   => ['boolean', 'required'],
+            'nombre' => ['max:50', 'required'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'telefono' => ['required', 'tel'],
+            'fecha_reserva' => ['required', 'date'],
+            'mesa' => ['required', Mesas::class],
+            'comensales' => ['required', 'numeric']
         ]);
         $ruta = '';
         $reserva = $this->reservas->obtenerreservaID($id);
@@ -123,7 +184,7 @@ class ReservaController extends Controller
             Log::channel('baseroleslog')->alert('Intendo de editar una reserva que no existe');
             $ruta = redirect(route('reservas.index'))->with('warning', "No existe esa reserva");
         } else {
-            $input = $request->all();           
+            $input = $request->all();
             $reservaUpdate = $reserva->update($input);
 
             if (!$reservaUpdate) {
@@ -151,7 +212,12 @@ class ReservaController extends Controller
 
             return redirect(route('reservas.index'))->with('warning', "No existe esa reserva");
         }
+        $mesa= $this->mesas->obtenerMesaID($reserva->mesa);     
+    
         $this->reservas->deletereserva($id);
+        $mesa->update([           
+            'estado' => 'disponible'   
+        ]);
         Log::channel('baseroleslog')->info('reserva ' . $reserva->nombre . ' borrada con exito' . $reserva);
         return redirect(route('reservas.index'))->with('info', "reserva borrada con exito");
     }

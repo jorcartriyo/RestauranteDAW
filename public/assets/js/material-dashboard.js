@@ -2604,18 +2604,31 @@ $(function () {
     //Bootstrap Duallistbox
     $(".duallistbox").bootstrapDualListbox();
 });
-//Data tables
+
+
 $(document).ready(function () {
-    $("#datatables").DataTable({
+    $("#datatables").DataTable({     
         pagingType: "full_numbers",
         lengthMenu: [
             [10, 25, 50, -1],
             [10, 25, 50, "All"],
         ],
         responsive: true,
-        language: {
-            search: "INPUT",
-            searchPlaceholder: "Search records",
+        dom:"Bfrtip",
+        buttons: [
+            {
+                text: 'Exportar Excel',
+                extend: 'excelHtml5',
+                title: '',
+                filename: 'Reporte Usuarios',
+                exportOptions: {
+                    columns: [2.3, 4, 5, 6]
+                }
+            }, 'csv', 'pdf', 'print', 'copy','pageLength'
+        ],
+        language:{
+            url:"https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
         },
     });
 });
+

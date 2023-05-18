@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('reservas', function (Blueprint $table) {         
             $table->id();
             $table->string('nombre');
-            $table->string('apellido');
             $table->string('email');
             $table->string('telefono');
             $table->dateTime('fecha_reserva');

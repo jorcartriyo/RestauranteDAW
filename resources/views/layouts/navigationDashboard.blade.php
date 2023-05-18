@@ -47,5 +47,11 @@
     <li class="nav-item">
         <a class="nav-link" href="{!! route('fotos.index') !!}">Carrusel</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{!! route('mesas.index') !!}">Mesas</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{!! route('reservas.index') !!}">Reservas</a>
+    </li>
     <!-- your sidebar here -->
 </ul>

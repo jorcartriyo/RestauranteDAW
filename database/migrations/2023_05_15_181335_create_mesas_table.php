@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('comensales');
             $table->string('estado')->default('disponible');
-            $table->string('localizacion');
+            $table->string('localizacion')->default('comedor');
             $table->timestamps();
         });
     }

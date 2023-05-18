@@ -11,8 +11,7 @@ class Reservas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nombre',
-        'apellido',
+        'nombre',  
         'email',
         'telefono',
         'fecha_reserva',
@@ -29,7 +28,7 @@ class Reservas extends Model
         return Reservas::all();
     }
 
-    public function obtenerReservasID($id)
+    public function obtenerReservaID($id)
     {
         return Reservas::find($id);
     }

@@ -403,6 +403,11 @@ section {
     margin-top: 30px;
 }
 
+.main_nav_item_footer {
+    color: #a5a5a5;
+
+}
+
 .main_nav_item:last-child {
     margin-right: 0px;
 }
@@ -718,14 +723,10 @@ section {
     font-size: 72px;
     font-weight: 400;
     color: #FFFFFF;
-    background: #d29c1f;
-    padding-left: 13px;
-    padding-right: 13px;
-    
 }
 
 .hero_slide_content h1 span {
-    background: #47e236;
+    background: #ffb606;
     padding-left: 13px;
     padding-right: 13px;
     margin-left: -12px;
@@ -908,9 +909,6 @@ section {
     background: #eaebec;
     margin-top: 41px;
     padding-left: 35px;
-    -webkit-animation: blink 1s linear infinite;
-    -moz-animation: blink 1s linear infinite;
-    animation: blink 1s linear infinite;
 }
 
 .course_author_image {
@@ -933,7 +931,7 @@ section {
 }
 
 .course_price {
-    width: 167px;
+    width: 67px;
     height: 67px;
     background: #ffb606;
     margin-left: auto;
@@ -956,7 +954,7 @@ section {
 
 .register_section {
     width: 100%;
-    background: #5f5d58;
+    background: #ffb606;
     padding-top: 156px;
     padding-bottom: 161px;
 }
@@ -1020,8 +1018,7 @@ section {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-attachment: fixed;
-    opacity: 0.43;
+    opacity: 0.23;
 }
 
 .search_title {
@@ -1082,12 +1079,6 @@ input:last-of-type {
 
 .services {
     padding-bottom: 76px;
-    background-image: url(../images/fondo1.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100%;
-    opacity: 0.9;
 }
 
 .services_row {
@@ -1098,23 +1089,18 @@ input:last-of-type {
     margin-bottom: 41px;
 }
 
-
-.service_title{
-    color:#eaebec !important;
-}
-
 .service_item h3 {
     font-family: 'Roboto', sans-serif;
     font-size: 22px;
     font-weight: 500;
-    color: #d3eeef;
+    color: #1a1a1a;
     margin-bottom: 13px;
 }
 
 .service_item p {
     font-size: 14px;
     font-weight: 500;
-    color: #9d578b;
+    color: #a5a5a5;
     max-width: 100%;
     margin-bottom: 0px;
 }
@@ -1127,9 +1113,6 @@ input:last-of-type {
 
 .icon_container img {
     height: 100%;
-}
- img{
-    color:#d71e1e !important;
 }
 
 /*********************************
@@ -1434,6 +1417,10 @@ input:last-of-type {
 
 .footer_contact_icon img {
     width: 100%;
+}
+
+.footer_col {
+    margin-right: 200px;
 }
 
 /*********************************

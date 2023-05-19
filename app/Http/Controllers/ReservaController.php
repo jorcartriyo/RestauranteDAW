@@ -47,11 +47,16 @@ class ReservaController extends Controller
         $fecha_reserva = Carbon::create($request->fecha_reserva);
         $mesasDisponibles = [];
         $mesasOcupadas = [];
-
+        $horas = Carbon::create($fecha_reserva)->format('H:m');
+    
+        if($horas<='14:00' ||  $horas >= '17:00' && $horas <= '20:00' ||  $horas >= '24:00'){
+           return redirect(route('fecha'))->with('warning', "Debe de seleccionar una hora entre las 14:00-17:00 para el almuerzo y las 20:00-24:00 para la cena"); 
+        }       
+    
 
         foreach ($mesas as $mesa) {
 
-            if ($request->comensales == $mesa->comensales || $request->comensales == $mesa->comensales - 1) {
+            if ($request->comensales == $mesa->comensales || $request->comensales == $mesa->comensales - 1 && $mesa=='disponible') {
 
                 array_push($mesasDisponibles, $mesa);
             }
@@ -62,7 +67,7 @@ class ReservaController extends Controller
 
         foreach ($reservas as $reserva) {
 
-            if (Carbon::create($reserva->fecha_reserva)->format('Y-m-d') == Carbon::create($request->fecha_reserva)->format('Y-m-d')) {
+            if (Carbon::create($reserva->fecha_reserva)->format('Y-m-d H:m') == Carbon::create($request->fecha_reserva)->format('Y-m-d H:m')) {
 
                 $mesaOcupada = $this->mesas->obtenerMesaID($reserva->mesa);
 
@@ -72,7 +77,7 @@ class ReservaController extends Controller
 
 
         $mesasTotales = array_diff($mesasDisponibles, $mesasOcupadas);
- 
+
         // || $mesa->comensales == $request->comensales || $mesa->comensales == $request->comensales + 1
         foreach ($reservas as $reserva) {
 

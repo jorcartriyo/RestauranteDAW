@@ -1,3 +1,6 @@
+    @include('flash-message')
+
+
 <x-guest-layout>
     <!-- Session Status -->
 

@@ -2,6 +2,8 @@
 @section('title', 'Reservas')
 @section('content')
 
+{{-- @Logged()
+@endLogged --}}
     <div class="container-fluid">
         <div class="col-md-28 col-15 mr-auto ml-auto">
             <form method="POST" id="myform" enctype="multipart/form-data" action="{{ route('reservas.store') }}">
@@ -77,7 +79,7 @@
                                 <label for="fecha_reserva" class="bmd-label-floating"> Fecha de Reserva
                                     (requerido)</label>
                                 <input type="text" class="form-control" id="fecha_reserva" required="true"
-                                    name="fecha_reserva" value="{{ $fecha }}" >
+                                    name="fecha_reserva" value="{{ $fecha_reserva->format('d-m-Y H:i') }}" >
                             </div>
                         </div>
                     </div> 
@@ -90,19 +92,21 @@
                                 </span>
                             </div>
                             <div class="form-group ml-5">
-                                @if ($disponibles)
+                         
                                     <select id="mesa" name="mesa">
 
                                         @foreach ($mesasDisponibles as $mesa)
-                                            @if ($mesa->estado == 'disponible')
+
+                               
+                                     
                                                 <option value="{{ $mesa->id }}">{{ $mesa->nombre }}</option>
-                                            @endif
+                                  
                                         @endforeach
 
                                     </select>
-                                @else
+                    
                                     <span>No quedan mesas disponibles para ese dia</span>
-                                @endif
+                            
 
 
                             </div>

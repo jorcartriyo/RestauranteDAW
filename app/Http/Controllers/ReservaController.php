@@ -8,7 +8,7 @@ use App\Models\Mesas;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Providers\RouteServiceProvider;
-
+use Illuminate\Support\Arr;
 
 class ReservaController extends Controller
 {
@@ -29,7 +29,7 @@ class ReservaController extends Controller
     }
 
     public function fecha()
-    {    
+    {
         $min_date = Carbon::today();
         $max_date = Carbon::now()->addWeek(2);
         return view('reservas.fecha', compact('min_date', 'max_date'));
@@ -39,26 +39,44 @@ class ReservaController extends Controller
      * Show the form for creating a new resource.
      */
     public function datos(Request $request)
-    {   
-   
+    {
+
         $mesas = $this->mesas->obtenerMesas();
         $reservas = $this->reservas->obtenerreservas();
         $datos = $request;
-        $fecha = Carbon::create($request->fecha );
-        $fecha1 = Carbon::create($request->fecha )->addHour(5);
+        $fecha_reserva = Carbon::create($request->fecha_reserva);
         $mesasDisponibles = [];
-        
-        foreach($mesas as $mesa){
-            if ($request->comensales == $mesa->comensales || $request->comensales == $mesa->comensales-1){
-               array_push( $mesasDisponibles, $mesa);
-            }
+        $mesasOcupadas = [];
 
+
+        foreach ($mesas as $mesa) {
+
+            if ($request->comensales == $mesa->comensales || $request->comensales == $mesa->comensales - 1) {
+
+                array_push($mesasDisponibles, $mesa);
+            }
         }
 
+
+
+
+        foreach ($reservas as $reserva) {
+
+            if (Carbon::create($reserva->fecha_reserva)->format('Y-m-d') == Carbon::create($request->fecha_reserva)->format('Y-m-d')) {
+
+                $mesaOcupada = $this->mesas->obtenerMesaID($reserva->mesa);
+
+                array_push($mesasOcupadas, $mesaOcupada);
+            }
+        }
+
+
+        $mesasTotales = array_diff($mesasDisponibles, $mesasOcupadas);
+ 
         // || $mesa->comensales == $request->comensales || $mesa->comensales == $request->comensales + 1
-        foreach($reservas as $reserva){
-  
-    /*         foreach($mesas as $mesa){
+        foreach ($reservas as $reserva) {
+
+            /*         foreach($mesas as $mesa){
                 if($reserva->fecha_reserva == $request->fecha_reserva){
                     dd('mesa no disponible',$reserva->fecha,$request->fecha);
                 }else{
@@ -67,27 +85,27 @@ class ReservaController extends Controller
             } */
         }
         $disponibles = 3;
-           
-        return view('reservas.register', ['mesasDisponibles' => $mesasDisponibles, 'disponibles' => $disponibles, 'datos'=>$datos, 'fecha'=>$fecha1 ]);
+
+        return view('reservas.register', ['mesasDisponibles' => $mesasTotales, 'disponibles' => $disponibles, 'datos' => $datos, 'fecha_reserva' => $fecha_reserva]);
     }
-  
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
 
-  
-        
+
+
         $mesas = $this->mesas->obtenerMesas();
         $disponibles = 0;
-        foreach($mesas as $mesa){
-            if($mesa->estado == 'disponible'){
+        foreach ($mesas as $mesa) {
+            if ($mesa->estado == 'disponible') {
                 $disponibles++;
             }
         }
         //MANDO RESERVAS
-       
+
         return view('reservas.show', ['mesas' => $mesas, 'disponibles' => $disponibles]);
     }
 
@@ -96,20 +114,19 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-      
-       // $fecha= Carbon::createFromFormat('Y-m-d H',$request->fecha )->toDateTimeString();
-        $fecha=  Carbon::createFromFormat('Y-m-d H:i',   $request->fecha_reserva)->toDateTimeString(); // 1975-05-21 22:00:00
-      
-    
+
+        // $fecha= Carbon::createFromFormat('Y-m-d H',$request->fecha )->toDateTimeString();
+        $fecha =  Carbon::create($request->fecha_reserva); // 1975-05-21 22:00:00
+
         $request->validate([
-            'nombre' => ['max:50', 'required'],       
+            'nombre' => ['max:50', 'required'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'telefono' => ['required', 'numeric'],
             'fecha_reserva' => ['required', 'date'],
             'mesa' => ['required'],
             'comensales' => ['required', 'numeric']
         ]);
-      
+
         $reserva =  reservas::create([
             'nombre' => $request->nombre,
             'email' => $request->email,
@@ -118,9 +135,9 @@ class ReservaController extends Controller
             'mesa' =>  $request->mesa,
             'comensales' =>  $request->comensales
         ]);
-        $mesa= $this->mesas->obtenerMesaID($request->mesa);
-        $mesa->update([           
-            'estado' => 'pendiente'   
+        $mesa = $this->mesas->obtenerMesaID($request->mesa);
+        $mesa->update([
+            'estado' => 'pendiente'
         ]);
 
 
@@ -212,11 +229,11 @@ class ReservaController extends Controller
 
             return redirect(route('reservas.index'))->with('warning', "No existe esa reserva");
         }
-        $mesa= $this->mesas->obtenerMesaID($reserva->mesa);     
-    
+        $mesa = $this->mesas->obtenerMesaID($reserva->mesa);
+
         $this->reservas->deletereserva($id);
-        $mesa->update([           
-            'estado' => 'disponible'   
+        $mesa->update([
+            'estado' => 'disponible'
         ]);
         Log::channel('baseroleslog')->info('reserva ' . $reserva->nombre . ' borrada con exito' . $reserva);
         return redirect(route('reservas.index'))->with('info', "reserva borrada con exito");

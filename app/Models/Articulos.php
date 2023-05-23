@@ -44,8 +44,10 @@ class Articulos extends Model
     }
     public function categorias()
     {
-        return $this->belongsTo(Categorias::class, 'categoria');
+        return $this->belongsTo(\App\Models\Categorias::class, 'categoria');
     }
-
+    public function Pedidos(){
+        return $this->belongsToMany(\App\Models\Carrito::class);
+    }
 
 }

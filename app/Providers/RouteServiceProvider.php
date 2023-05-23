@@ -27,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider
     public const FOTOS  = '/fotos';
     public const MESAS  = '/mesas';
     public const RESERVAS  = '/reservas';
+    public const RESERVASFRONT  = '/reservasfront';
 
 
     /**

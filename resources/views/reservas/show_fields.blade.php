@@ -19,7 +19,7 @@
                      <b>Telefono:</b> <a class="float-right">{{ $reserva->telefono }}</a>
                  </li>
                  <li class="list-group-item">
-                     <b>Fecha:</b> <a class="float-right">{{ $reserva->fecha_reserva }}</a>
+                     <b>Fecha:</b> <a class="float-right">{{  \Carbon\Carbon::create($reserva->fecha_reserva )->format('d-m-Y H:i') }}</a>
                  </li>
                  <li class="list-group-item">
                      <b>Mesa:</b> <a class="float-right">{{ $reserva->mesas->nombre }}</a>

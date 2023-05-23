@@ -73,6 +73,7 @@
     <script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js') }}"></script>
     <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
     <script src="{{ asset('assets/js/plugins/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 
 </html>

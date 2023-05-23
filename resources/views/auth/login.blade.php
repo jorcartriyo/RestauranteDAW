@@ -1,7 +1,11 @@
 <x-guest-layout>
+    <div class="card-body">
+        <span>
+            {{ __('Para acceder a las reservas y los pedidos debe de estar logeado.') }}
+        </span>
+    </div>
     <!-- Session Status -->
-
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-auth-session-status :status="session('status')" />
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <!-- Email Address -->

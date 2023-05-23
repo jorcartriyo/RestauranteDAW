@@ -13,8 +13,7 @@
                                             <th colspam="2" class="text-left"> Id</th>
                                             <th class="text-center">Nombre</th>
                                             <th class="text-center">Comensales</th>
-                                            <th class="text-center">Estado</th>
-                                            <th class="text-center">Localizacion</th>                                       
+                                            <th class="text-center">Estado</th>                                                                         
                                             <th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
@@ -23,8 +22,7 @@
                                             <th colspam="2" class="text-left"> Id</th>
                                             <th class="text-center">Nombre</th>
                                             <th class="text-center">Comensales</th>
-                                            <th class="text-center">Estado</th>
-                                            <th class="text-center">Localizacion</th>                                       
+                                            <th class="text-center">Estado</th>                                                                        
                                             <th class="text-center">Acciones</th>
                                         </tr>
                                     </tfoot>
@@ -35,8 +33,7 @@
                                                 <td colspam="2" class="text-center">{{ $mesa->id }}</td>
                                                 <td class="text-center">{{ $mesa->nombre }}</td>
                                                 <td class="text-center">{{ $mesa->comensales }}</td>
-                                                <td class="text-center">{{ $mesa->estado}}</td>
-                                                <td class="text-center">{{ $mesa->localizacion }}</td>                                                
+                                                <td class="text-center">{{ $mesa->estado}}</td>                                                                                         
                                                 <td class=" text-center">
                                                     {!! Form::open(['route' => ['mesas.destroy', [$mesa->id]], 'method' => 'delete']) !!}
                                                     <div class='btn-group'>

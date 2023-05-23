@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 return new class extends Migration
 {
@@ -11,12 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mesas', function (Blueprint $table) {
+        Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->integer('comensales');
-            $table->string('estado')->default('disponible');
+            $table->unsignedBigInteger('idUsuario');
+            $table->TIMESTAMP('fecha')->useCurrent();
+            $table->string('estado')->default('iniciado');
             $table->timestamps();
+            $table->foreign('idUsuario')->references('id')->on('users');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mesas');
+        Schema::dropIfExists('pedidos');
     }
 };

@@ -3,7 +3,7 @@
  <div class="card card-wizard active" data-color="rose" id="wizardProfile">
 
      <div class="card-header">
-         <h2 class="text-center">
+         <h2  class="h-2 text-center">
              Actualiza la Reserva
          </h2>
      </div>
@@ -51,7 +51,7 @@
              <div class="form-group">
                  <label for="telefono" class="bmd-label-floating">Telefono
                      (required)</label>
-                 {!! Form::tel('telefono', null, ['class' => 'form-control']) !!}
+                 {!! Form::text('telefono', null, ['class' => 'form-control']) !!}
              </div>
          </div>
      </div>
@@ -68,7 +68,9 @@
              <div class="form-group">
                  <label for="fecha_reserva" class="bmd-label-floating">Fecha de Reserva
                      (required)</label>
-                 {!! Form::date('fecha_reserva => date("Y-m-d")';, null, ['class' => 'form-control']) !!}
+                     <input type="datetime-local" id="res_date" name="fecha_reserva" required autofocus
+                     min="{{ $min_date->format('Y-m-d\TH:i:s') }}" max="{{ $max_date->format('Y-m-d\TH:i:s') }}"
+                     class="block mt-1 w-full rounded-md" value="{{ $reserva->fecha_reserva }}" />
              </div>
          </div>
      </div>

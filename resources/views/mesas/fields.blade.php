@@ -55,24 +55,6 @@
                  </div>
              </div>
          </div>
-
-
-         {{-- Localizacion --}}
-         <div class="col-lg-18">
-             <div class="input-group form-control-lg">
-                 <div class="input-group-prepend">
-                     <span class="input-group-text">
-                         <i class="material-icons">person_pin</i>
-
-                     </span>
-                 </div>
-                 <div class="form-group">
-                     <label for="nombre" class="bmd-label-floating">Localizacion
-                         (required)</label>
-                     {!! Form::text('localizacion', null, ['class' => 'form-control']) !!}
-                 </div>
-             </div>
-         </div>
          {{-- Submit --}}
          <div>
              <div class="card-footer justify-content-around">

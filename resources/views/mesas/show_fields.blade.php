@@ -17,10 +17,7 @@
                  </li>
                  <li class="list-group-item">
                      <b>Estado</b> <a class="float-right">{{ $mesa->estado }}</a>
-                 </li>
-                 <li class="list-group-item">
-                     <b>Localizacion</b> <a class="float-right">{{ $mesa->localizacion }}</a>
-                 </li>               
+                 </li>                            
              </ul>
          </div>
          <!-- /.card-body -->

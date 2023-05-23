@@ -1,3 +1,4 @@
+
 @if ($activas)
     <div class="home">
 

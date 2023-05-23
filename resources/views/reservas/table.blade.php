@@ -44,7 +44,7 @@
                                                 <td class="text-center">{{ $reserva->nombre }}</td>
                                                 <td class="text-center">{{ $reserva->email }}</td>
                                                 <td class="text-center">{{ $reserva->telefono }}</td>
-                                                <td class="text-center">{{ $reserva->fecha_reserva }}</td>
+                                                <td class="text-center">{{  \Carbon\Carbon::create($reserva->fecha_reserva )->format('d-m-Y H:i')  }}</td>
                                                 <td class="text-center">{{ $reserva->mesas->nombre }}</td>
                                                 <td class="text-center">{{ $reserva->comensales }}</td>
                                                 <td class="text-center">{{ $reserva->created_at }}</td>

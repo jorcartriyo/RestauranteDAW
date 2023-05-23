@@ -12,7 +12,9 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\FotoController;
 use App\Http\Controllers\MesaController;
+use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\ReservaFrontController;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
@@ -36,14 +38,20 @@ Route::get('/quienesSomos', function () {
     return view('quienesSomos');
 })->name('quienesSomos');
 
-Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified', 'permission:admin.dashboard|admin.all'])->name('dashboard');
+Route::get('/dashboard', [ReservaController::class, 'index'])->middleware(['auth', 'verified', 'permission:admin.dashboard|admin.all'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/fecha', [ReservaController::class, 'fecha'])->name('fecha');
+    Route::get('/fechaFront', [ReservaFrontController::class, 'fecha'])->name('fechafront');
     Route::post('/datos', [ReservaController::class, 'datos'])->name('datos');
+    Route::post('/datosFront', [ReservaFrontController::class, 'datos'])->name('datosFront');
+    Route::get('/reservasfront/{email}', [ReservaFrontController::class, 'reserva'])->name('reserva');
+    Route::resource('/front', ReservaFrontController::class);
+    Route::resource('/pedidos', PedidosController::class);
+
 
 });
 
@@ -53,6 +61,7 @@ Route::middleware(['auth', 'verified', 'role:SuperAdmin'])->group(
         Route::resource('/roles', RolController::class);
         Route::resource('/permisos', PermisoController::class);
         Route::get('/logs', [UserController::class, 'log'])->name('log');
+
     }
 
 );

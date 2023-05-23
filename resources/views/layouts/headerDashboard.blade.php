@@ -37,21 +37,95 @@
                 </div>
             </button>
         </x-slot>
-
-        <x-slot name="content">
-            <x-dropdown-link :href="route('profile.edit')">
-                {{ __('Profile') }}
-            </x-dropdown-link>
-
-            <!-- Authentication -->
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <x-dropdown-link :href="route('logout')"
-                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                    {{ __('Log Out') }}
+        <div class="header_content">
+            <x-slot name="content" >
+                <x-dropdown-link :href="route('profile.edit')">
+                    {{ __('Profile') }}
                 </x-dropdown-link>
-            </form>
-        </x-slot>
+    
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+    
+                    <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-dropdown-link>
+                </form>
+            </x-slot>
+        </div>
+     
     </x-dropdown>
+    <!-- Menú de la hamburguesa para resoluciones inferiores -->
+    <div class="menu_inner mt-3">
+
+        <!--Icono de hamburgesa -->
+        <div class="hamburger_container">
+            <i class="fas fa-bars trans_200"></i>
+        </div>
+
+        <!-- Contnedor del Menu -->
+        <div class="menu_container">
+
+            <!-- Botón para cerrar el menú -->
+            <div class="menu_close_container">
+                <div class="menu_close"></div>
+            </div>
+
+            <!-- Logo -->
+            <div class="menu_inner">
+                <div class="header_side">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                </div>
+
+                <!-- Items del Menú de la Hamburguesa-->
+                <div class="menu">
+                    <ul class="menu_list">
+                        <li class="nav-link"><a href="{!! route('main') !!}">Inicio</a></li>
+                        <li class="nav-link"><a href="{!! route('carta.index') !!}">Carta</a></li>
+                        <li class="nav-link"><a href="{!! route('menu.index') !!}">Menú del Día</a></li>
+
+                        @can('admin.all')
+                            <li>
+                                <a class="nav-link" href="{!! route('home.index') !!}">Usuarios <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{!! route('roles.index') !!}">Roles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{!! route('permisos.index') !!}">Permisos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{!! route('log') !!}">Logs</a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a class="nav-link" href="{!! route('articulos.index') !!}">Articulos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{!! route('categorias.index') !!}">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{!! route('eventos.index') !!}">Eventos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{!! route('fotos.index') !!}">Carrusel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{!! route('mesas.index') !!}">Mesas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{!! route('reservas.index') !!}">Reservas</a>
+                        </li>
+
+
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

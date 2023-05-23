@@ -8,6 +8,9 @@
     <meta name="description" content="Course Project">
     <title>@yield('title') | {{ config('app.name') }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/bootstrap5/bootstrap.min.css') }}">
+    <link href="{{ asset('assets/css/material-dashboard.css?v=2.2.2') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link href="{{ asset('plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
@@ -30,6 +33,8 @@
     <script src="{{ asset('styles/bootstrap5/popper.js') }}"></script>
     <script src="{{ asset('styles/bootstrap5/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/OwlCarousel2-2.3.4/owl.carousel.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 
 

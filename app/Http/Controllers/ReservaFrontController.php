@@ -9,8 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Providers\RouteServiceProvider;
 
-
-class ReservaController extends Controller
+class ReservaFrontController extends Controller
 {
     protected $reservas;
     protected $mesas;
@@ -23,17 +22,25 @@ class ReservaController extends Controller
 
     public function index()
     {
-        $reservas = $this->reservas->obtenerreservas();
-
-        return view('reservas.index', ['reservas' => $reservas]);
+       
     }
+
+    public function reserva($email)
+    {
+        $reservas = Reservas::Where('email', $email)->get();
+        
+
+
+        return view('reservasFront.index', ['reservas' => $reservas]);
+    }
+
 
     public function fecha()
     {
         $min_date = Carbon::today();
         $max_date = Carbon::now()->addWeek(2);
 
-        return view('reservas.fecha', compact('min_date', 'max_date'));
+        return view('reservasFront.fecha', compact('min_date', 'max_date'));
     }
 
     /**
@@ -52,7 +59,7 @@ class ReservaController extends Controller
 
 
         if ($horas <= '14:00' ||  $horas >= '17:00' && $horas <= '20:00' ||  $horas >= '24:00') {
-            return redirect(route('fecha', ['ruta' => $request->ruta]))->with('warning', "Debe de seleccionar una hora entre las 14:00-17:00 para el almuerzo y las 20:00-24:00 para la cena");
+            return redirect(route('fechafront'))->with('warning', "Debe de seleccionar una hora entre las 14:00-17:00 para el almuerzo y las 20:00-24:00 para la cena");
         }
 
         foreach ($mesas as $mesa) {
@@ -79,13 +86,7 @@ class ReservaController extends Controller
         $mesasDisponibles = array_diff($mesasLibres, $mesasOcupadas);
         foreach ($reservas as $reserva) {
         }
-
-
-        if ($request->ruta == 'front') {
-            return view('reserva', ['mesasDisponibles' => $mesasDisponibles, 'datos' => $datos, 'fecha_reserva' => $fecha_reserva]);
-        } else {
-            return view('reservas.register', ['mesasDisponibles' => $mesasDisponibles, 'datos' => $datos, 'fecha_reserva' => $fecha_reserva]);
-        }
+        return view('reservasFront.register', ['mesasDisponibles' => $mesasDisponibles, 'datos' => $datos, 'fecha_reserva' => $fecha_reserva]);
     }
 
     /**
@@ -95,7 +96,7 @@ class ReservaController extends Controller
     {
 
 
-        return view('reservas.show');
+        return view('reservasFront.show');
     }
 
 
@@ -129,12 +130,9 @@ class ReservaController extends Controller
         if (!$reserva) {
             Log::channel('baseroleslog')->info('Error al crear la reserva');
             return redirect(RouteServiceProvider::RESERVAS)->with('warning', "Se ha producido un error al crear la reserva");
-        }
-        if ($request->ruta == 'front') {
-            return redirect(route('reserva', ['email' => $request->email]))->with('info', "reserva creada con éxito");
-        }
+        }     
         Log::channel('baseroleslog')->info('reserva ' . $reserva->nombre . ' creada con exito' . $reserva);
-        return redirect(RouteServiceProvider::RESERVAS)->with('info', "reserva creada con éxito");
+        return redirect(RouteServiceProvider::RESERVASFRONT)->with('info', "reserva creada con éxito");
     }
 
     /**
@@ -143,13 +141,14 @@ class ReservaController extends Controller
     public function show(string $id)
     {
         $reserva = $this->reservas->find($id);
+        $email = $reserva->email;
         if (empty($reserva)) {
             Log::channel('baseroleslog')->alert('Intendo de mostrar una reserva que no existe');
 
-            return redirect(route('reservas.index'))->with('warning', "No existe esa reserva");
+            return redirect(route('reserva', $email))->with('warning', "No existe esa reserva");
         }
 
-        return view('reservas.show')->with('reserva', $reserva);
+        return view('reservasFront.show')->with('reserva', $reserva);
     }
 
     /**
@@ -160,13 +159,13 @@ class ReservaController extends Controller
         $reserva = $this->reservas->obtenerreservaID($id);
         if (empty($reserva)) {
             Log::channel('baseroleslog')->alert('Intendo de acceder a la pantalla de edición de una reserva que no existe');
-            return redirect(route('reservas.index'))->with('warning', "No existe esa reserva");
+            return redirect(route('front.index'))->with('warning', "No existe esa reserva");
         } else {
         }
         Log::channel('baseroleslog')->info('Acceso a la pantalla de edición de ' . $reserva->nombre);
         $min_date = Carbon::today();
         $max_date = Carbon::now()->addWeek(2);
-        return view('reservas.edit')->with(['reserva' => $reserva, 'min_date' => $min_date, 'max_date' => $max_date]);
+        return view('reservasFront.edit')->with(['reserva' => $reserva, 'min_date' => $min_date, 'max_date' => $max_date]);
     }
 
     /**
@@ -184,9 +183,10 @@ class ReservaController extends Controller
         ]);
         $ruta = '';
         $reserva = $this->reservas->obtenerreservaID($id);
+        $email = $reserva->email;
         if (empty($reserva)) {
             Log::channel('baseroleslog')->alert('Intendo de editar una reserva que no existe');
-            $ruta = redirect(route('reservas.index'))->with('warning', "No existe esa reserva");
+            $ruta = redirect(route('reserva', $email))->with('warning', "No existe esa reserva");
         } else {
             $input = $request->all();
             $reservaUpdate = $reserva->update($input);
@@ -194,11 +194,11 @@ class ReservaController extends Controller
             if (!$reservaUpdate) {
                 Log::channel('baseroleslog')->warning('Error al actualizar datos de la reserva ' . $reserva->nombre);
 
-                $ruta = redirect(route('reservas.index'))->with('warning', "Se ha producido un error al actualizar la reserva");
+                $ruta = redirect(route('reserva', $email))->with('warning', "Se ha producido un error al actualizar la reserva");
             } else {
                 Log::channel('baseroleslog')->info('reserva ' . $reserva->nombre . ' actualizada con exito' . $reserva);
 
-                $ruta = redirect(route('reservas.index'))->with('info', "reserva actualizada con exito");
+                $ruta = redirect(route('reserva', $email))->with('info', "reserva actualizada con exito");
             }
         }
         return $ruta;
@@ -210,13 +210,16 @@ class ReservaController extends Controller
     public function destroy(string $id)
     {
         $reserva = $this->reservas->obtenerreservaID($id);
+        $email = $reserva->email;
         if (empty($reserva)) {
             Log::channel('baseroleslog')->alert('Intendo de acceder a la pantalla de borrado de una reserva que no existe');
 
-            return redirect(route('reservas.index'))->with('warning', "No existe esa reserva");
+            return redirect(route('reserva', $email))->with('warning', "No existe esa reserva");
         }
+    
         $this->reservas->deleteReserva($id);
+     
         Log::channel('baseroleslog')->info('reserva ' . $reserva->nombre . ' borrada con exito' . $reserva);
-        return redirect(route('reservas.index'))->with('info', "reserva borrada con exito");
+        return redirect(route('reserva', $email ))->with('info', "reserva borrada con exito");
     }
 }

@@ -1,7 +1,7 @@
-@extends('layouts.appDashboard')
+@extends('layouts.app')
 @section('title', 'Reservas')
 @section('content')
-    <div class="container-fluid">
+    <div class=" carta page_section container-fluid mx-5 px-5">
         <div class="col-md-28 col-15 mr-auto ml-auto">
             <form method="POST" id="myform" enctype="multipart/form-data" action="{{ route('reservas.store') }}">
                 @method('POST')
@@ -10,7 +10,7 @@
                 <!--      Wizard container        -->
                 <div class="card card-wizard active" data-color="rose" id="wizardProfile">
                     <div class="card-header text-center">
-                        <h2 class="card-title">
+                        <h2 class="card-title text-capitalize display-6">
                             Crea una reserva
                         </h2>
                     </div>
@@ -24,9 +24,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="nombre" class="bmd-label-floating">Nombre
-                                    (requerido)</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value=''
-                                    required>
+                                </label>
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    value='{{ Auth::user()->name }}' readonly>
                             </div>
                         </div>
                     </div>
@@ -41,9 +41,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="email" class="bmd-label-floating"> Email
-                                    (requerido)</label>
+                                </label>
                                 <input type="email" class="form-control" id="email" required="true" name="email"
-                                    autocomplete="on">
+                                    value="{{ Auth::user()->email }}" autocomplete="on" readonly>
                             </div>
                         </div>
                     </div>
@@ -59,8 +59,8 @@
                             <div class="form-group">
                                 <label for="telefono" class="bmd-label-floating"> Telefono
                                     (requerido)</label>
-                                <input type="numeric" class="form-control" id="telefono" required="true" name="telefono"
-                                    autocomplete="on" min='600000000' max='799999999'>
+                                <input type="number" class="form-control" id="telefono" required="true" name="telefono"
+                                     min='600000000' max='799999999'>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,6 @@
                                     </select>
                                 @else
                                     <span>No quedan mesas disponibles para la hora seleccionada ese día</span>
-
                                 @endif
 
                             </div>
@@ -119,6 +118,7 @@
                             </div>
                         </div>
                     </div>
+                    <input id="ruta" class="block mt-1 w-full" type="text" name="ruta" value= 'front' hidden/>            
 
                     {{-- Submit --}}
                     <div>
@@ -130,8 +130,9 @@
                         </div>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>
+    <!-- Footer -->
+    @include('sections.footer')
 @endsection

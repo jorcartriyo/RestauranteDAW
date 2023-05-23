@@ -39,7 +39,8 @@
                                  </option>
                                  <option value="carta" {{ $foto->seccion == 'carta' ? 'selected' : 'false' }}>Carta
                                  </option>
-                                 <option value="menu" {{ $foto->seccion == 'menu' ? 'selected' : 'false' }}>Menu</option>
+                                 <option value="menu" {{ $foto->seccion == 'menu' ? 'selected' : 'false' }}>Menu
+                                 </option>
                              </select>
                          </div>
                      </div>
@@ -90,32 +91,32 @@
              </div>
          </div>
      </div>
- </div>
 
- {{-- Activo --}}
- <div class="col-lg-18">
-     <div class="input-group form-control-lg">
-         <div class="input-group-prepend">
-             <span class="input-group-text">
-                 <i class="material-icons">fact_check</i>
-             </span>
-         </div>
-         <label for="activo" class="bmd-label-floating"> Activo
-             (requerido)</label>
-         <div class="form-group ml-5">
-             {!! Form::radio('activo', 1) !!}
-             <label class="px-2" for="si">Si</label><br>
-             {!! Form::radio('activo', 0) !!}
-             <label class="px-2 mt-2" for="no">No</label><br>
-         </div>
-     </div>
- </div>
- {{-- Submit --}}
- <div>
-     <div class="card-footer justify-content-around">
-         <div class="ml-auto">
-             <button type="submit" class="btn btn-primary pull-right">Actualizar foto</button>
+
+     {{-- Activo --}}
+     <div class="col-lg-18">
+         <div class="input-group form-control-lg">
+             <div class="input-group-prepend">
+                 <span class="input-group-text">
+                     <i class="material-icons">fact_check</i>
+                 </span>
+             </div>
+             <label for="activo" class="bmd-label-floating"> Activo
+                 (requerido)</label>
+             <div class="form-group ml-5">
+                 {!! Form::radio('activo', 1) !!}
+                 <label class="px-2" for="si">Si</label><br>
+                 {!! Form::radio('activo', 0) !!}
+                 <label class="px-2 mt-2" for="no">No</label><br>
+             </div>
          </div>
      </div>
- </div>
+     {{-- Submit --}}
+     <div>
+         <div class="card-footer justify-content-around">
+             <div class="ml-auto">
+                 <button type="submit" class="btn btn-primary pull-right">Actualizar foto</button>
+             </div>
+         </div>
+     </div>
  </div>

@@ -303,9 +303,6 @@ section {
     background: #FFFFFF;
     z-index: 10;
     transform: translateX(0%);
-    z-index: 20;
-
-
 }
 
 .headerDashboard {
@@ -1419,14 +1416,15 @@ input:last-of-type {
     height: 24px;
     vertical-align: middle;
     margin-right: 10px;
+    margin-top: 0;
 }
-
+    
 .footer_contact_icon img {
     width: 100%;
 }
 
 .footer_col {
-    margin-right: 200px;
+    margin-right: 100px;
 }
 
 /*********************************
@@ -1505,3 +1503,7 @@ input[type=radio]+i {
 #user-panel {
     margin-top: 50%;
 }
+
+app-element [slot="dropdown-link"] {
+    background: blue;
+  }

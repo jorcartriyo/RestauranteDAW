@@ -41,12 +41,7 @@ class MesaController extends Controller
 
         $request->validate([
             'nombre' => ['max:50', 'required'],
-            'comensales' => ['numeric', 'required'],
-            'localizacion' => [function ($attribute, $value, $fail) {
-                if ($value != 'comedor' && $value != 'terraza' && $value != 'sala') {
-                    $fail($attribute . ' No es correcta la Localizacion introducida');
-                }
-            }],
+            'comensales' => ['numeric', 'required'],         
             'estado'   => [function ($attribute, $value, $fail) {
                 if ($value != 'disponible' && $value != 'pendiente' && $value != 'reservada') {
                     $fail($attribute . ' No es correcto el estado introducida.');
@@ -57,8 +52,7 @@ class MesaController extends Controller
         $mesa =  mesas::create([
             'nombre' => $request->nombre,
             'comensales' => $request->comensales,
-            'estado' => $request->estado,
-            'localizacion' => $request->localizacion
+            'estado' => $request->estado
         ]);
 
         if (!$mesa) {
@@ -114,12 +108,7 @@ class MesaController extends Controller
                 if ($value != 'disponible' && $value != 'pendiente' && $value != 'reservada') {
                     $fail($attribute . ' No es correcto el estado introducida.');
                 }
-            }],
-            'localizacion' => [function ($attribute, $value, $fail) {
-                if ($value != 'comedor' && $value != 'terraza' && $value != 'sala') {
-                    $fail($attribute . ' No es correcta la Localizacion introducida.');
-                }
-            }],
+            }],           
         ]);
         $ruta = '';
         $mesa = $this->mesas->obtenermesaID($id);

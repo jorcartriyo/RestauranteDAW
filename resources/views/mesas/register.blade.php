@@ -61,23 +61,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- Localizacion --}}
-                    <div class="col-lg-18">
-                        <div class="input-group form-control-lg">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="material-icons">person_pin</i>
-                                </span>
-                            </div>
-                            <div class="form-group">
-                                <label for="localizacion" class="bmd-label-floating">Localizacion
-                                </label>
-                                <input type="text" class="form-control" id="localizacion" name="localizacion"
-                                    value='comedor'>
-                            </div>
-                        </div>
-                    </div>
                     {{-- Submit --}}
                     <div>
                         <div class="card-footer justify-content-around">
@@ -87,7 +70,6 @@
                         </div>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>

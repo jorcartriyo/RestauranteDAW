@@ -46,8 +46,8 @@ class Articulos extends Model
     {
         return $this->belongsTo(\App\Models\Categorias::class, 'categoria');
     }
-    public function Pedidos(){
-        return $this->belongsToMany(\App\Models\Carrito::class);
+    public function pedidos(){
+        return $this->belongsTo(Productos::class);
     }
 
 }

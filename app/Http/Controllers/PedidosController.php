@@ -4,23 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pedidos;
-use App\Models\User;
+use App\Models\Productos;
 use Illuminate\Support\Facades\Auth;
-
-
 
 class PedidosController extends Controller
 {
 
     protected $pedidos;
 
-    protected $user;
+    protected $productos;
 
-    public function __construct(Pedidos $pedidos, User $user)
+    public function __construct(Pedidos $pedidos, Productos $productos)
     {
 
         $this->pedidos = $pedidos;
-        $this->user = $user;
+        $this->productos = $productos;
     }
 
     /**
@@ -44,21 +42,39 @@ class PedidosController extends Controller
      */
     public function store(Request $request)
     {
+        $pedidoIniciado = 0;
+        $arti = [];
 
 
-        $usuario = Auth::user()->id;
+        $pedidos  = Pedidos::Where('idUsuario', Auth::user()->id)->get();
 
-        $pedidos  = $this->pedidos->obtenerPedidos();
 
-    
 
-      foreach($pedidos as $pedido){
-        dd($pedido->carrito );
-      }
-          
-        
-        
+        foreach ($pedidos as $pedido) {
+            if ($pedido->estado == 'iniciado') {
+                $pedidoIniciado++;
+            }
+            
+            $pedido = $pedido->Where('estado', 'iniciado')->get();
+        }
+
+        if ($pedidoIniciado == 0) {
+            $pedido =  Pedidos::create([
+                'idUsuario' => Auth::user()->id
+            ]);
+        }
+        $producto = Productos::create([
+            'idPedido' => $pedido[0]->id,
+            'idArticulo' => $request->idArticulo,
+            'cantidad' => $request->cantidad,
+
+
+        ]);
+
+        return redirect(route('carta.index'))->with('info', "Producto agregado con exito");
+
     }
+
 
 
     /**

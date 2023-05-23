@@ -23,12 +23,13 @@ class Pedidos extends Model
         return Pedidos::all();
     }
 
-    public function obtenerPedidoID($id){
+    public function obtenerPedidoID($id)
+    {
         return Pedidos::find($id);
     }
-    public function carrito()
+    public function productos()
     {
-        return $this->belongsToMany(Carrito::class, 'idPedido', 'id');
+        return $this->hasMany(Productos::class, 'idPedido');
     }
     public function usuario()
     {

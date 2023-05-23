@@ -5,24 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Carrito extends Model
+class Productos extends Model
 {
     use HasFactory;
     protected $fillable = [
         'idPedido',
         'idArticulo',
-        'cantidad'            
-    ];  
+        'cantidad'
+    ];
 
     protected $hidden = [
         'id'
     ];
 
-    public function Pedidos(){
-        return $this->hasMany(\App\Models\Pedidos::class);
+    public function pedidos()
+    {
+        return $this->belongsTo(Pedidos::class);
     }
-    public function Articulos(){
-        return $this->hasMany(\App\Models\Articulos::class);
+    public function articulos()
+    {
+        return $this->hasMany(Articulos::class,'id');
     }
-
 }

@@ -5,6 +5,8 @@
     @include('sections.carrusel')
     <!-- Menu -->
     <div class="carta page_section">
+        @include('flash-message')
+
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -47,11 +49,12 @@
                                                             <span>{{ $articulo->precio }}</span>
                                                         </div>
                                                         <div class="d-flex">
-                                                            <input type="hidden" name="product_id"
+                                                            <input type="hidden" name="idArticulo"
                                                                 value="{{ $articulo->id }}">
 
                                                             <input type="number" class="form-control input-sm"
-                                                                name="cantidad" min='0' max='10' value="0">
+                                                                name="cantidad" min='0' max='10'
+                                                                value="0">
                                                         </div>
                                                         <div>
                                                             <button type="submit" class="btn btn-info btn-simple">Agregar
@@ -59,6 +62,7 @@
                                                                 carrito</button>
                                                         </div>
                                                 </form>
+
                                             </div>
                                         </div>
                                     </div>
@@ -69,6 +73,8 @@
             @endforeach
         </div>
         @endforeach
+        <button type="submit" class=" flotante btn btn-info btn-simple">Agregar
+
     </div>
     </div> <!-- Footer -->
     @include('sections.footer')

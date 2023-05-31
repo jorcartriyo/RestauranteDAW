@@ -161,7 +161,7 @@
                             <div class="form-group ml-5">
                                 <input type="radio" id="yes" name="recomendado" value=1>
                                 <label class="px-2" for="yes">Si</label><br>
-                                <input type="radio" id="non" name="recomendado" value=0>
+                                <input type="radio" id="non" name="recomendado" value=0 checked>
                                 <label class="px-2 mt-2" for="non">No</label><br>
                             </div>
                         </div>

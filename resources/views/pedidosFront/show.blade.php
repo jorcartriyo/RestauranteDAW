@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Reservas')
+@section('title', 'pedidos')
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -7,7 +7,7 @@
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
-                    @include('reservasFront.show_fields')
+                    @include('pedidosFront.show_fields')
                 </div>
             </div>
         </div>

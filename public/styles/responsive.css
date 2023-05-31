@@ -29,12 +29,17 @@
 	.logo_container img {
 		margin-top: 20px;
 	}
+
 	.secundaryText {
 		top: 30px;
 	}
 
-	.main_nav_item {	
+	.main_nav_item {
 		margin-right: 20px;
+	}
+
+	.price_box {
+		font-size: x-large;
 	}
 }
 
@@ -58,11 +63,12 @@
 	.header {
 		width: 100%;
 	}
+
 	.secundaryText {
 		top: 35px;
 	}
 
-	
+
 	.header_side span {
 		font-size: 14px;
 		margin-left: 35px;
@@ -72,7 +78,7 @@
 		width: 20px;
 		height: 20px;
 	}
-	
+
 }
 
 /************
@@ -87,13 +93,15 @@
 	.header_content {
 		width: 100%;
 	}
-	.main_nav
-	{		
+
+	.main_nav {
 		margin-right: -40px;
 	}
+
 	.header_side {
 		display: none !important;
 	}
+
 	.logo span {
 		font-size: 40px;
 	}
@@ -130,10 +138,11 @@
 		display: flex;
 		flex-direction: column;
 	}
-	.secundaryText{
-		top:0px;
+
+	.secundaryText {
+		top: 0px;
 	}
-	
+
 }
 
 
@@ -150,18 +159,21 @@
 	.hamburger_container {
 		display: block;
 	}
+
 	.menu_container {
 		right: -100vw;
 		width: 100vw;
 		height: 100vh;
 	}
-.logo{
-	flex-direction: row;
-}
-.secundaryText {
-	top: 30px;
-}
-	
+
+	.logo {
+		flex-direction: row;
+	}
+
+	.secundaryText {
+		top: 30px;
+	}
+
 }
 
 /************
@@ -170,7 +182,7 @@
 
 @media only screen and (max-width: 991px) {
 
-	
+
 	.hero_slide_content h1 {
 		font-size: 48px;
 	}
@@ -269,6 +281,23 @@
 	.newsletter_submit_btn {
 		margin-top: 15px;
 	}
+
+	.price_box {
+
+		font-size: large;
+
+	}
+
+	.section_title span {
+		font-size: x-large;
+
+	}
+	.course_price span {
+		font-size: 15px;
+		padding: 5px;
+	}
+
+	
 }
 
 /************
@@ -360,6 +389,8 @@
 
 	.price_box {
 		margin-top: 37px;
+		font-size: small;
+
 	}
 
 	.register_section,
@@ -419,6 +450,14 @@
 
 	.footer_copyright span {
 		font-size: 13px;
+	}
+
+	.flotante {
+		width: 40%;
+	}
+
+	.precio {
+		display: none;
 	}
 }
 

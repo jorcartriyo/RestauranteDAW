@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', 'ReservasFront')
+@section('title', 'pedidosFront')
 @section('content') 
-    @include('reservasFront.table')    
+    @include('pedidosFront.table')    
 @endsection
   

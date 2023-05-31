@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title', 'Reservas')
+@section('title', 'pedidos')
 @section('content')
     <div class=" carta page_section container-fluid mx-5 px-5">
         <div class="col-md-28 col-15 mr-auto ml-auto">
-            <form method="POST" id="myform" enctype="multipart/form-data" action="{{ route('reservas.store') }}">
+            <form method="POST" id="myform" enctype="multipart/form-data" action="{{ route('pedidos.store') }}">
                 @method('POST')
                 @csrf
 
@@ -11,7 +11,7 @@
                 <div class="card card-wizard active" data-color="rose" id="wizardProfile">
                     <div class="card-header text-center">
                         <h2 class="card-title text-capitalize display-6">
-                            Crea una reserva
+                            Crea una pedido
                         </h2>
                     </div>
                     {{-- Nombre --}}
@@ -73,10 +73,10 @@
                                 </span>
                             </div>
                             <div class="form-group">
-                                <label for="fecha_reserva" class="bmd-label-floating"> Fecha de Reserva
+                                <label for="fecha_pedido" class="bmd-label-floating"> Fecha de pedido
                                     (requerido)</label>
-                                <input type="text" class="form-control" id="fecha_reserva" required="true"
-                                    name="fecha_reserva" value="{{ $fecha_reserva->format('d-m-Y H:i') }}" readonly>
+                                <input type="text" class="form-control" id="fecha_pedido" required="true"
+                                    name="fecha_pedido" value="{{ $fecha_pedido->format('d-m-Y H:i') }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                         <div class="card-footer justify-content-around">
                             <div class="ml-auto">
                                 <button type="submit" {{ !$mesasDisponibles ? 'disabled' : false }}
-                                    class="btn btn-primary pull-right">Crear Reserva</button>
+                                    class="btn btn-primary pull-right">Crear pedido</button>
                             </div>
                         </div>
                     </div>

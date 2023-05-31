@@ -17,6 +17,14 @@ class Productos extends Model
     protected $hidden = [
         'id'
     ];
+    public function obtenerProductos()
+    {
+        return Productos::all();
+    }
+    public function obtenerProductosID($id)
+    {
+        return Productos::find($id);
+    }
 
     public function pedidos()
     {
@@ -24,6 +32,6 @@ class Productos extends Model
     }
     public function articulos()
     {
-        return $this->hasMany(Articulos::class,'id');
+        return $this->belongsTo(Articulos::class,'idArticulo');
     }
 }

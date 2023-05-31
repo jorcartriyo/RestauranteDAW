@@ -27,8 +27,7 @@ class ReservaFrontController extends Controller
 
     public function reserva($email)
     {
-        $reservas = Reservas::Where('email', $email)->get();
-        
+        $reservas = Reservas::Where('email', $email)->get();       
 
 
         return view('reservasFront.index', ['reservas' => $reservas]);

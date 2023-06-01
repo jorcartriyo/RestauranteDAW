@@ -11,7 +11,7 @@ class Pedidos extends Model
     protected $fillable = [
         'idUsuario',
         'fecha',
-        'estado'
+        'estado'  
     ];
 
     protected $hidden = [
@@ -20,12 +20,18 @@ class Pedidos extends Model
 
     public function obtenerPedidos()
     {
-        return Pedidos::all();
+
+        return Pedidos::orderBy('estado')->get();
     }
 
     public function obtenerPedidoID($id)
     {
         return Pedidos::find($id);
+    }
+    public function deletePedido($id)
+    {
+        $pedido= Pedidos::find($id);
+        $pedido->delete();
     }
     public function productos()
     {

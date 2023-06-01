@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idPedido');
             $table->unsignedBigInteger('idArticulo');
             $table->integer('cantidad');
+            $table->boolean('agregado')->default(0);
             $table->timestamps();
             $table->foreign('idPedido')->references('id')->on('pedidos')->onUpdate('cascade')
                 ->onDelete('cascade');

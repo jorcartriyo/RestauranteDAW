@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('idUsuario');
             $table->TIMESTAMP('fecha')->useCurrent();
-            $table->enum('estado',['iniciado','pendiente', 'terminado'])->default('iniciado');
+            $table->enum('estado',['iniciado','pendiente', 'terminado'])->default('iniciado');    
             $table->timestamps();
             $table->foreign('idUsuario')->references('id')->on('users')->onUpdate('cascade')
             ->onDelete('cascade');

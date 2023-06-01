@@ -19,10 +19,10 @@
                     <li class="main_nav_item"><a href="{!! route('main') !!}">Inicio</a></li>
                     <li class="main_nav_item"><a href="{!! route('carta.index') !!}">Carta</a></li>
                     <li class="main_nav_item"><a href="{!! route('menu.index') !!}">Menú del Día</a></li>
-                   
-                        <li class="main_nav_item"><a href="{!! route('reserva', Auth::user() ? ['email' => Auth::user()->email]: 'default') !!}">Reservas</a></li>
-            
-                    <li class="main_nav_item"><a href="{{  url('pedidos') }}">Pedidos</a></li>
+
+                    <li class="main_nav_item"><a href="{!! route('reserva', Auth::user() ? ['email' => Auth::user()->email] : 'default') !!}">Reservas</a></li>
+
+                    <li class="main_nav_item"><a href="{!! route('pedidos.index') !!}">Pedidos</a></li>
                     <li class="main_nav_item"><a href="{{ route('quienesSomos') }}">Quienes Somos</a></li>
                     @can('admin.dashboard')
                         <li class="main_nav_item"><a href="{{ url('/dashboard') }}">Panel de Control</a></li>
@@ -66,7 +66,7 @@
                                         </x-dropdown-link>
                                     </form>
                                 </x-slot>
-                         
+
                             </x-dropdown>
                         @else
                         <li class="main_nav_item"><a href="{{ route('login') }}">Iniciar Sesión</a></li>
@@ -118,7 +118,7 @@
                         @else
                             <li class="menu_item"><a href="{!! route('login') !!}">Reservas</a></li>
                         @endif
-                        <li class="menu_item"><a href="{{ url('Pedido') }}">Pedidos</a></li>
+                        <li class="menu_item"><a href="{!! route('pedidos.index') !!}">Pedidos</a></li>
                         <li class="menu_item"><a href="{{ route('quienesSomos') }}">Quienes Somos</a></li>
                         @can('admin.dashboard')
                             <li class="menu_item"><a href="{{ url('/dashboard') }}">Panel de Control</a></li>

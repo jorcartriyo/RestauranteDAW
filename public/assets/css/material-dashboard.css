@@ -369,7 +369,7 @@ template {
   }
 
   abbr[title]::after {
-    content: " ("attr(title) ")";
+    content: " (" attr(title) ")";
   }
 
   pre {
@@ -4491,10 +4491,7 @@ tbody.collapse.show {
     padding-left: 0.5rem;
   }
 
-  .navbar-expand-sm>.container,
-  .navbar-expand-sm>.container-fluid {
-    flex-wrap: nowrap;
-  }
+
 
   .navbar-expand-sm .navbar-collapse {
     display: flex !important;
@@ -4623,6 +4620,15 @@ tbody.collapse.show {
   .navbar-expand-xl>.container-fluid {
     padding-right: 0;
     padding-left: 0;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .container-fluid{
+    margin: 0;
+    padding: 0;
+
   }
 }
 

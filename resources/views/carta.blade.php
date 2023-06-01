@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Menu')
+@section('title', 'Carta')
 @section('content')
     <!-- Carrusel -->
     @include('sections.carrusel')
@@ -40,7 +40,7 @@
                                         action="{{ route('pedidos.store') }}">
                                         @method('POST')
                                         @csrf
-                                        <div class="price_box d-flex flex-row align-items-center">
+                                        <div class="price_box">
                                             <div class="course_author_name"> <span>Euros</span></div>
                                             <div
                                                 class="course_price d-flex flex-column align-items-center justify-content-center">

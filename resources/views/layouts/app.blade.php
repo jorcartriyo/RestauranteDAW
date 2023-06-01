@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/animate.css') }}">
+    <script src="{{ asset('assets/js/core/jquery.min.js') }}" type="text/javascript"></script>
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/main_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/responsive.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -35,7 +37,13 @@
     <script src="{{ asset('plugins/OwlCarousel2-2.3.4/owl.carousel.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/material-dashboard.js?v=2.2.2') }}" type="text/javascript"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+
+    
+
+
+
 
 
 </body>

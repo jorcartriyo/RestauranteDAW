@@ -53,5 +53,8 @@
     <li class="nav-item">
         <a class="nav-link" href="{!! route('reservas.index') !!}">Reservas</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{!! route('pedidosBack.index') !!}">Pedidos</a>
+    </li>
     <!-- your sidebar here -->
 </ul>

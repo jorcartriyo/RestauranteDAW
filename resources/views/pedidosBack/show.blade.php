@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title', 'pedidos')
+@extends('layouts.appDashboard')
+@section('title', 'Pedidos')
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -7,7 +7,8 @@
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
-                    @include('pedidosFront.show_fields')
+                    @include('flash-message')
+                    @include('pedidosBack.show_fields')
                 </div>
             </div>
         </div>

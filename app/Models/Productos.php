@@ -11,7 +11,8 @@ class Productos extends Model
     protected $fillable = [
         'idPedido',
         'idArticulo',
-        'cantidad'
+        'cantidad',
+        'agregado'
     ];
 
     protected $hidden = [
@@ -25,13 +26,17 @@ class Productos extends Model
     {
         return Productos::find($id);
     }
-
+    public function deleteProducto($id)
+    {
+        $producto= Productos::find($id);
+        $producto->delete();
+    }
     public function pedidos()
     {
         return $this->belongsTo(Pedidos::class);
     }
     public function articulos()
     {
-        return $this->belongsTo(Articulos::class,'idArticulo');
+        return $this->belongsTo(Articulos::class, 'idArticulo');
     }
 }

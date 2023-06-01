@@ -12,7 +12,7 @@
             <div class="row">
                 @method('put')
                 @include('flash-message')
-                @include('pedidosFront.fields')
+                @include('pedidosBack.fields')
             </div>
             {!! Form::close() !!}
         </div>

@@ -453,11 +453,15 @@
 	}
 
 	.flotante {
-		width: 40%;
+		display: none;
 	}
 
 	.precio {
 		display: none;
+	}
+	.btn_pedidos{
+		display: inline-flex;
+		flex-direction: column;
 	}
 }
 
@@ -522,13 +526,28 @@
 	.hero_box_link {
 		font-size: 10px;
 	}
+	.inputCantidad{
+		width: 40px;
+		
+	}
+	.btn_pedidos{
+		display: inline-flex;
+		flex-direction: column;
+	}
+	.cabecera th{
+	font-size: 80% !important;	
+
+	}
+	table tr{
+		width: 40% !important;
+	}
 }
 
 /************
-10. 250px
+10. 300px
 ************/
 
-@media only screen and (max-width: 250px) {
+@media only screen and (max-width: 300px) {
 
 	.logo span {
 		display: none;
@@ -537,6 +556,14 @@
 
 	.secundaryText {
 		display: none;
+	}
+	.price_box{
+		flex-direction: column !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+	.course_price{
+		margin-right: 30px;
 	}
 
 }

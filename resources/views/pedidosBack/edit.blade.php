@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'Reservas')
+@section('title', 'pedidos')
 @section('content')
     <div class="card">
         <div class="card-body">
-            {!! Form::model($reserva, [
-                'route' => ['front.update', $reserva->id],
+            {!! Form::model($pedido, [
+                'route' => ['front.update', $pedido->id],
                 'method' => 'patch',
                 'files' => true,
                 'id' => 'myform',
@@ -12,7 +12,7 @@
             <div class="row">
                 @method('put')
                 @include('flash-message')
-                @include('reservasFront.fields')
+                @include('pedidosBack.fields')
             </div>
             {!! Form::close() !!}
         </div>

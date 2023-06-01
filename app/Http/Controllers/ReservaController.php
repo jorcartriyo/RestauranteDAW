@@ -24,7 +24,6 @@ class ReservaController extends Controller
     public function index()
     {
         $reservas = $this->reservas->obtenerreservas();
-
         return view('reservas.index', ['reservas' => $reservas]);
     }
 

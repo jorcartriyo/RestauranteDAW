@@ -12,6 +12,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\FotoController;
 use App\Http\Controllers\MesaController;
+use App\Http\Controllers\PedidosBackController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\ReservaFrontController;
@@ -50,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/datosFront', [ReservaFrontController::class, 'datos'])->name('datosFront');
     Route::get('/reservasfront/{email}', [ReservaFrontController::class, 'reserva'])->name('reserva');
     Route::resource('/front', ReservaFrontController::class);
+    Route::delete('/destroyProduct/{idPedido}/{idProducto?}', [PedidosController::class, 'destroyProduct'])->name('destroyProduct');
     Route::resource('/pedidos', PedidosController::class);
 
 
@@ -73,6 +75,7 @@ Route::middleware(['auth', 'verified', 'role:Admin|SuperAdmin'])->group(
         Route::resource('/fotos', FotoController::class);
         Route::resource('/mesas', MesaController::class);
         Route::resource('/reservas', ReservaController::class);
+        Route::resource('/pedidosBack', PedidosBackController::class);
     }
 );
 

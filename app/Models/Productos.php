@@ -11,19 +11,32 @@ class Productos extends Model
     protected $fillable = [
         'idPedido',
         'idArticulo',
-        'cantidad'
+        'cantidad',
+        'agregado'
     ];
 
     protected $hidden = [
         'id'
     ];
-
+    public function obtenerProductos()
+    {
+        return Productos::all();
+    }
+    public function obtenerProductosID($id)
+    {
+        return Productos::find($id);
+    }
+    public function deleteProducto($id)
+    {
+        $producto= Productos::find($id);
+        $producto->delete();
+    }
     public function pedidos()
     {
         return $this->belongsTo(Pedidos::class);
     }
     public function articulos()
     {
-        return $this->hasMany(Articulos::class,'id');
+        return $this->belongsTo(Articulos::class, 'idArticulo');
     }
 }

@@ -43,7 +43,7 @@
              </div>
              {{-- Submit --}}
              <div>
-                 <div class="card-footer justify-content-around">
+                 <div class="card-footer">
                      <div class="ml-auto">
                          <button type="submit" class="btn btn-primary pull-right">Actualizar Categoria</button>
                      </div>

@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Pedidos;
 use App\Models\Productos;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
-class PedidosController extends Controller
+class PedidosBackController extends Controller
 {
 
     protected $pedidos;
@@ -27,8 +26,9 @@ class PedidosController extends Controller
      */
     public function index()
     {
-        $pedidos  = Pedidos::Where('idUsuario', Auth::user()->id)->orderBy('estado')->get();
-        return view('pedidos')->with(['pedidos' => $pedidos]);
+        $pedidos  = $this->pedidos->obtenerPedidos();
+
+        return view('pedidosBack.index')->with(['pedidos' => $pedidos]);
     }
 
     /**
@@ -106,7 +106,11 @@ class PedidosController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pedido = $this->pedidos->obtenerPedidoID($id);
+        if (empty($pedido)) {
+            return redirect(route('pedidosBack.index'))->with('warning', "No existe ese pedidos");
+        }
+        return view('pedidosBack.show')->with('pedido', $pedido);
     }
 
     /**
@@ -116,15 +120,15 @@ class PedidosController extends Controller
     {
         $pedido = $this->pedidos->obtenerPedidoID($id);
         $pedidoUpdate = $pedido->update([
-            'estado' => 'pendiente'
+            'estado' => 'terminado'
         ]);
         if (!$pedidoUpdate) {
 
-            return redirect(route('pedidos.index'))->with('warning', "Se ha producido un error al tramitar el pedido");
+            return redirect(route('pedidosBack.index'))->with('warning', "Se ha producido un error al terminar el pedido");
         }
 
 
-        return redirect(route('pedidos.index'))->with('info', "Pedido Tramitado con exito");
+        return redirect(route('pedidosBack.index'))->with('info', "Pedido Terminado con exito");
     }
 
     /**
@@ -133,48 +137,25 @@ class PedidosController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'idArticulo' => ['required'],
-            'cantidad'  => ['required', function ($attribute, $value, $fail) {
-                if ($value < 1 || $value > 10) {
-                    $fail($attribute . ' No es correcta la cantidad introducida.');
-                }
-            }]
+            'idArticulo' => ['required']
         ]);
 
 
         $pedido = $this->pedidos->obtenerPedidoID($id);
-        if ($pedido == null || !$pedido  || $pedido->estado != 'iniciado') {
-            return redirect(route('pedidos.index'))->with('error', "No se puede modificar un pedido Cerrado");
+        if ($pedido == null || !$pedido) {
+            return redirect(route('pedidosBack.index'))->with('error', "No se puede Agregar");
         }
         $producto =  $this->productos->obtenerProductosID($request->idArticulo);
         $productoUpdate = $producto->update([
-            'cantidad' => $request->cantidad
+            'agregado' => true
         ]);
         if (!$productoUpdate) {
 
-            return redirect(route('pedidos.index'))->with('warning', "Se ha producido un error al actualizar la cantidad");
+            return redirect(route('pedidosBack.index'))->with('warning', "Se ha producido un error al Agregar");
         }
 
 
-        return redirect(route('pedidos.index'))->with('info', "Cantidad actualizada con exito");
-    }
-
-    public function destroyProduct(string $idPedido, string $idProducto)
-    {
-        $pedido = $this->pedidos->obtenerPedidoID($idPedido);
-        if ($pedido == null || !$pedido  || $pedido->estado != 'iniciado') {
-            return redirect(route('pedidos.index'))->with('error', "No se puede modificar un pedido Cerrado");
-        }
-        $producto =  $this->productos->obtenerProductosID($idProducto);
-
-
-        if (empty($producto)) {
-
-            return redirect(route('pedidos.index'))->with('warning', "No existe ese producto");
-        }
-
-        $this->productos->deleteProducto($idProducto);
-        return redirect(route('pedidos.index'))->with('info', "producto borrado con exito");
+        return redirect(route('pedidosBack.show', [$id]))->with('info', "Producto Agregado con Exito");
     }
 
     /**
@@ -183,16 +164,11 @@ class PedidosController extends Controller
     public function destroy(string $id)
     {
         $pedido = $this->pedidos->obtenerPedidoID($id);
-
-
-
-
         if (empty($pedido)) {
-
-            return redirect(route('pedidos.index'))->with('warning', "No existe ese pedido");
+            return redirect(route('pedidosBack.index'))->with('warning', "No existe ese pedido");
         }
 
         $this->pedidos->deletePedido($id);
-        return redirect(route('pedidos.index'))->with('info', "Pedido borrado con exito");
+        return redirect(route('pedidosBack.index'))->with('info', "Pedido borrado con exito");
     }
 }

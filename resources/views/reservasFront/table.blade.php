@@ -5,7 +5,6 @@
             <div class="col-md-12 mt-5">
                 @include('flash-message')
                 @include('layouts.agregarBtn', ['texto' => 'un reserva', 'ruta' => 'fechafront'])
-
                 <div class="card">
                     <div class="card-body">
                         <div class="toolbar">

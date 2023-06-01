@@ -1,15 +1,10 @@
 @if ($recomendados)
 
-    <div class="popular page_section">
+    <div class="page_section">
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="section_title text-center">
-                        <h1>Platos Recomendados</h1>
-                    </div>
-                </div>
+            <div class="section_title text-center">
+                <h1>Platos Recomendados</h1>
             </div>
-
             <div class="row course_boxes d-flex flex-row align-items-center justify-content-between">
 
                 @foreach ($articulos as $articulo)

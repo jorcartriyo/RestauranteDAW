@@ -12,8 +12,8 @@
         </span>
 
         <div class="mt-4">
-            <x-input-label for="fecha" :value="__('Fecha de la Reserva')" />
-            <input type="datetime-local" id="res_date" name="fecha_reserva" required autofocus
+            <x-input-label for="fecha" :value="__('Fecha de la pedido')" />
+            <input type="datetime-local" id="res_date" name="fecha_pedido" required autofocus
                 min="{{ $min_date->format('Y-m-d\TH:i:s') }}" max="{{ $max_date->format('Y-m-d\TH:i:s') }}"
                 class="block mt-1 w-full rounded-md" />
 
@@ -30,13 +30,13 @@
 
         <div class="flex items-center justify-end mt-5">
             <x-primary-button class="justify-content-center">
-                {{ __('Continuar con la Reserva') }}
+                {{ __('Continuar con la pedido') }}
             </x-primary-button>
         </div>
               
         <div class="flex items-center justify-end mt-5">
             <span class="justify-content-center">
-                {{ __('Para reservas de más de 10 comensales o con fecha superior a dos semanas contactar con el restaurante.') }}
+                {{ __('Para pedidos de más de 10 comensales o con fecha superior a dos semanas contactar con el restaurante.') }}
             </span>
         </div>
     </form>

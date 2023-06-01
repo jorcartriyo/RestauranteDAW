@@ -26,11 +26,26 @@ class MenuController extends Controller
     public function index()
     {
         $activas = 0;
-        $articulos = $this->articulos->obtenerArticulos();
         $categorias = $this->categorias->obtenerCategorias();
-        $fotos = Fotos:: where('seccion', 'menu')->get();
+        $articulosUtilizados= Articulos::Where([['tipo', 'menu'], ['activo',true]])->orWhere([['tipo', 'cartamenu',['activo',true]]])->get();
+        $categoriasUtilizadas=[];
+        $categoriasFiltradas=[];
+        $categoriasFinales=[];
+        foreach($articulosUtilizados as $articulo){
+         
+            $categoriasUtilizadas[] = Categorias::Where([['id',$articulo->categoria]] )->get() ;
+        }
 
+        foreach($categoriasUtilizadas as $categorias){
+            $categoriasFiltradas[] = $categorias[0]->categoria;
+        }
+        $categoriasFinales= array_unique( $categoriasFiltradas);
+      
+     
+        //Imagenes del carrusel
+        $fotos = Fotos:: where('seccion', 'carta')->get();
         foreach ($fotos as $foto) {
+            //Si hay fotos activas las agrego para mostrar o no el carrusel
             if ($foto->activo) {
                 $activas++;
             }
@@ -38,6 +53,6 @@ class MenuController extends Controller
 
 
 
-        return view('menu', ['articulos' => $articulos, 'categorias' => $categorias, 'activas' => $activas, 'fotos'=>$fotos]);
+        return view('menu', ['articulos' => $articulosUtilizados, 'categorias' => $categoriasFinales, 'activas' => $activas, 'fotos' => $fotos]);
     }
 }

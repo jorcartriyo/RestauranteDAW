@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idPedido');
-            $table->unsignedBigInteger('idArticulo');    
-            $table->integer('cantidad'); 
+            $table->unsignedBigInteger('idArticulo');
+            $table->integer('cantidad');
+            $table->boolean('agregado')->default(0);
             $table->timestamps();
-            $table->foreign('idPedido')->references('id')->on('pedidos');
-            $table->foreign('idArticulo')->references('id')->on('articulos');
+            $table->foreign('idPedido')->references('id')->on('pedidos')->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('idArticulo')->references('id')->on('articulos')->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

@@ -7,9 +7,7 @@ use App\Models\Categorias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
-use Laravel\Telescope\Telescope;
 use App\Providers\RouteServiceProvider;
-
 
 
 class ArticuloController extends Controller
@@ -74,7 +72,7 @@ class ArticuloController extends Controller
         $file = $request->file;
         if ($file != null || isset($file)) {
             $file = $file;
-            $fileName = time() . "." . $file->extension();
+            $fileName = time() . "." . $file->extension();        
             Storage::putFileAs('articulos', $file, $fileName);
             Log::channel('baseroleslog')->info('Agregado a la ruta  ' . Storage::url('articulos/') . ' la imagen ' . $fileName);
         } else {

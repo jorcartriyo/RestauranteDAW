@@ -7,7 +7,7 @@
 
         <div class="card-header text-center">
             <h2 class="card-title text-capitalize display-6">
-                Actualiza la Reserva
+                Actualiza la pedido
             </h2>
         </div>
         <div class="card-body">
@@ -69,11 +69,11 @@
                     </span>
                 </div>
                 <div class="form-group">
-                    <label for="fecha_reserva" class="bmd-label-floating">Fecha de Reserva
+                    <label for="fecha_pedido" class="bmd-label-floating">Fecha de pedido
                         (required)</label>
-                    <input type="datetime-local" id="res_date" name="fecha_reserva" required autofocus
+                    <input type="datetime-local" id="res_date" name="fecha_pedido" required autofocus
                         min="{{ $min_date->format('Y-m-d\TH:i:s') }}" max="{{ $max_date->format('Y-m-d\TH:i:s') }}"
-                        class="block mt-1 w-full rounded-md" value="{{ $reserva->fecha_reserva }}" />
+                        class="block mt-1 w-full rounded-md" value="{{ $pedido->fecha_pedido }}" />
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
         <div>
             <div class="card-footer justify-content-around">
                 <div class="ml-auto">
-                    <button type="submit" class="btn btn-primary pull-right">Actualizar Reserva</button>
+                    <button type="submit" class="btn btn-primary pull-right">Actualizar pedido</button>
                 </div>
             </div>
         </div>

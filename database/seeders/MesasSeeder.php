@@ -14,7 +14,7 @@ class MesasSeeder extends Seeder
     {
         Mesas::create([
             'nombre' => 'Mesa 1',
-            'comensales' => 6       
+            'comensales' => 6
         ]);
         Mesas::create([
             'nombre' => 'Mesa 2',

@@ -44,7 +44,6 @@ class PedidosController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'idArticulo' => ['required'],
             'cantidad'  => ['required', function ($attribute, $value, $fail) {
@@ -56,7 +55,9 @@ class PedidosController extends Controller
                 if ($value < 1 || $value > 10) {
                     $fail($attribute . ' No es correcta la cantidad introducida.');
                 }
-            }]
+            }],
+            'comentarios' => ['string'],
+
         ]);
 
 
@@ -71,7 +72,8 @@ class PedidosController extends Controller
                 Productos::create([
                     'idPedido' => $pedido->id,
                     'idArticulo' => $request->idArticulo,
-                    'cantidad' => $request->cantidad
+                    'cantidad' => $request->cantidad,
+                    'comentarios' => $request->comentarios
                 ]);
             } elseif (count($pedido) == 2) {
                 return redirect(route('carta.index'))->with('info', "Existen dos pedidos abiertos");
@@ -87,6 +89,7 @@ class PedidosController extends Controller
                         'idPedido' => $pedido[0]->id,
                         'idArticulo' => $request->idArticulo,
                         'cantidad' => $request->cantidad,
+                        'comentarios' => $request->comentarios
                     ]);
                 } else {
                     return redirect(route($request->ruta == 'carta' ? 'carta.index' : 'menu.index'))->with('error', "Este Producto ya Existe en el Pedido");
@@ -123,7 +126,6 @@ class PedidosController extends Controller
             return redirect(route('pedidos.index'))->with('warning', "Se ha producido un error al tramitar el pedido");
         }
 
-
         return redirect(route('pedidos.index'))->with('info', "Pedido Tramitado con exito");
     }
 
@@ -157,6 +159,29 @@ class PedidosController extends Controller
 
 
         return redirect(route('pedidos.index'))->with('info', "Cantidad actualizada con exito");
+    }
+
+    public function updatePedido(Request $request, string $id)
+    {
+        $request->validate([
+            'comentarios' => ['string']
+        ]);
+
+
+        $pedido = $this->pedidos->obtenerPedidoID($id);
+        if ($pedido == null || !$pedido  || $pedido->estado != 'iniciado') {
+            return redirect(route('pedidos.index'))->with('error', "No se puede modificar un pedido Cerrado");
+        }
+        $pedidoUpdate = $pedido->update([
+            'comentarios' => $request->comentarios
+        ]);
+        if (!$pedidoUpdate) {
+
+            return redirect(route('pedidos.index'))->with('warning', "Se ha producido un error al actualizar el comentario");
+        }
+
+
+        return redirect(route('pedidos.index'))->with('info', "Comentario actualizado con exito");
     }
 
     public function destroyProduct(string $idPedido, string $idProducto)

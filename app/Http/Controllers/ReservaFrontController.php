@@ -8,6 +8,7 @@ use App\Models\Mesas;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class ReservaFrontController extends Controller
 {
@@ -25,8 +26,9 @@ class ReservaFrontController extends Controller
        
     }
 
-    public function reserva($email)
+    public function reserva()
     {
+        $email =  Auth::user()->email;
         $reservas = Reservas::Where('email', $email)->get();       
 
 
@@ -105,6 +107,7 @@ class ReservaFrontController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
 
         $fecha =  Carbon::create($request->fecha_reserva);
 
@@ -114,8 +117,9 @@ class ReservaFrontController extends Controller
             'telefono' => ['required', 'numeric'],
             'fecha_reserva' => ['required', 'date'],
             'mesa' => ['required'],
-            'comensales' => ['required', 'numeric']
-        ]);
+            'comensales' => ['required', 'numeric'],
+            'comentarios' => ['string']
+       ]);
 
         $reserva =  reservas::create([
             'nombre' => $request->nombre,
@@ -123,7 +127,8 @@ class ReservaFrontController extends Controller
             'telefono' => $request->telefono,
             'fecha_reserva' =>  $fecha,
             'mesa' =>  $request->mesa,
-            'comensales' =>  $request->comensales
+            'comensales' =>  $request->comensales,
+            'comentarios' => $request->comentarios
         ]);
 
         if (!$reserva) {
@@ -172,13 +177,16 @@ class ReservaFrontController extends Controller
      */
     public function update(Request $request, string $id)
     {
+       
         $request->validate([
             'nombre' => ['max:50', 'required'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'telefono' => ['required', 'numeric'],
             'fecha_reserva' => ['required', 'date'],
             'mesa' => ['required'],
-            'comensales' => ['required', 'numeric']
+            'comensales' => ['required', 'numeric'],
+            'comentarios' => ['string']
+
         ]);
         $ruta = '';
         $reserva = $this->reservas->obtenerreservaID($id);

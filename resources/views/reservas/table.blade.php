@@ -17,6 +17,7 @@
                                             <th class="text-center">Fecha</th>
                                             <th class="text-center">Mesa</th>
                                             <th class="text-center">Comensales</th>
+                                            <th class="text-center">Comentarios</th>
                                             <th class="text-center">Creada</th>
                                             <th class="text-center">Editada</th>
                                             <th class="text-center">Acciones</th>
@@ -31,6 +32,7 @@
                                             <th class="text-center">Fecha</th>
                                             <th class="text-center">Mesa</th>
                                             <th class="text-center">Comensales</th>
+                                            <th class="text-center">Comentarios</th>
                                             <th class="text-center">Creada</th>
                                             <th class="text-center">Editada</th>
                                             <th class="text-center">Acciones</th>
@@ -47,6 +49,7 @@
                                                 <td class="text-center">{{  \Carbon\Carbon::create($reserva->fecha_reserva )->format('d-m-Y H:i')  }}</td>
                                                 <td class="text-center">{{ $reserva->mesas->nombre }}</td>
                                                 <td class="text-center">{{ $reserva->comensales }}</td>
+                                                <td class="text-center">{{ $reserva->comentarios ? 'Si' : 'No' }}</td>
                                                 <td class="text-center">{{ $reserva->created_at }}</td>
                                                 <td class="text-center">{{ $reserva->updated_at }}</td>
 

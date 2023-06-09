@@ -283,4 +283,21 @@ $(document).ready(function () {
 			});
 		}
 	}
+
+	var url = document.URL;
+	if(url == 'http://restaurantedaw.test/'){
+		url='http://restaurantedaw.test';
+	}
+	if(url == 'http://restaurantedaw.test/dashboard'){
+		url='http://restaurantedaw.test/reservas';
+	} 
+
+	
+	$('.main_nav_list li [href="'+url+'"]').addClass('actual');
+	$('.menu_list li [href="'+url+'"]').addClass('actualHamburguesa');
+	$('.nav li [href="'+url+'"]').addClass('actualHamburguesa');
+	$('.footer_column_content li [href="'+url+'"]').addClass('actualFooter');
+
+
+	
 });

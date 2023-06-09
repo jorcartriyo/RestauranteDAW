@@ -16,11 +16,11 @@
                                 <div class="hero_slide_container">
                                     <div class="hero_slide_content text-center">
                                         <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">
-                                            {{ $foto->texto1 }}
+                                            <span class="span1">{{ $foto->texto1 }}</span>
                                             @if ($foto->texto2)
                                                 <span>{{ $foto->texto2 }}</span>
                                                 @if ($foto->texto3)
-                                                    {{ $foto->texto3 }}
+                                                <span class="span1"> {{ $foto->texto3 }}</span>
                                                 @endif
                                             @endif
                                     </div>

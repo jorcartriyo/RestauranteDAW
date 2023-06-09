@@ -16,7 +16,8 @@ class Reservas extends Model
         'telefono',
         'fecha_reserva',
         'mesa',   
-        'comensales'      
+        'comensales',
+        'comentarios'       
     ];  
 
     protected $hidden = [

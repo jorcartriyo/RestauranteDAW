@@ -1,39 +1,58 @@
 @extends('layouts.app')
-@section('title', 'Menu')
+@section('title', 'Pedidos')
 @section('content')
-    <div class="content pt-6 mx-5">
+    <div class="content">
         <div class="container-fluid pt-5">
             <div class="row">
                 <div class="col-md-12 mt-5">
-                    @include('flash-message')
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body mt-5">
+                            @include('flash-message')
                             <div class="toolbar">
-                                <div class="material-datatables">                                   
+                                <div class="material-datatables">
                                     @if (count($pedidos) > 0)
                                         @foreach ($pedidos as $pedido)
-                                        <input type="hidden" name="precioTotal" value=" {{ $precioTotal = 0 }} }">
                                             <table id="datatables" class="table table-striped table-no-bordered table-hover"
                                                 cellspacing="0" width="100%" style="width:100%">
+                                                <input type="hidden" name="precioTotal" value=" {{ $precioTotal = 0 }} }">
                                                 <thead>
                                                     <tr class="cabecera bg-primary text-white">
                                                         <th class="text-center">Nº Pedido</th>
                                                         <th class="text-center">Usuario</th>
                                                         <th class="text-center">Estado</th>
                                                         <th class="text-center">Fecha del Pedido</th>
+                                                        <th class="text-center">Comentarios</th>
                                                         <th class="text-center">Acciones</th>
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr class="cabecera">
-                                                        <td class="text-center">{{ $pedido->usuario->name }}</td>
+                                                        <td class="text-center">{{ $pedido->id }}</td>
                                                         <td class="text-center">{{ $pedido->usuario->name }}</td>
                                                         <td class="text-center">{{ $pedido->estado }}</td>
                                                         <td class="text-center">
                                                             {{ \Carbon\Carbon::create($pedido->fecha)->format('d-m-Y H:i') }}
                                                         </td>
+                                                        {!! Form::open(['route' => ['updatePedido', [$pedido->id]], 'method' => 'put']) !!}
+                                                        @if ($pedido->estado == 'iniciado')
+                                                            <td class="text-center">
+                                                                <textarea class="form-control rounded-0" style="resize: both;" id="comentarios" name="comentarios" rows="3">{{ $pedido->comentarios }}</textarea>
+                                                            </td>
+                                                        @else
+                                                            <td class="text-center">{{ $pedido->comentarios }}</td>
+                                                        @endif
                                                         <td class="text-center">
+                                                            @if ($pedido->estado == 'iniciado')
+                                                                {!! Form::button('<i class="fa fa-edit"></i>', [
+                                                                    'type' => 'submit',
+                                                                    'class' => 'btn btn-link btn-warning btn-just-icon edit ',
+                                                                    'name' => 'e',
+                                                                ]) !!}
+                                                            @endif
+
+                                                            {!! Form::close() !!}
+
                                                             {!! Form::open(['route' => ['pedidos.destroy', [$pedido->id]], 'method' => 'delete']) !!}
 
                                                             {!! Form::button('<i class="fa fa-trash"></i>', [
@@ -46,89 +65,93 @@
                                                         </td>
                                                     <tr>
                                                 </tbody>
-                                            </table>
-                                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
-                                                cellspacing="0" width="100%" style="width:100%">
-                                                <thead>
-                                                    <tr class="cabecera bg-primary text-white">
-                                                        <th class="text-center">Producto</th>
-                                                        <th class="text-center">Precio</th>
-                                                        <th class="text-center">Cantidad</th>
-                                                        <th class="text-center">Subtotal</th>
-                                                        <th class="text-center">Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($pedido->productos as $producto)
-                                                        <tr>
-                                                            <td class="text-center">{{ $producto->articulos->nombre }}</td>
-                                                            <td class="text-center">{{ $producto->articulos->precio }}E</td>
 
-
-                                                            {!! Form::open(['route' => ['pedidos.update', [$pedido->id]], 'method' => 'put']) !!}
-                                                            @if ($pedido->estado == 'iniciado')
-                                                                <td class="text-center">
-                                                                    <input type="number" name="cantidad" min='1'
-                                                                        class="inputCantidad" max='10'
-                                                                        value="{{ $producto->cantidad }}">
+                                                <table id="datatables"
+                                                    class="table table-striped table-no-bordered table-hover"
+                                                    cellspacing="0" width="100%" style="width:100%">
+                                                    <thead>
+                                                        <tr class="cabecera bg-primary text-white">
+                                                            <th class="text-center">Producto</th>
+                                                            <th class="text-center">Precio</th>
+                                                            <th class="text-center">Cantidad</th>
+                                                            <th class="text-center">Subtotal</th>
+                                                            <th class="text-center">Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($pedido->productos as $producto)
+                                                            <tr>
+                                                                <td class="text-center">{{ $producto->articulos->nombre }}
                                                                 </td>
-                                                            @else
-                                                                <td class="text-center">{{ $producto->cantidad }}</td>
-                                                            @endif
-                                                            <td class="text-center">
-                                                                {{ $precio = $producto->articulos->precio * $producto->cantidad }}E
-                                                            </td>
-                                                            <input type="hidden" name="precioTotal"
-                                                                value=" {{ $precioTotal = $precio + $precioTotal }} }">
-                                                            <input type="hidden" name="idArticulo"
-                                                                value="{{ $producto->id }}">
-                                                            @if ($pedido->estado == 'iniciado')
-                                                                <td class=" text-center">
-                                                                    <div class='btn_pedidos btn-group '>
-                                                                        {!! Form::button('<i class="fa fa-edit"></i>', [
-                                                                            'type' => 'submit',
-                                                                            'class' => 'btn btn-link btn-warning btn-just-icon edit ',
-                                                                            'name' => 'e',
-                                                                        ]) !!}
+                                                                <td class="text-center">{{ $producto->articulos->precio }}E
+                                                                </td>
+
+
+                                                                {!! Form::open(['route' => ['pedidos.update', [$pedido->id]], 'method' => 'put']) !!}
+                                                                @if ($pedido->estado == 'iniciado')
+                                                                    <td class="text-center">
+                                                                        <input type="number" name="cantidad" min='1'
+                                                                            class="inputCantidad" max='10'
+                                                                            value="{{ $producto->cantidad }}">
+                                                                    </td>
+                                                                @else
+                                                                    <td class="text-center">{{ $producto->cantidad }}</td>
+                                                                @endif
+                                                                <td class="text-center">
+                                                                    {{ $precio = $producto->articulos->precio * $producto->cantidad }}E
+                                                                </td>
+                                                                <input type="hidden" name="precioTotal"
+                                                                    value=" {{ $precioTotal = $precio + $precioTotal }} }">
+                                                                <input type="hidden" name="idArticulo"
+                                                                    value="{{ $producto->id }}">
+                                                                @if ($pedido->estado == 'iniciado')
+                                                                    <td class=" text-center">
+                                                                        <div class='btn_pedidos btn-group '>
+                                                                            {!! Form::button('<i class="fa fa-edit"></i>', [
+                                                                                'type' => 'submit',
+                                                                                'class' => 'btn btn-link btn-warning btn-just-icon edit ',
+                                                                                'name' => 'e',
+                                                                            ]) !!}
+
+                                                                            {!! Form::close() !!}
+                                                                            {!! Form::open(['route' => ['destroyProduct', [$pedido->id, $producto->id]], 'method' => 'delete']) !!}
+
+                                                                            {!! Form::button('<i class="fa fa-trash"></i>', [
+                                                                                'type' => 'submit',
+                                                                                'class' => 'btn btn-link btn-danger btn-just-icon remove ',
+                                                                                'onclick' => 'return confirm("Estás seguro de eliminar este registro?")',
+                                                                                'name' => 'z',
+                                                                            ]) !!}
+                                                                        </div>
 
                                                                         {!! Form::close() !!}
-                                                                        {!! Form::open(['route' => ['destroyProduct', [$pedido->id, $producto->id]], 'method' => 'delete']) !!}
-
-                                                                        {!! Form::button('<i class="fa fa-trash"></i>', [
-                                                                            'type' => 'submit',
-                                                                            'class' => 'btn btn-link btn-danger btn-just-icon remove ',
-                                                                            'onclick' => 'return confirm("Estás seguro de eliminar este registro?")',
-                                                                            'name' => 'z',
-                                                                        ]) !!}
-                                                                    </div>
-
-                                                                    {!! Form::close() !!}
-                                                                </td>
-                                                            @endif
+                                                                    </td>
+                                                                @endif
+                                                            </tr>
+                                                        @endforeach
+                                                        @if ($pedido->estado == 'iniciado')
+                                                            {!! Form::open(['route' => ['pedidos.edit', [$pedido->id]], 'method' => 'get']) !!}
+                                                            {!! Form::button('<span>Tramitar El Pedido</span>', [
+                                                                'type' => 'submit',
+                                                                'class' => 'btn btn-info btn-simple ',
+                                                                'onclick' => 'return confirm("Estás seguro de Tramitar el Pedido? Una vez Tramitado no se podrá modificar")',
+                                                                'name' => 'o',
+                                                            ]) !!}
+                                                            {!! Form::close() !!}
+                                                        @endif
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr class="bg-secondary ">
+                                                            <th class="text-center" colspan="5">Precio Total
+                                                                {{ $precioTotal }}€</th>
                                                         </tr>
-                                                    @endforeach
-                                                    @if ($pedido->estado == 'iniciado')
-                                                        {!! Form::open(['route' => ['pedidos.edit', [$pedido->id]], 'method' => 'get']) !!}
-                                                        {!! Form::button('<span>Tramitar El Pedido</span>', [
-                                                            'type' => 'submit',
-                                                            'class' => 'btn btn-info btn-simple ',
-                                                            'onclick' => 'return confirm("Estás seguro de Tramitar el Pedido? Una vez Tramitado no se podrá modificar")',
-                                                            'name' => 'o',
-                                                        ]) !!}
-                                                        {!! Form::close() !!}
-                                                    @endif
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr class="bg-secondary ">
-                                                        <th class="text-center" colspan="5">Precio Total
-                                                            {{ $precioTotal }}€</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                                                    </tfoot>
+                                                </table>
                                         @endforeach
                                     @else
-                                        <h1 class="text-center">No tiene ningún pedido</h1>
+                                        <h1 class="text-center mt-5">No tiene ningún pedido</h1>
                                     @endif
+                                    </table>
                                     <div class="section text-center section-landing">
                                         <div class="features">
                                             <div class="row">

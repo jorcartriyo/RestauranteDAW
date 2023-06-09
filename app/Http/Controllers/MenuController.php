@@ -30,7 +30,8 @@ class MenuController extends Controller
         $articulosUtilizados= Articulos::Where([['tipo', 'menu'], ['activo',true]])->orWhere([['tipo', 'cartamenu',['activo',true]]])->get();
         $categoriasUtilizadas=[];
         $categoriasFiltradas=[];
-        $categoriasFinales=[];
+      
+
         foreach($articulosUtilizados as $articulo){
          
             $categoriasUtilizadas[] = Categorias::Where([['id',$articulo->categoria]] )->get() ;
@@ -38,10 +39,18 @@ class MenuController extends Controller
 
         foreach($categoriasUtilizadas as $categorias){
             $categoriasFiltradas[] = $categorias[0]->categoria;
+        }    
+        foreach($categoriasUtilizadas as $categorias){
+            $categoriasFiltradas[] = $categorias[0]->categoria;
         }
-        $categoriasFinales= array_unique( $categoriasFiltradas);
+        $categoriasFinalesDesordenadas= array_unique( $categoriasFiltradas);
+        sort($categoriasFinalesDesordenadas, SORT_REGULAR);
+       
+        
+        foreach( $categoriasFinalesDesordenadas as $categoriaFinal) {
+            $categoriasOrdenadas[] = substr( $categoriaFinal,1); 
+        }     
       
-     
         //Imagenes del carrusel
         $fotos = Fotos:: where('seccion', 'carta')->get();
         foreach ($fotos as $foto) {
@@ -53,6 +62,6 @@ class MenuController extends Controller
 
 
 
-        return view('menu', ['articulos' => $articulosUtilizados, 'categorias' => $categoriasFinales, 'activas' => $activas, 'fotos' => $fotos]);
+        return view('menu', ['articulos' => $articulosUtilizados, 'categorias' => $categoriasOrdenadas, 'activas' => $activas, 'fotos' => $fotos]);
     }
 }

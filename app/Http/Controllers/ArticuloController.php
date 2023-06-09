@@ -27,9 +27,6 @@ class ArticuloController extends Controller
     public function index()
     {
         $articulos = $this->articulos->obtenerArticulos();
-
-
-
         return view('articulos.index', ['articulos' => $articulos]);
     }
 
@@ -177,13 +174,14 @@ class ArticuloController extends Controller
         ]);
         $ruta = '';
         $articulo = $this->articulos->obtenerArticulosID($id);
+       
+     
         if (empty($articulo)) {
             Log::channel('baseroleslog')->alert('Intendo de editar un articulo que no existe');
             $ruta = redirect(route('articulos.index'))->with('warning', "No existe ese articulo");
         } else {
             $input = $request->all();
             $file = $request->file;
-            $tipo =   $request->tipo[0];
             if ($file != null || isset($file)) {
                 $file = $file;
                 $fileName = time() . "." . $file->extension();
@@ -196,32 +194,59 @@ class ArticuloController extends Controller
             } else {
                 $fileName = 'default';
             }
-
-            if (count($request->tipo) === 2) {
-                $articuloUpdate = $articulo->update([
-                    'nombre' => $request->nombre,
-                    'descripcion' => $request->descripcion,
-                    'imagen' => $fileName,
-                    'categoria' =>  $request->categoria,
-                    'precio' =>  $request->precio,
-                    'tipo' =>  $request->tipo[0] . $request->tipo[1],
-                    'activo' =>  $request->activo,
-                    'recomendado' =>  $request->recomendado,
-                    'agotado' =>  $request->agotado
-                ]);
-            } else {
-                $articuloUpdate = $articulo->update([
-                    'nombre' => $request->nombre,
-                    'descripcion' => $request->descripcion,
-                    'imagen' => $fileName,
-                    'categoria' =>  $request->categoria,
-                    'precio' =>  $request->precio,
-                    'tipo' =>  $request->tipo[0],
-                    'activo' =>  $request->activo,
-                    'recomendado' =>  $request->recomendado,
-                    'agotado' =>  $request->agotado
-                ]);
-            }
+    if($file != null ){
+        if (count($request->tipo) === 2) {
+            $articuloUpdate = $articulo->update([
+                'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
+                'imagen' => $fileName,
+                'categoria' =>  $request->categoria,
+                'precio' =>  $request->precio,
+                'tipo' =>  $request->tipo[0] . $request->tipo[1],
+                'activo' =>  $request->activo,
+                'recomendado' =>  $request->recomendado,
+                'agotado' =>  $request->agotado
+            ]);
+        } else {
+            $articuloUpdate = $articulo->update([
+                'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
+                'imagen' => $fileName,
+                'categoria' =>  $request->categoria,
+                'precio' =>  $request->precio,
+                'tipo' =>  $request->tipo[0],
+                'activo' =>  $request->activo,
+                'recomendado' =>  $request->recomendado,
+                'agotado' =>  $request->agotado
+            ]);
+        }
+    }else{
+        if (count($request->tipo) === 2) {
+            $articuloUpdate = $articulo->update([
+                'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
+                'categoria' =>  $request->categoria,
+                'precio' =>  $request->precio,
+                'tipo' =>  $request->tipo[0] . $request->tipo[1],
+                'activo' =>  $request->activo,
+                'recomendado' =>  $request->recomendado,
+                'agotado' =>  $request->agotado
+            ]);
+        } else {
+            $articuloUpdate = $articulo->update([
+                'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
+                'categoria' =>  $request->categoria,
+                'precio' =>  $request->precio,
+                'tipo' =>  $request->tipo[0],
+                'activo' =>  $request->activo,
+                'recomendado' =>  $request->recomendado,
+                'agotado' =>  $request->agotado
+            ]);
+        }
+    }
+          
+           
             if (!$articuloUpdate) {
                 Log::channel('baseroleslog')->warning('Error al actualizar datos del articulo ' . $articulo->nombre);
 

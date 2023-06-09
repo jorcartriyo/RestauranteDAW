@@ -60,7 +60,7 @@
                                 <label for="telefono" class="bmd-label-floating"> Telefono
                                     (requerido)</label>
                                 <input type="number" class="form-control" id="telefono" required="true" name="telefono"
-                                     min='600000000' max='799999999'>
+                                    min='600000000' max='799999999'>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,25 @@
                             </div>
                         </div>
                     </div>
-                    <input id="ruta" class="block mt-1 w-full" type="text" name="ruta" value= 'front' hidden/>            
+
+                    {{-- comentarios --}}
+
+                    <div class="col-lg-18">
+                        <div class="input-group form-control-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="material-icons">description</i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcion">Comentarios</label>
+                                <textarea class="form-control rounded-0" value=' ' style="resize: both;" id="comentarios" name="comentarios"
+                                    rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <input id="ruta" class="block mt-1 w-full" type="text" name="ruta" value='front'
+                        hidden />
 
                     {{-- Submit --}}
                     <div>

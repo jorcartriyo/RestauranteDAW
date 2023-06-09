@@ -22,18 +22,13 @@
                         <div class="section_title mt-4">
                             <span></span>
                         </div>
-
                     </div>
                     <div class="row course_boxes d-flex flex-col align-items-center justify-content-around">
 
                         @foreach ($articulos as $articulo)
-                            @if ($categoria === $articulo->categorias->categoria)
+                            @if ($categoria === substr($articulo->categorias->categoria, 1))
                                 <div class="col-lg-4 mb-5 text-align-center">
                                     <div class="card">
-                                        @if ($articulo->imagen != 'default')
-                                            <img class="card-img-top" src="{{ $articulo->imagen }}"
-                                                alt="{{ $articulo->nombre }}">
-                                        @endif
                                         <div class="card-body text-center">
                                             <div class="card-title"><a>{{ $articulo->nombre }}</a></div>
                                         </div>
@@ -48,9 +43,8 @@
                 @method('POST')
                 @csrf
                 <div class="card">
-                    <div
-                        class="price_box font-weight-bold">
-                        <h2  class="precio">Precio del {{ $articulo->nombre }}</h2>
+                    <div class="price_box font-weight-bold">
+                        <h2 class="precio">Precio del {{ $articulo->nombre }}</h2>
 
 
                         <div>

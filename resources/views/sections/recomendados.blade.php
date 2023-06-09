@@ -6,13 +6,12 @@
                 <h1>Platos Recomendados</h1>
             </div>
             <div class="row course_boxes d-flex flex-row align-items-center justify-content-between">
-
                 @foreach ($articulos as $articulo)
                     @if ($articulo->recomendado && $articulo->activo)
                         <!-- Popular Course Item -->
                         <div class="col-lg-4  mb-5">
                             <div class="card">
-                                <img class="card-img-top" src="{{ asset('images/course_1.jpg') }}"
+                                <img style="height: 60px" src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"
                                     alt="https://unsplash.com/@kellybrito">
                                 <div class="card-body text-center">
                                     <div class="card-title"><a>{{ $articulo->nombre }}</a></div>
@@ -21,9 +20,6 @@
                                 </div>
                                 <div class="price_box d-flex flex-row align-items-center">
                                     <div class="course_author_name">Precio</div>
-
-
-
                                     <div
                                         class="course_price d-flex p-2 flex-column align-items-center justify-content-center">
                                         <span>{{ $articulo->agotado == 1 ? 'Agotado' : ($articulo->precio != 0 ? $articulo->precio . '€' : 'Menu') }}</span>

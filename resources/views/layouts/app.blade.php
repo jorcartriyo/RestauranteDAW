@@ -19,6 +19,10 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/main_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}" />
+    <link href="{{ asset('assets/demo/demo.css" rel="stylesheet') }}" />
+    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery.validate.min.js') }}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -31,13 +35,21 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/core/popper.min.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('assets/js/material-dashboard.js?v=2.2.2') }}" type="text/javascript"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js') }}"></script>
+    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+    <script src="{{ asset('assets/js/plugins/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+
     <script src="{{ asset('styles/bootstrap5/popper.js') }}"></script>
     <script src="{{ asset('styles/bootstrap5/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/OwlCarousel2-2.3.4/owl.carousel.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/material-dashboard.js?v=2.2.2') }}" type="text/javascript"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 
     

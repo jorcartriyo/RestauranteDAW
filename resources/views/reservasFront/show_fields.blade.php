@@ -26,6 +26,9 @@
                     <li class="list-group-item">
                         <b>Comensales</b> <a class="float-right">{{ $reserva->comensales }}</a>
                     </li>
+                    <li class="list-group-item">
+                        <b>Comentarios</b> <a class="float-right">{{ $reserva->comentarios }}</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.card-body -->

@@ -11,7 +11,8 @@ class Pedidos extends Model
     protected $fillable = [
         'idUsuario',
         'fecha',
-        'estado'  
+        'estado',
+        'comentarios' 
     ];
 
     protected $hidden = [

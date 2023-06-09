@@ -12,8 +12,8 @@
                             <th class="text-center">Usuario</th>
                             <th class="text-center">Estado</th>
                             <th class="text-center">Fecha del Pedido</th>
-                            <th class="text-center">Terminado</th>
-
+                            <th class="text-center">Comentarios</th>
+                            <th class="text-center">Terminado</th>                          
                         </tr>
                     </thead>
                     <tbody>
@@ -24,6 +24,7 @@
                             <td class="text-center">
                                 {{ \Carbon\Carbon::create($pedido->fecha)->format('d-m-Y H:i') }}
                             </td>
+                            <td class="text-center">{{ $pedido->comentarios }}</td>
                             <td class="text-center">
                                 <div class='btn-group'>
                                     <a href="{!! route('pedidosBack.edit', [$pedido->id]) !!}" class='btn btn-link btn-info btn-just-icon like'>

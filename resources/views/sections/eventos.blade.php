@@ -37,7 +37,7 @@
 
                                     <div class="col-lg-4 order-lg-3 order-1">
                                         <div class="event_image">
-                                            <img src="{{ asset('images/event_1.jpg') }}"
+                                            <img src="{{ asset('storage/images/eventos/' . $evento->imagen) }}"
                                                 alt="https://unsplash.com/@theunsteady5">
                                         </div>
                                     </div>

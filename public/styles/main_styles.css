@@ -325,6 +325,10 @@ section {
     height: 100%;
 }
 
+.card img {
+    height: 350px;
+    width: 100%;
+}
 .header_content::before {
     display: block;
     position: fixed;
@@ -398,12 +402,8 @@ section {
     display: inline-block;
     margin-right: 40px;
     margin-top: 30px;
-}
+} 
 
-.main_nav_item_footer {
-    color: #a5a5a5;
-
-}
 
 .main_nav_item:last-child {
     margin-right: 0px;
@@ -422,6 +422,7 @@ section {
     transition: all 200ms ease;
 }
 
+
 .main_nav_item a:hover {
     color: #ffb606;
 }
@@ -429,8 +430,30 @@ section {
 .main_nav_item_footer {
     display: inline-block;
     margin-right: 40px;
-    margin-top: 30px;
+    margin-bottom: 30px;
     color: #a5a5a5;
+}
+
+.actual {
+    color: #dfcfa8;
+    background-color: #d59ab7;
+    padding: 10px;
+}
+
+.actualHamburguesa {
+    background-color: #d59ab7;
+    padding: 10px;
+
+}
+
+.actualFooter{
+    color:  #1a1a1a;
+    background-color:#FFFFFF;
+    padding: 18px;
+}
+
+.nav-link{
+    color: #121212 !important;
 }
 
 /*********************************
@@ -512,6 +535,7 @@ section {
 }
 
 .menu_container.active {
+    width: 200px;
     visibility: visible;
     opacity: 1;
     right: 0;
@@ -521,7 +545,7 @@ section {
     position: absolute;
     text-align: right;
     top: 150px;
-    padding-left: 25%;
+    padding-left: 1%;
 }
 
 .menu_container.active .menu_list {
@@ -531,6 +555,11 @@ section {
     -o-transform: translateY(0px);
     transform: translateY(0px);
     opacity: 1;
+
+}
+
+.menu_list a {
+    font-size: 20px !important;
 }
 
 .menu_item {
@@ -540,7 +569,6 @@ section {
 .menu_item a {
     font-family: 'Open Sans', sans-serif;
     font-size: 36px;
-    font-weight: 700;
     color: #3a3a3a;
     -webkit-transition: all 200ms ease;
     -moz-transition: all 200ms ease;
@@ -735,6 +763,13 @@ section {
     padding-right: 13px;
     margin-left: -12px;
     margin-right: -12px;
+    opacity: 0.7;
+}
+
+.hero_slide_content h1 .span1 {
+    background: #c8458f;
+    opacity: 0.7;
+
 }
 
 .animated {
@@ -913,9 +948,11 @@ section {
     color: #a5a5a5;
     margin-top: -12px;
 }
+
 .card-footer {
     text-align: right;
 }
+
 .price_box {
     display: flex;
     align-items: center;
@@ -956,7 +993,7 @@ section {
 
 .course_price span {
     color: #FFFFFF;
-    font-size: 18px;  
+    font-size: 18px;
     margin-top: 7px;
     padding: 25px;
 }
@@ -1302,6 +1339,7 @@ input:last-of-type {
 
 .event_image img {
     width: 100%;
+
 }
 
 /*********************************
@@ -1491,13 +1529,11 @@ input.error {
 }
 
 label.error {
-    background: url(images/unchecked.gif) no-repeat;
     padding-left: 16px;
     margin-left: .3em
 }
 
 label.valid {
-    background: url(images/checked.gif) no-repeat;
     display: block;
     width: 16px;
     height: 16px
@@ -1527,4 +1563,74 @@ app-element [slot="dropdown-link"] {
     bottom: 320px;
     right: 20px;
     z-index: 10;
+}
+
+/**********************************/
+/********** Contact CSS ***********/
+/**********************************/
+.contact {
+    position: relative;
+    padding-top: 130px;
+}
+
+.contact .contact-info,
+.contact .contact-form,
+.contact .contact-map {
+    height: 100%;
+    padding: 30px;
+    background: #ffffff;
+    border-bottom: 30px solid #f3f6ff;
+}
+
+.contact .contact-info h2 {
+    margin-bottom: 15px;
+    font-size: 28px;
+    text-align: center;
+}
+
+.contact .contact-info h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.contact .contact-info h3 i {
+    width: 20px;
+    color: #FF6F61;
+    margin-right: 5px;
+}
+
+
+.contact .contact-map iframe {
+    width: 100%;
+    height: 450px;
+}
+
+
+
+
+@media(min-width: 992px) {
+    .container-fluid {
+        padding-right: 60px;
+        padding-left: 60px;
+    }
+}
+
+
+
+/**********************************/
+/********* Form Input CSS *********/
+/**********************************/
+
+.btn {
+    color: #FF6F61;
+    background: #ffffff;
+    border: 1px solid #FF6F61;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+    color: #ffffff;
+    background: #FF6F61;
+    box-shadow: none;
 }

@@ -27,23 +27,32 @@ class CartaController extends Controller
     {
         $activas = 0;
         $categorias = $this->categorias->obtenerCategorias();
-        $articulosUtilizados= Articulos::Where([['tipo', 'carta'], ['activo',true]])->orWhere([['tipo', 'cartamenu',['activo',true]]])->get();
-        $categoriasUtilizadas=[];
-        $categoriasFiltradas=[];
-        $categoriasFinales=[];
-        foreach($articulosUtilizados as $articulo){
-         
-            $categoriasUtilizadas[] = Categorias::Where([['id',$articulo->categoria]] )->get() ;
+        $articulosUtilizados = Articulos::Where([['tipo', 'carta'], ['activo', true]])->orWhere([['tipo', 'cartamenu', ['activo', true]]])->get();
+        $categoriasUtilizadas = [];
+        $categoriasFiltradas = [];
+
+        foreach ($articulosUtilizados as $articulo) {
+
+            $categoriasUtilizadas[] = Categorias::Where([['id', $articulo->categoria]])->get();
         }
 
-        foreach($categoriasUtilizadas as $categorias){
+        foreach ($categoriasUtilizadas as $categorias) {
             $categoriasFiltradas[] = $categorias[0]->categoria;
         }
-        $categoriasFinales= array_unique( $categoriasFiltradas);
-      
-     
+        foreach ($categoriasUtilizadas as $categorias) {
+            $categoriasFiltradas[] = $categorias[0]->categoria;
+        }
+        $categoriasFinalesDesordenadas = array_unique($categoriasFiltradas);
+        sort($categoriasFinalesDesordenadas, SORT_REGULAR);
+
+
+        foreach ($categoriasFinalesDesordenadas as $categoriaFinal) {
+            $categoriasOrdenadas[] = substr($categoriaFinal, 1);
+        }
+
+
         //Imagenes del carrusel
-        $fotos = Fotos:: where('seccion', 'carta')->get();
+        $fotos = Fotos::where('seccion', 'carta')->get();
         foreach ($fotos as $foto) {
             //Si hay fotos activas las agrego para mostrar o no el carrusel
             if ($foto->activo) {
@@ -53,6 +62,6 @@ class CartaController extends Controller
 
 
 
-        return view('carta', ['articulos' => $articulosUtilizados, 'categorias' => $categoriasFinales, 'activas' => $activas, 'fotos'=>$fotos]);
+        return view('carta', ['articulos' => $articulosUtilizados, 'categorias' => $categoriasOrdenadas, 'activas' => $activas, 'fotos' => $fotos]);
     }
 }

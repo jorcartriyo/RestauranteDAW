@@ -129,9 +129,9 @@ class CategoriaController extends Controller
             } else {
                 $fileName = 'default';
             }
+            dd($fileName );
             $categoriaUpdate = $categoria->update($input);
-   
-
+  
             if (!$categoriaUpdate) {
                 Log::channel('baseroleslog')->warning('Error al actualizar datos del usuario ' . $categoria->categoria);
 

@@ -31,7 +31,7 @@
 	}
 
 	.secundaryText {
-		top: 30px;
+		margin-top: 20px;
 	}
 
 	.main_nav_item {
@@ -270,7 +270,7 @@
 
 
 	.secundaryText {
-		font-size: 20px !important;
+		font-size: 30px !important;
 		top: 25px;
 	}
 
@@ -324,7 +324,7 @@
 
 
 	.logo_container {
-		padding-left: 15px;
+		padding-left: 5px;
 	}
 
 	.logo_container img {
@@ -333,7 +333,7 @@
 	}
 
 	.logo span {
-		font-size: 30px;
+		font-size: 20px;
 	}
 
 	.hamburger_container {
@@ -486,7 +486,7 @@
 	}
 
 	.secundaryText {
-		font-size: 15px !important;
+		font-size: 25px !important;
 		top: 25px;
 	}
 

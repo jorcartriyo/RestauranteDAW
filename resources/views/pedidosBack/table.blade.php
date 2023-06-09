@@ -14,6 +14,7 @@
                                             <th class="text-center">Usuario</th>
                                             <th class="text-center">Estado</th>
                                             <th class="text-center">Fecha del Pedido</th>
+                                            <th class="text-center">Comentarios</th>
                                             <th class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
@@ -23,6 +24,7 @@
                                             <th class="text-center">Usuario</th>
                                             <th class="text-center">Estado</th>
                                             <th class="text-center">Fecha del Pedido</th>
+                                            <th class="text-center">Comentarios</th>
                                             <th class="text-center">Acciones</th>
                                         </tr>
                                     </tfoot>
@@ -36,6 +38,7 @@
                                                     <td class="text-center">
                                                         {{ \Carbon\Carbon::create($pedido->fecha)->format('d-m-Y H:i') }}
                                                     </td>
+                                                    <td class="text-center">{{ $pedido->comentarios ? 'Si' : 'No' }}</td>
                                                     <td class=" text-center">
                                                         {!! Form::open(['route' => ['pedidosBack.destroy', [$pedido->id]], 'method' => 'delete']) !!}
                                                         <div class='btn-group'>

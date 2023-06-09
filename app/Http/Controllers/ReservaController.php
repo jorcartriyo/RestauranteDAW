@@ -104,7 +104,6 @@ class ReservaController extends Controller
      */
     public function store(Request $request)
     {
-
         $fecha =  Carbon::create($request->fecha_reserva);
 
         $request->validate([
@@ -113,7 +112,8 @@ class ReservaController extends Controller
             'telefono' => ['required', 'numeric'],
             'fecha_reserva' => ['required', 'date'],
             'mesa' => ['required'],
-            'comensales' => ['required', 'numeric']
+            'comensales' => ['required', 'numeric'],
+            'comentarios' => ['string']
         ]);
 
         $reserva =  reservas::create([
@@ -122,7 +122,8 @@ class ReservaController extends Controller
             'telefono' => $request->telefono,
             'fecha_reserva' =>  $fecha,
             'mesa' =>  $request->mesa,
-            'comensales' =>  $request->comensales
+            'comensales' =>  $request->comensales,
+            'comentarios' => $request->comentarios
         ]);
 
         if (!$reserva) {
@@ -179,7 +180,9 @@ class ReservaController extends Controller
             'telefono' => ['required', 'numeric'],
             'fecha_reserva' => ['required', 'date'],
             'mesa' => ['required'],
-            'comensales' => ['required', 'numeric']
+            'comensales' => ['required', 'numeric'],
+            'comentarios' => ['string']
+
         ]);
         $ruta = '';
         $reserva = $this->reservas->obtenerreservaID($id);

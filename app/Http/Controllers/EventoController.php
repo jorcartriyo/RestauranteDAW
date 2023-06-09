@@ -48,7 +48,7 @@ class EventoController extends Controller
             'descripcionCorta' => ['max:125'],
             'descripcion' => ['max:1255'],
             'dia' => ['numeric'],
-            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'],
+            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048', 'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'],
             'mes'   => ['string', 'max:80', 'required'],
             'activo'   => ['boolean', 'required'],
         ]);
@@ -126,7 +126,7 @@ class EventoController extends Controller
             'descripcionCorta' => ['max:125'],
             'descripcion' => ['max:1255'],
             'dia' => ['numeric'],
-            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'],
+            'file' => ['image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048', 'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'],
             'mes'   => ['string', 'max:80', 'required'],
             'activo'   => ['boolean', 'required'],
         ]);

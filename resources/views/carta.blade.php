@@ -24,7 +24,7 @@
                 </div>
                 <div class="row justify-content-around">
                     @foreach ($articulos as $articulo)
-                        @if ($categoria === $articulo->categorias->categoria)
+                        @if ($categoria === substr($articulo->categorias->categoria, 1))
                             <div class="col-lg-4 mb-5 pr-5">
                                 <div class="card">
                                     <img class="card-img-top"
@@ -55,7 +55,7 @@
                                             <div>
                                                 @Auth
                                                     <button type="submit" class="btn btn-info btn-simple">Agregar
-                                                        </button>
+                                                    </button>
                                                 @else
                                                     <button type="submit" class="btn btn-info btn-simple">Inicia
                                                         Sesion o Registrate</button>

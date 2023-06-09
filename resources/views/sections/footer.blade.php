@@ -21,22 +21,22 @@
 
                 <!-- Footer Column - Menu -->
 
-                <div class="col-lg-3 footer_col">
+                <div class="col-lg-3 footer_col ml-5 pl-5">
                     <div class="footer_column_title">MENU</div>
                     <div class="footer_column_content">
                         <ul>
-                            <li class="main_nav_item_footer"><a href="{!! route('main') !!}">INICIO</a></li>
-                            <li class="main_nav_item"><a href="{!! route('carta.index') !!}">CARTA</a></li>
-                            <li class="main_nav_item"><a href="{!! route('menu.index') !!}">MENÚ DEL DÍA</a></li>
-                            <li class="main_nav_item"><a href="{{ url('Menu') }}">RESERVAS</a></li>
-                            <li class="main_nav_item"><a href="{{ url('Pedido') }}">PEDIDOS</a></li>
-                            <li class="main_nav_item"><a href="{{ route('quienesSomos') }}">QUIENES SOMOS</a></li>
+                            <li class="main_nav_item_footer"><a href="{!! route('main') !!}">Inicio</a></li>
+                            <li class="main_nav_item_footer"><a href="{!! route('carta.index') !!}">CARTA</a></li>
+                            <li class="main_nav_item_footer"><a href="{!! route('menu.index') !!}">MENÚ DEL DÍA</a></li>
+                            <li class="main_nav_item_footer"><a href="{!! route('reserva') !!}">RESERVAS</a></li>
+                            <li class="main_nav_item_footer"><a href="{!! route('pedidos.index') !!}">PEDIDOS</a></li>
+                            <li class="main_nav_item_footer"><a href="{{ route('quienesSomos') }}">QUIENES SOMOS</a></li>
                         </ul>
                     </div>
                 </div>
                 <!-- Footer Column - Contact -->
 
-                <div class="col-lg-3 footer_col">
+                <div class="col-lg-2 footer_col">
                     <div class="footer_column_title">CONTACTO</div>
                     <div class="footer_column_content">
                         <ul>

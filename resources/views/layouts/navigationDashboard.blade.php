@@ -31,10 +31,13 @@
         <li class="nav-item">
             <a class="nav-link" href="{!! route('permisos.index') !!}">Permisos</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{!! route('log') !!}">Logs</a>
-        </li>
     @endcan
+    <li class="nav-item">
+        <a class="nav-link" href="{!! route('reservas.index') !!}">Reservas</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{!! route('pedidosBack.index') !!}">Pedidos</a>
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="{!! route('articulos.index') !!}">Articulos</a>
     </li>
@@ -49,12 +52,9 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{!! route('mesas.index') !!}">Mesas</a>
-    </li>
+    </li>  
     <li class="nav-item">
-        <a class="nav-link" href="{!! route('reservas.index') !!}">Reservas</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{!! route('pedidosBack.index') !!}">Pedidos</a>
+        <a class="nav-link" href="{!! route('contactanos.index') !!}">Mensajes</a>
     </li>
     <!-- your sidebar here -->
 </ul>

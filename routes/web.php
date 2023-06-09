@@ -7,6 +7,7 @@ use App\Http\Controllers\SuperAdminRoles\RolController;
 use App\Http\Controllers\SuperAdminRoles\PermisoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CartaController;
+use App\Http\Controllers\ContactanosController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\EventoController;
@@ -49,12 +50,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/fechaFront', [ReservaFrontController::class, 'fecha'])->name('fechafront');
     Route::post('/datos', [ReservaController::class, 'datos'])->name('datos');
     Route::post('/datosFront', [ReservaFrontController::class, 'datos'])->name('datosFront');
-    Route::get('/reservasfront/{email}', [ReservaFrontController::class, 'reserva'])->name('reserva');
+    Route::get('/reservasfront}', [ReservaFrontController::class, 'reserva'])->name('reserva');
     Route::resource('/front', ReservaFrontController::class);
     Route::delete('/destroyProduct/{idPedido}/{idProducto?}', [PedidosController::class, 'destroyProduct'])->name('destroyProduct');
+    Route::put('/updatePedido/{idPedido}}', [PedidosController::class, 'updatePedido'])->name('updatePedido');
     Route::resource('/pedidos', PedidosController::class);
-
-
 });
 
 Route::middleware(['auth', 'verified', 'role:SuperAdmin'])->group(
@@ -62,8 +62,6 @@ Route::middleware(['auth', 'verified', 'role:SuperAdmin'])->group(
         Route::resource('/home', UserController::class);
         Route::resource('/roles', RolController::class);
         Route::resource('/permisos', PermisoController::class);
-        Route::get('/logs', [UserController::class, 'log'])->name('log');
-
     }
 
 );
@@ -76,6 +74,8 @@ Route::middleware(['auth', 'verified', 'role:Admin|SuperAdmin'])->group(
         Route::resource('/mesas', MesaController::class);
         Route::resource('/reservas', ReservaController::class);
         Route::resource('/pedidosBack', PedidosBackController::class);
+        Route::resource('/contactanos', ContactanosController::class);
+
     }
 );
 

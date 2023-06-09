@@ -108,6 +108,20 @@
                 </div>
             </div>
         </div>
+        {{-- Comentarios --}}
+        <div class="col-lg-18">
+            <div class="input-group form-control-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="material-icons">description</i>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Comentarios</label>
+                    {!! Form::textarea('comentarios', null, ['class' => 'form-control', 'style' => 'resize: both;', 'rows' => '10']) !!}
+                </div>
+            </div>
+        </div>
         {{-- Submit --}}
         <div>
             <div class="card-footer justify-content-around">

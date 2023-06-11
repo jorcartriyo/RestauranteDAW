@@ -4,6 +4,8 @@
              <div style="height:400px">
                  <img class="mx-auto text-right h-100 border border-primary img-fluid "
                      @if ($articulo->imagen != 'default') src="{{ Storage::url('articulos/' . $articulo->imagen) }}"
+                     @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"
+
                                                                 @else src="{{ asset('assets/img/product.png') }}" @endif
                      alt="Articulos profile picture" />
              </div>

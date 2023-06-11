@@ -13,6 +13,7 @@ class Fotos extends Model
         'seccion',
         'texto1',
         'texto2',
+        'texto3',
         'imagen',     
         'activo'      
     ]; 

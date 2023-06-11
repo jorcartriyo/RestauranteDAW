@@ -64,7 +64,8 @@ class FotoController extends Controller
 
             $fileName = 'default';
         }
-        $foto =  Fotos::create([
+   
+        $foto =  Fotos::create([         
             'seccion' => $request->seccion,
             'texto1' => $request->texto1,
             'texto2' => $request->texto2, 

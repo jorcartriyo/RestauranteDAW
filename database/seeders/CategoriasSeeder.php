@@ -13,21 +13,21 @@ class CategoriasSeeder extends Seeder
     public function run(): void
     {
         Categorias::create([
-            'categoria' => 'Entrantes',
+            'categoria' => '1Entrantes',
             'imagen' => 'default'         
         ]);
         Categorias::create([
-            'categoria' => 'Primeros',
-            'imagen' => 'default'         
-        ]);
-
-        Categorias::create([
-            'categoria' => 'Segundo',
+            'categoria' => '2Primeros',
             'imagen' => 'default'         
         ]);
 
         Categorias::create([
-            'categoria' => 'Postres',
+            'categoria' => '3Segundo',
+            'imagen' => 'default'         
+        ]);
+
+        Categorias::create([
+            'categoria' => '4Postres',
             'imagen' => 'default'         
         ]);
 

@@ -13,8 +13,7 @@ class Mesas extends Model
     protected $fillable = [
         'nombre',
         'comensales',
-        'estado',
-        'localizacion'          
+        'estado'           
     ];  
 
     protected $hidden = [

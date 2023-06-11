@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('fecha_reserva');
             $table->unsignedBigInteger('mesa');
             $table->integer('comensales');
-            $table->longText('comentarios')->nullable();
+            $table->longText('comentarios')->nullable();    
             $table->timestamps();
             $table->foreign('mesa')
             ->references('id')

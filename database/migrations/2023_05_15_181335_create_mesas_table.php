@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('comensales');
-            $table->enum('estado',['disponible', 'ocupada', 'rota'])->default('disponible');
+            $table->enum('estado',['disponible', 'pendiente', 'reservada'])->default('disponible');
             $table->timestamps();
         });
     }

@@ -74,8 +74,10 @@ class ReservaFrontController extends Controller
 
         foreach ($reservas as $reserva) {
             if (
-                Carbon::create($reserva->fecha_reserva)->addHours(3)->format('Y-m-d H:m') > Carbon::create($request->fecha_reserva)->format('Y-m-d H:m')
-                || Carbon::create($request->fecha_reserva)->subHours(3)->format('Y-m-d H:m') > Carbon::create($request->fecha_reserva)->format('Y-m-d H:m')
+                Carbon::create($reserva->fecha_reserva)->format('Y-m-d H:m') == Carbon::create($request->fecha_reserva)->format('Y-m-d H:m')
+                || Carbon::create($reserva->fecha_reserva)->subHours(1)->format('Y-m-d H:m') == Carbon::create($request->fecha_reserva)->format('Y-m-d H:m')
+                || Carbon::create($reserva->fecha_reserva)->addHours(1)->format('Y-m-d H:m') == Carbon::create($request->fecha_reserva)->format('Y-m-d H:m')
+
             ) {
 
                 $mesaOcupada = $this->mesas->obtenerMesaID($reserva->mesa);
@@ -84,9 +86,9 @@ class ReservaFrontController extends Controller
                 array_push($mesasOcupadas, $mesaOcupada);
             }
         }
+        dd($mesasOcupadas);
         $mesasDisponibles = array_diff($mesasLibres, $mesasOcupadas);
-        foreach ($reservas as $reserva) {
-        }
+       
         return view('reservasFront.register', ['mesasDisponibles' => $mesasDisponibles, 'datos' => $datos, 'fecha_reserva' => $fecha_reserva]);
     }
 

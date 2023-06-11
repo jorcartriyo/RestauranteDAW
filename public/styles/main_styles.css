@@ -329,6 +329,7 @@ section {
     height: 350px;
     width: 100%;
 }
+
 .header_content::before {
     display: block;
     position: fixed;
@@ -402,7 +403,7 @@ section {
     display: inline-block;
     margin-right: 40px;
     margin-top: 30px;
-} 
+}
 
 
 .main_nav_item:last-child {
@@ -446,13 +447,13 @@ section {
 
 }
 
-.actualFooter{
-    color:  #1a1a1a;
-    background-color:#FFFFFF;
+.actualFooter {
+    color: #1a1a1a;
+    background-color: #FFFFFF;
     padding: 18px;
 }
 
-.nav-link{
+.nav-link {
     color: #121212 !important;
 }
 
@@ -1072,7 +1073,8 @@ section {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    opacity: 0.23;
+    background-attachment: fixed;
+    opacity: 0.43;
 }
 
 .search_title {
@@ -1133,6 +1135,12 @@ input:last-of-type {
 
 .services {
     padding-bottom: 76px;
+    background-image: url(../images/fondo1.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    opacity: 0.9;
 }
 
 .services_row {
@@ -1147,17 +1155,18 @@ input:last-of-type {
     font-family: 'Roboto', sans-serif;
     font-size: 22px;
     font-weight: 500;
-    color: #1a1a1a;
+    color: #d3eeef;
     margin-bottom: 13px;
 }
 
 .service_item p {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
-    color: #a5a5a5;
+    color: #9d578b;
     max-width: 100%;
     margin-bottom: 0px;
 }
+
 
 .icon_container {
     height: 41px;

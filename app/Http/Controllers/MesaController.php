@@ -100,16 +100,17 @@ class MesaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
+    {      
         $request->validate([
             'nombre' => ['max:50', 'required'],
             'comensales' => ['numeric', 'required'],
             'estado'   => [function ($attribute, $value, $fail) {
                 if ($value != 'disponible' && $value != 'pendiente' && $value != 'reservada') {
-                    $fail($attribute . ' No es correcto el estado introducida.');
+                    $fail($attribute . ' No es correcto el estado introducido.');
                 }
             }],           
         ]);
+   
         $ruta = '';
         $mesa = $this->mesas->obtenermesaID($id);
         if (empty($mesa)) {

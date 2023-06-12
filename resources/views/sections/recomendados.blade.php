@@ -11,8 +11,10 @@
                         <!-- Popular Course Item -->
                         <div class="col-lg-4  mb-5">
                             <div class="card">
-                                <img style="height: 60px" src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"
+                                <img  @if ($articulo->imagen != 'default') src="{{ asset('storage/images/articulos/' . $articulo->imagen) }}"
+                                @else src="{{ asset('assets/img/product.png') }}" @endif
                                     alt="https://unsplash.com/@kellybrito">
+                                   
                                 <div class="card-body text-center">
                                     <div class="card-title"><a>{{ $articulo->nombre }}</a></div>
                                     <br>

@@ -325,11 +325,6 @@ section {
     height: 100%;
 }
 
-.card img {
-    height: 350px;
-    width: 100%;
-}
-
 .header_content::before {
     display: block;
     position: fixed;
@@ -436,24 +431,29 @@ section {
 }
 
 .actual {
-    color: #dfcfa8;
-    background-color: #d59ab7;
+    color: #ffb606;
+    background: #c8458f;
+    opacity: 0.7;
     padding: 10px;
 }
 
 .actualHamburguesa {
-    background-color: #d59ab7;
+    background: #c8458f;
+    opacity: 0.7;;
     padding: 10px;
 
 }
 
-.actualFooter {
-    color: #1a1a1a;
-    background-color: #FFFFFF;
-    padding: 18px;
+.actualFooter{
+    color:  #1a1a1a;
+    background: #c8458f;
+    opacity: 0.7;
+    padding: 12px;
 }
 
-.nav-link {
+
+
+.nav-link{
     color: #121212 !important;
 }
 
@@ -916,6 +916,11 @@ section {
     border: aqua;
 }
 
+.card_front {
+    height: 350px;
+    width: 100%;
+}
+
 .card-img-top {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
@@ -1074,7 +1079,7 @@ section {
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
-    opacity: 0.43;
+    opacity: 0.43
 }
 
 .search_title {
@@ -1166,7 +1171,6 @@ input:last-of-type {
     max-width: 100%;
     margin-bottom: 0px;
 }
-
 
 .icon_container {
     height: 41px;

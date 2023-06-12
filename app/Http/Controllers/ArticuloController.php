@@ -62,7 +62,7 @@ class ArticuloController extends Controller
                 }
             }],
             'activo'   => ['boolean', 'required'],
-            'recomendado'   => ['boolean'],
+            'recomendado'   => ['boolean', 'required'],
             'agotado'   => ['boolean'],
         ]);
 

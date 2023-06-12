@@ -39,21 +39,22 @@
                     </div>
                 @endif
             @endforeach
+
             <form method="POST" id="myform" enctype="multipart/form-data" action="{{ route('pedidos.store') }}">
                 @method('POST')
                 @csrf
                 <div class="card">
                     <div class="price_box font-weight-bold">
-                        
-                        <h2 class="precio">Precio del {{ $articulo->nombre }}</h2>
+                        @foreach ($articulos as $articulo)
+                            @if ($articulo->categoria == 5)
+                                <h2 class="precio">Precio del {{ $articulo->nombre }}</h2>
+                                <div>
+                                    <span>{{ $articulo->precio }}</span>
+                                    <span>Euros</span>
 
-
-                        <div>
-                            <span>{{ $articulo->precio }}</span>
-                            <span>Euros</span>
-
-                        </div>
-
+                                </div>
+                            @endif
+                        @endforeach
                         <div class="d-flex align-items-center  ">
                             <input type="hidden" name="idArticulo" value="{{ $articulo->id }}">
                             <input type="hidden" name="ruta" value="menu">

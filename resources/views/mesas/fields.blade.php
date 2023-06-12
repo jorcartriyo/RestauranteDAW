@@ -45,23 +45,29 @@
              <div class="input-group form-control-lg">
                  <div class="input-group-prepend">
                      <span class="input-group-text">
-                         <i class="material-icons">done_outline</i>
-                     </span>
+                         <i class="fa fa-section" aria-hidden="true"></i>
                  </div>
-                 <div class="form-group">
-                     <label for="estado" class="bmd-label-floating">Estado
-                         (required)</label>
-                     {!! Form::text('estado', null, ['class' => 'form-control']) !!}
-                 </div>
-             </div>
-         </div>
-         {{-- Submit --}}
-         <div>
-             <div class="card-footer justify-content-around">
-                 <div class="ml-auto">
-                     <button type="submit" class="btn btn-primary pull-right">Actualizar Mesa</button>
+                 <label for="estado" class="bmd-label-floating">Estado (requerido)</label>
+                 <div class="form-group  ml-5">
+                     <select id="estado" name="estado" require>
+                         <option value="disponible" {{ $mesa->estado == 'disponible' ? 'selected' : 'false' }}>Disponible
+                         </option>
+                         <option value="pendiente" {{ $mesa->estado == 'pendiente' ? 'selected' : 'false' }}>Pendiente
+                         </option>
+                         <option value="reservada" {{ $mesa->estado == 'reservada' ? 'selected' : 'false' }}>Reservada
+                         </option>
+                     </select>
                  </div>
              </div>
          </div>
      </div>
+     {{-- Submit --}}
+     <div>
+         <div class="card-footer justify-content-around">
+             <div class="ml-auto">
+                 <button type="submit" class="btn btn-primary pull-right">Actualizar Mesa</button>
+             </div>
+         </div>
+     </div>
+ </div>
  </div>

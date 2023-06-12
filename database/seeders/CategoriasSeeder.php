@@ -30,6 +30,10 @@ class CategoriasSeeder extends Seeder
             'categoria' => '4Postres',
             'imagen' => 'default'         
         ]);
+        Categorias::create([
+            'categoria' => '5Precios',
+            'imagen' => 'default'         
+        ]);
 
     }
 }

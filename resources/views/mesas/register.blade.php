@@ -51,13 +51,17 @@
                         <div class="input-group form-control-lg">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
-                                    <i class="material-icons">done_outline</i>
+                                    <i class="fa fa-section" aria-hidden="true"></i>
                                 </span>
                             </div>
-                            <div class="form-group">
-                                <label for="estado" class="bmd-label-floating">Estado
-                                </label>
-                                <input type="text" class="form-control" id="estado" name="estado" value='disponible'>
+                            <label for="estado" class="bmd-label-floating">Estado (requerido)</label>
+                            <div class="form-group  ml-5">
+
+                                <select id="estado" name="estado" require>
+                                    <option value="disponible">Disponible</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="reservada">Reservada</option>
+                                </select>
                             </div>
                         </div>
                     </div>

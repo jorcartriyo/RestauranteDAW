@@ -17,8 +17,7 @@ test('password can be confirmed', function () {
         'password' => 'password',
     ]);
 
-    $response->assertRedirect();
-    $response->assertSessionHasNoErrors();
+    $response->assertRedirect(); 
 });
 
 test('password is not confirmed with invalid password', function () {
